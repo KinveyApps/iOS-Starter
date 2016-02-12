@@ -4,3 +4,7 @@ framework module Kinvey {
   export *
   module * { export * }
 }
+
+module Kinvey.Swift {
+    header "Kinvey-Swift.h"
+}

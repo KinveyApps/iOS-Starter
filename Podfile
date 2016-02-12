@@ -5,9 +5,6 @@ use_frameworks!
 
 target 'Bookshelf' do
 
-	pod 'Realm'
-	pod 'PromiseKit'
-	pod 'KeychainAccess'    
 	pod 'SVProgressHUD'
 
 end

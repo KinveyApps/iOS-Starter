@@ -16,6 +16,8 @@
 		5701ABA51C6916A900D7D9BB /* BookshelfTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701ABA41C6916A900D7D9BB /* BookshelfTests.swift */; };
 		5701ABB01C6916A900D7D9BB /* BookshelfUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701ABAF1C6916A900D7D9BB /* BookshelfUITests.swift */; };
 		5701ABC01C69187200D7D9BB /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701ABBF1C69187200D7D9BB /* Book.swift */; };
+		574B0F931C6E96A300CDC48F /* KinveyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 574B0F921C6E96A300CDC48F /* KinveyKit.framework */; };
+		574B0F941C6E96BA00CDC48F /* KinveyKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 574B0F921C6E96A300CDC48F /* KinveyKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		574F62741C6B2B6800765760 /* Kinvey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 574F62731C6B2B6800765760 /* Kinvey.framework */; };
 		574F62761C6B2C8800765760 /* Kinvey.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 574F62731C6B2B6800765760 /* Kinvey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5B7F18C5F8317F29928DB0ED /* Pods_Bookshelf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DEA6D6C2FCD9E9E3719916D /* Pods_Bookshelf.framework */; };
@@ -46,6 +48,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				574F62761C6B2C8800765760 /* Kinvey.framework in CopyFiles */,
+				574B0F941C6E96BA00CDC48F /* KinveyKit.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,10 +72,9 @@
 		5701ABAF1C6916A900D7D9BB /* BookshelfUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookshelfUITests.swift; sourceTree = "<group>"; };
 		5701ABB11C6916A900D7D9BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5701ABBF1C69187200D7D9BB /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		574B0F921C6E96A300CDC48F /* KinveyKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KinveyKit.framework; sourceTree = "<group>"; };
 		574F62731C6B2B6800765760 /* Kinvey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Kinvey.framework; sourceTree = "<group>"; };
 		CCA53723B7B210E84D647E3E /* Pods-Bookshelf.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bookshelf.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bookshelf/Pods-Bookshelf.debug.xcconfig"; sourceTree = "<group>"; };
-		E4C437173AB404D875575479 /* Pods-Bookshelf.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bookshelf.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-Bookshelf/Pods-Bookshelf.debug.xcconfig"; sourceTree = "<group>"; };
-		F3BFE94419174C2D9E20CC06 /* Pods-Bookshelf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bookshelf.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-Bookshelf/Pods-Bookshelf.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				574F62741C6B2B6800765760 /* Kinvey.framework in Frameworks */,
+				574B0F931C6E96A300CDC48F /* KinveyKit.framework in Frameworks */,
 				5B7F18C5F8317F29928DB0ED /* Pods_Bookshelf.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -105,6 +108,7 @@
 		5701AB811C6916A900D7D9BB = {
 			isa = PBXGroup;
 			children = (
+				574B0F921C6E96A300CDC48F /* KinveyKit.framework */,
 				574F62731C6B2B6800765760 /* Kinvey.framework */,
 				5701AB8C1C6916A900D7D9BB /* Bookshelf */,
 				5701ABA31C6916A900D7D9BB /* BookshelfTests */,
@@ -169,8 +173,6 @@
 		FA5394E248E7AF387541ADF0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E4C437173AB404D875575479 /* Pods-Bookshelf.debug.xcconfig */,
-				F3BFE94419174C2D9E20CC06 /* Pods-Bookshelf.release.xcconfig */,
 				CCA53723B7B210E84D647E3E /* Pods-Bookshelf.debug.xcconfig */,
 				218B9F26CB3273C40F49F4FD /* Pods-Bookshelf.release.xcconfig */,
 			);
