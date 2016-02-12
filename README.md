@@ -1,12 +1,12 @@
 # IOS-Starter
 Starter app for Kinvey iOS 3.0 SDK
 
-This is a [Kinvey](http://www.kinvey.com) iOS Sample app to illustrate how to use version 3.0 of the Kinvey iOS library. 
+This is a iOS Sample app to illustrate how to use version 3.0 of the [Kinvey](http://www.kinvey.com) iOS library. 
 
-_Note: This starter app uses a developer preview of the Kinvey iOS 3.0 Library. To use the GA version of Kinvey iOS, refer to the [Devcenter](http://devcenter.kinvey.com/ios)_ 
+_Note: This starter app uses a developer preview of the Kinvey iOS 3.0 Library. To use the GA version, refer to the [Devcenter](http://devcenter.kinvey.com/ios)_ 
 
 ## Concepts illustrated in this sample
-* Logging in a user to Kinvey
+* Logging in a user
 * Using the 3.0 DataStore API to send and retrieve data
 * Managing offline data in a "Sync" store and synchronizing it with the backend
 
@@ -17,7 +17,7 @@ _Note: This starter app uses a developer preview of the Kinvey iOS 3.0 Library. 
 
 ## License
 
-Copyright (c) 2014 Kinvey, Inc.
+Copyright (c) 2016 Kinvey, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
