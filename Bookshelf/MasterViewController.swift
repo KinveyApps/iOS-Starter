@@ -124,7 +124,6 @@ class MasterViewController: UITableViewController {
     }
 
     @IBAction func push(sender: AnyObject) {
-        let store = DataStore<Book>.getInstance(.Sync)
         SVProgressHUD.show()
         try! store.push { (count, error) -> Void in
             SVProgressHUD.dismiss()
@@ -133,7 +132,6 @@ class MasterViewController: UITableViewController {
     }
     
     @IBAction func purge(sender: AnyObject) {
-        let store = DataStore<Book>.getInstance(.Sync)
         SVProgressHUD.show()
         try! store.purge { (count, error) -> Void in
             SVProgressHUD.dismiss()
@@ -142,7 +140,6 @@ class MasterViewController: UITableViewController {
     }
     
     @IBAction func sync(sender: AnyObject) {
-        let store = DataStore<Book>.getInstance(.Sync)
         SVProgressHUD.show()
         try! store.sync() { (count, books, error) -> Void in
             SVProgressHUD.dismiss()
