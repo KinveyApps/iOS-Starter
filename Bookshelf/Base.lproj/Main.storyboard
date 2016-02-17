@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="H1p-Uh-vWS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="H1p-Uh-vWS">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -97,18 +97,15 @@
                             <rect key="frame" x="0.0" y="64" width="600" height="46"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LKm-yk-Fya">
-                                    <rect key="frame" x="8" y="8" width="50" height="30"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="50" id="Agg-qr-Qyl"/>
-                                    </constraints>
-                                    <state key="normal" title="Push"/>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4R5-yW-zPa">
+                                    <rect key="frame" x="13" y="8" width="50" height="30"/>
+                                    <state key="normal" title="Pull"/>
                                     <connections>
-                                        <action selector="push:" destination="7bK-jq-Zjz" eventType="touchUpInside" id="SCq-Nw-Pzr"/>
+                                        <action selector="pull:" destination="7bK-jq-Zjz" eventType="touchUpInside" id="3O9-kL-uOf"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0J5-EA-FOD">
-                                    <rect key="frame" x="66" y="8" width="50" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0J5-EA-FOD">
+                                    <rect key="frame" x="137" y="8" width="50" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="50" id="wx2-Gx-84x"/>
                                     </constraints>
@@ -117,8 +114,8 @@
                                         <action selector="purge:" destination="7bK-jq-Zjz" eventType="touchUpInside" id="GEw-HF-fOX"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wCy-d6-pds">
-                                    <rect key="frame" x="124" y="8" width="50" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wCy-d6-pds">
+                                    <rect key="frame" x="195" y="8" width="50" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="50" id="ssN-nc-4Ww"/>
                                     </constraints>
@@ -127,15 +124,22 @@
                                         <action selector="sync:" destination="7bK-jq-Zjz" eventType="touchUpInside" id="uTv-lA-wd1"/>
                                     </connections>
                                 </button>
+                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LKm-yk-Fya">
+                                    <rect key="frame" x="71" y="8" width="50" height="30"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="50" id="Agg-qr-Qyl"/>
+                                    </constraints>
+                                    <state key="normal" title="Push"/>
+                                    <connections>
+                                        <action selector="push:" destination="7bK-jq-Zjz" eventType="touchUpInside" id="SCq-Nw-Pzr"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstItem="LKm-yk-Fya" firstAttribute="leading" secondItem="8wA-8C-BH2" secondAttribute="leadingMargin" id="Ime-6R-5Yg"/>
                                 <constraint firstItem="0J5-EA-FOD" firstAttribute="centerY" secondItem="8wA-8C-BH2" secondAttribute="centerY" id="QRB-n6-dzj"/>
-                                <constraint firstItem="0J5-EA-FOD" firstAttribute="leading" secondItem="LKm-yk-Fya" secondAttribute="trailing" constant="8" id="dox-h0-9jx"/>
                                 <constraint firstItem="wCy-d6-pds" firstAttribute="leading" secondItem="0J5-EA-FOD" secondAttribute="trailing" constant="8" id="qyj-ls-zFK"/>
                                 <constraint firstItem="wCy-d6-pds" firstAttribute="centerY" secondItem="8wA-8C-BH2" secondAttribute="centerY" id="w8t-TA-1HP"/>
-                                <constraint firstItem="LKm-yk-Fya" firstAttribute="centerY" secondItem="8wA-8C-BH2" secondAttribute="centerY" id="yx6-wP-bNO"/>
                             </constraints>
                         </view>
                         <prototypes>
@@ -143,11 +147,11 @@
                                 <rect key="frame" x="0.0" y="132" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WCw-Qf-5nD" id="37f-cq-3Eg">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Arm-wq-HPj">
-                                            <rect key="frame" x="15" y="0.0" width="570" height="43"/>
+                                            <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -167,7 +171,9 @@
                             <outlet property="delegate" destination="7bK-jq-Zjz" id="RA6-mI-bju"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Master" id="Zdf-7t-Un8"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="fEf-L0-bwc">
                         <autoresizingMask key="autoresizingMask"/>
                         <connections>

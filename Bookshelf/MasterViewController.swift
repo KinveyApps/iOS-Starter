@@ -17,6 +17,7 @@ class MasterViewController: UITableViewController {
     var selectedBook: Book?
     
     lazy var store: DataStore<Book>! = {
+        //Create a DataStore of type "Sync"
         return DataStore<Book>.getInstance(.Sync)
     }()
 
@@ -68,6 +69,7 @@ class MasterViewController: UITableViewController {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
+            selectedBook = books[self.tableView.indexPathForSelectedRow!.row];
             let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
             controller.book = selectedBook
             controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
@@ -111,10 +113,6 @@ class MasterViewController: UITableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        selectedBook = books[indexPath.row]
-    }
-    
     @IBAction func unwindToMasterView(segue: UIStoryboardSegue) {
         reloadData()
     }
@@ -123,8 +121,21 @@ class MasterViewController: UITableViewController {
         reloadData()
     }
 
+    @IBAction func pull(sender: AnyObject) {
+        SVProgressHUD.show()
+        
+        //Pull data from the backend to the sync datastore
+        try! store.pull() { (books, error) -> Void in
+            SVProgressHUD.dismiss()
+            self.books = books!
+            self.tableView.reloadData();
+        }
+    }
+    
     @IBAction func push(sender: AnyObject) {
         SVProgressHUD.show()
+        
+        //Push all local changes to the backend
         try! store.push { (count, error) -> Void in
             SVProgressHUD.dismiss()
             self.reloadData()
@@ -133,6 +144,8 @@ class MasterViewController: UITableViewController {
     
     @IBAction func purge(sender: AnyObject) {
         SVProgressHUD.show()
+        
+        //Discard all local changes
         try! store.purge { (count, error) -> Void in
             SVProgressHUD.dismiss()
             self.reloadData()
@@ -141,9 +154,14 @@ class MasterViewController: UITableViewController {
     
     @IBAction func sync(sender: AnyObject) {
         SVProgressHUD.show()
+        
+        //Sync with the backend. 
+        //This will push all local changes to the backend, then
+        //pull changes from the backend to the app.
         try! store.sync() { (count, books, error) -> Void in
             SVProgressHUD.dismiss()
-            self.reloadData()
+            self.books = books!
+            self.tableView.reloadData();
         }
     }
 }
