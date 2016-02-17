@@ -69,7 +69,9 @@ class MasterViewController: UITableViewController {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
-            selectedBook = books[self.tableView.indexPathForSelectedRow!.row];
+            if let index = self.tableView.indexPathForSelectedRow {
+                selectedBook = books[index.row];
+            }
             let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
             controller.book = selectedBook
             controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
