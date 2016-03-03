@@ -22,6 +22,10 @@
 		571A7A311C87B8D400B8D282 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 571A7A2D1C87B8D400B8D282 /* PromiseKit.framework */; };
 		571A7A321C87B8D400B8D282 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 571A7A2E1C87B8D400B8D282 /* Realm.framework */; };
 		571A7A331C87B8D400B8D282 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 571A7A2F1C87B8D400B8D282 /* SVProgressHUD.framework */; };
+		571A7A341C87BAAA00B8D282 /* KeychainAccess.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 571A7A2C1C87B8D400B8D282 /* KeychainAccess.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		571A7A351C87BAAA00B8D282 /* PromiseKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 571A7A2D1C87B8D400B8D282 /* PromiseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		571A7A361C87BAAA00B8D282 /* Realm.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 571A7A2E1C87B8D400B8D282 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		571A7A371C87BAAA00B8D282 /* SVProgressHUD.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 571A7A2F1C87B8D400B8D282 /* SVProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,10 @@
 			dstSubfolderSpec = 10;
 			files = (
 				571A7A2B1C87B61400B8D282 /* Kinvey.framework in CopyFiles */,
+				571A7A341C87BAAA00B8D282 /* KeychainAccess.framework in CopyFiles */,
+				571A7A351C87BAAA00B8D282 /* PromiseKit.framework in CopyFiles */,
+				571A7A361C87BAAA00B8D282 /* Realm.framework in CopyFiles */,
+				571A7A371C87BAAA00B8D282 /* SVProgressHUD.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,7 +192,6 @@
 				5701AB871C6916A900D7D9BB /* Frameworks */,
 				5701AB881C6916A900D7D9BB /* Resources */,
 				57B240021C81247E006403CC /* CopyFiles */,
-				572C457C1C866FDF00A41935 /* Copy Carthage Resources */,
 			);
 			buildRules = (
 			);
@@ -307,24 +314,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		572C457C1C866FDF00A41935 /* Copy Carthage Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/KeychainAccess.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/PromiseKit.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Realm.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/SVProgressHUD.framework",
-			);
-			name = "Copy Carthage Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
-		};
 		670BE93B7F16AC3CA796CFE1 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
