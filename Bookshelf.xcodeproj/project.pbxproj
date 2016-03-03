@@ -18,6 +18,10 @@
 		5701ABC01C69187200D7D9BB /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701ABBF1C69187200D7D9BB /* Book.swift */; };
 		571A7A2A1C87B60E00B8D282 /* Kinvey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 571A7A241C87ADD000B8D282 /* Kinvey.framework */; };
 		571A7A2B1C87B61400B8D282 /* Kinvey.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 571A7A241C87ADD000B8D282 /* Kinvey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		571A7A301C87B8D400B8D282 /* KeychainAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 571A7A2C1C87B8D400B8D282 /* KeychainAccess.framework */; };
+		571A7A311C87B8D400B8D282 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 571A7A2D1C87B8D400B8D282 /* PromiseKit.framework */; };
+		571A7A321C87B8D400B8D282 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 571A7A2E1C87B8D400B8D282 /* Realm.framework */; };
+		571A7A331C87B8D400B8D282 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 571A7A2F1C87B8D400B8D282 /* SVProgressHUD.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +71,10 @@
 		5701ABB11C6916A900D7D9BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5701ABBF1C69187200D7D9BB /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		571A7A241C87ADD000B8D282 /* Kinvey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Kinvey.framework; sourceTree = "<group>"; };
+		571A7A2C1C87B8D400B8D282 /* KeychainAccess.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainAccess.framework; path = Carthage/Build/iOS/KeychainAccess.framework; sourceTree = "<group>"; };
+		571A7A2D1C87B8D400B8D282 /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = Carthage/Build/iOS/PromiseKit.framework; sourceTree = "<group>"; };
+		571A7A2E1C87B8D400B8D282 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
+		571A7A2F1C87B8D400B8D282 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +82,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				571A7A321C87B8D400B8D282 /* Realm.framework in Frameworks */,
+				571A7A331C87B8D400B8D282 /* SVProgressHUD.framework in Frameworks */,
+				571A7A311C87B8D400B8D282 /* PromiseKit.framework in Frameworks */,
+				571A7A301C87B8D400B8D282 /* KeychainAccess.framework in Frameworks */,
 				571A7A2A1C87B60E00B8D282 /* Kinvey.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -99,6 +111,10 @@
 			isa = PBXGroup;
 			children = (
 				571A7A241C87ADD000B8D282 /* Kinvey.framework */,
+				571A7A2C1C87B8D400B8D282 /* KeychainAccess.framework */,
+				571A7A2D1C87B8D400B8D282 /* PromiseKit.framework */,
+				571A7A2E1C87B8D400B8D282 /* Realm.framework */,
+				571A7A2F1C87B8D400B8D282 /* SVProgressHUD.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
