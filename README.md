@@ -1,4 +1,4 @@
-# IOS-Starter
+# iOS-Starter
 Starter app for Kinvey iOS 3.0 SDK
 
 This is a iOS Sample app to illustrate how to use version 3.0 of the [Kinvey](http://www.kinvey.com) iOS library. 

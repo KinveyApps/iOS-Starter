@@ -10,7 +10,9 @@ import UIKit
 import Kinvey
 import SVProgressHUD
 
-class MasterViewController: UITableViewController {
+class MasterViewController: UITableViewController, UISearchBarDelegate {
+    
+    @IBOutlet weak var searchBar: UISearchBar!
 
     var detailViewController: DetailViewController? = nil
     var books = [Book]()
@@ -26,7 +28,7 @@ class MasterViewController: UITableViewController {
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
 
-        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewBook:")
+        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: Selector("insertNewBook:"))
         self.navigationItem.rightBarButtonItem = addButton
         if let split = self.splitViewController {
             let controllers = split.viewControllers
@@ -36,9 +38,15 @@ class MasterViewController: UITableViewController {
         reloadData()
     }
     
-    func reloadData() {
+    func reloadData(searchText: String = "") {
         SVProgressHUD.show()
-        store.find() { (books, error) -> Void in
+        var query: Query
+        if (searchText != "") {
+            query = Query(format: "title CONTAINS[c] %@", searchText)
+        } else {
+            query = Query()
+        }
+        store.find(query) { (books, error) -> Void in
             SVProgressHUD.dismiss()
             if let books = books {
                 self.books = books
@@ -105,7 +113,17 @@ class MasterViewController: UITableViewController {
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             let book = books[indexPath.row]
-            try! store.remove(book) { (count, error) -> Void in
+            do {
+                try store.remove(book) { (count, error) -> Void in
+                }
+            } catch let error {
+                let alert = UIAlertController(
+                    title: "Error",
+                    message: "\(error)",
+                    preferredStyle: .Alert
+                )
+                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
             }
             
             books.removeAtIndex(indexPath.row)
@@ -127,7 +145,7 @@ class MasterViewController: UITableViewController {
         SVProgressHUD.show()
         
         //Pull data from the backend to the sync datastore
-        try! store.pull() { (books, error) -> Void in
+        store.pull() { (books, error) -> Void in
             SVProgressHUD.dismiss()
             self.books = books!
             self.tableView.reloadData();
@@ -138,7 +156,7 @@ class MasterViewController: UITableViewController {
         SVProgressHUD.show()
         
         //Push all local changes to the backend
-        try! store.push { (count, error) -> Void in
+        store.push { (count, error) -> Void in
             SVProgressHUD.dismiss()
             self.reloadData()
         }
@@ -148,7 +166,7 @@ class MasterViewController: UITableViewController {
         SVProgressHUD.show()
         
         //Discard all local changes
-        try! store.purge { (count, error) -> Void in
+        store.purge { (count, error) -> Void in
             SVProgressHUD.dismiss()
             self.reloadData()
         }
@@ -160,11 +178,16 @@ class MasterViewController: UITableViewController {
         //Sync with the backend. 
         //This will push all local changes to the backend, then
         //pull changes from the backend to the app.
-        try! store.sync() { (count, books, error) -> Void in
+        store.sync() { (count, books, error) -> Void in
             SVProgressHUD.dismiss()
             self.books = books!
             self.tableView.reloadData();
         }
     }
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        reloadData(searchText)
+    }
+    
 }
 

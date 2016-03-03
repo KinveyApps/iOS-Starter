@@ -1,6 +1,0 @@
-framework module MongoDBPredicateAdaptorKit {
-  umbrella header "MongoDBPredicateAdaptorKit.h"
-
-  export *
-  module * { export * }
-}

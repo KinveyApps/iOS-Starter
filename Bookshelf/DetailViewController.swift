@@ -52,6 +52,7 @@ class DetailViewController: UIViewController {
                 book = Book()
             }
             book.title = titleTextField.text
+            book.publicationDate = NSDate()
             
             let store = DataStore<Book>.getInstance(.Sync)
             SVProgressHUD.show()

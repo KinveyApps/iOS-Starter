@@ -16,17 +16,8 @@
 		5701ABA51C6916A900D7D9BB /* BookshelfTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701ABA41C6916A900D7D9BB /* BookshelfTests.swift */; };
 		5701ABB01C6916A900D7D9BB /* BookshelfUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701ABAF1C6916A900D7D9BB /* BookshelfUITests.swift */; };
 		5701ABC01C69187200D7D9BB /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701ABBF1C69187200D7D9BB /* Book.swift */; };
-		574B0F931C6E96A300CDC48F /* KinveyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 574B0F921C6E96A300CDC48F /* KinveyKit.framework */; };
-		574B0F941C6E96BA00CDC48F /* KinveyKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 574B0F921C6E96A300CDC48F /* KinveyKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		574B0F9B1C6EA44500CDC48F /* KeychainAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 574B0F991C6EA44500CDC48F /* KeychainAccess.framework */; };
-		574B0F9C1C6EA44500CDC48F /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 574B0F9A1C6EA44500CDC48F /* PromiseKit.framework */; };
-		574B0F9E1C6EA46100CDC48F /* MongoDBPredicateAdaptorKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 574B0F9D1C6EA46100CDC48F /* MongoDBPredicateAdaptorKit.framework */; };
-		574B0F9F1C6EA4D900CDC48F /* MongoDBPredicateAdaptorKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 574B0F9D1C6EA46100CDC48F /* MongoDBPredicateAdaptorKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		574B0FA01C6EA4D900CDC48F /* KeychainAccess.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 574B0F991C6EA44500CDC48F /* KeychainAccess.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		574B0FA11C6EA4D900CDC48F /* PromiseKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 574B0F9A1C6EA44500CDC48F /* PromiseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		574F62741C6B2B6800765760 /* Kinvey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 574F62731C6B2B6800765760 /* Kinvey.framework */; };
-		574F62761C6B2C8800765760 /* Kinvey.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 574F62731C6B2B6800765760 /* Kinvey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		5B7F18C5F8317F29928DB0ED /* Pods_Bookshelf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DEA6D6C2FCD9E9E3719916D /* Pods_Bookshelf.framework */; };
+		571A7A2A1C87B60E00B8D282 /* Kinvey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 571A7A241C87ADD000B8D282 /* Kinvey.framework */; };
+		571A7A2B1C87B61400B8D282 /* Kinvey.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 571A7A241C87ADD000B8D282 /* Kinvey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,25 +38,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		574F62751C6B2C7F00765760 /* CopyFiles */ = {
+		57B240021C81247E006403CC /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				574F62761C6B2C8800765760 /* Kinvey.framework in CopyFiles */,
-				574B0F941C6E96BA00CDC48F /* KinveyKit.framework in CopyFiles */,
-				574B0F9F1C6EA4D900CDC48F /* MongoDBPredicateAdaptorKit.framework in CopyFiles */,
-				574B0FA01C6EA4D900CDC48F /* KeychainAccess.framework in CopyFiles */,
-				574B0FA11C6EA4D900CDC48F /* PromiseKit.framework in CopyFiles */,
+				571A7A2B1C87B61400B8D282 /* Kinvey.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		218B9F26CB3273C40F49F4FD /* Pods-Bookshelf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bookshelf.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bookshelf/Pods-Bookshelf.release.xcconfig"; sourceTree = "<group>"; };
-		4DEA6D6C2FCD9E9E3719916D /* Pods_Bookshelf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bookshelf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5701AB8A1C6916A900D7D9BB /* Bookshelf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bookshelf.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5701AB8D1C6916A900D7D9BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5701AB8F1C6916A900D7D9BB /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -81,12 +66,7 @@
 		5701ABAF1C6916A900D7D9BB /* BookshelfUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookshelfUITests.swift; sourceTree = "<group>"; };
 		5701ABB11C6916A900D7D9BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5701ABBF1C69187200D7D9BB /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
-		574B0F921C6E96A300CDC48F /* KinveyKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KinveyKit.framework; sourceTree = "<group>"; };
-		574B0F991C6EA44500CDC48F /* KeychainAccess.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KeychainAccess.framework; sourceTree = "<group>"; };
-		574B0F9A1C6EA44500CDC48F /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PromiseKit.framework; sourceTree = "<group>"; };
-		574B0F9D1C6EA46100CDC48F /* MongoDBPredicateAdaptorKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MongoDBPredicateAdaptorKit.framework; sourceTree = "<group>"; };
-		574F62731C6B2B6800765760 /* Kinvey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Kinvey.framework; sourceTree = "<group>"; };
-		CCA53723B7B210E84D647E3E /* Pods-Bookshelf.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bookshelf.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bookshelf/Pods-Bookshelf.debug.xcconfig"; sourceTree = "<group>"; };
+		571A7A241C87ADD000B8D282 /* Kinvey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Kinvey.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,12 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				574B0F9E1C6EA46100CDC48F /* MongoDBPredicateAdaptorKit.framework in Frameworks */,
-				574F62741C6B2B6800765760 /* Kinvey.framework in Frameworks */,
-				574B0F931C6E96A300CDC48F /* KinveyKit.framework in Frameworks */,
-				574B0F9C1C6EA44500CDC48F /* PromiseKit.framework in Frameworks */,
-				574B0F9B1C6EA44500CDC48F /* KeychainAccess.framework in Frameworks */,
-				5B7F18C5F8317F29928DB0ED /* Pods_Bookshelf.framework in Frameworks */,
+				571A7A2A1C87B60E00B8D282 /* Kinvey.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,20 +95,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		25FD6AAB5C1BE0458C3A2769 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				571A7A241C87ADD000B8D282 /* Kinvey.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		5701AB811C6916A900D7D9BB = {
 			isa = PBXGroup;
 			children = (
-				574B0F9D1C6EA46100CDC48F /* MongoDBPredicateAdaptorKit.framework */,
-				574B0F991C6EA44500CDC48F /* KeychainAccess.framework */,
-				574B0F9A1C6EA44500CDC48F /* PromiseKit.framework */,
-				574B0F921C6E96A300CDC48F /* KinveyKit.framework */,
-				574F62731C6B2B6800765760 /* Kinvey.framework */,
 				5701AB8C1C6916A900D7D9BB /* Bookshelf */,
 				5701ABA31C6916A900D7D9BB /* BookshelfTests */,
 				5701ABAE1C6916A900D7D9BB /* BookshelfUITests */,
 				5701AB8B1C6916A900D7D9BB /* Products */,
-				FA5394E248E7AF387541ADF0 /* Pods */,
-				A1150CA07CEE33D217D458F5 /* Frameworks */,
+				25FD6AAB5C1BE0458C3A2769 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -180,23 +157,6 @@
 			path = BookshelfUITests;
 			sourceTree = "<group>";
 		};
-		A1150CA07CEE33D217D458F5 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				4DEA6D6C2FCD9E9E3719916D /* Pods_Bookshelf.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		FA5394E248E7AF387541ADF0 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				CCA53723B7B210E84D647E3E /* Pods-Bookshelf.debug.xcconfig */,
-				218B9F26CB3273C40F49F4FD /* Pods-Bookshelf.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -204,13 +164,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5701ABB41C6916A900D7D9BB /* Build configuration list for PBXNativeTarget "Bookshelf" */;
 			buildPhases = (
-				EAF610F5C7CC6F4D3C748873 /* Check Pods Manifest.lock */,
 				5701AB861C6916A900D7D9BB /* Sources */,
 				5701AB871C6916A900D7D9BB /* Frameworks */,
 				5701AB881C6916A900D7D9BB /* Resources */,
-				755FC1A3B7C0836F1DDD3C99 /* Embed Pods Frameworks */,
-				91B3576C6121D4B065E17FBA /* Copy Pods Resources */,
-				574F62751C6B2C7F00765760 /* CopyFiles */,
+				57B240021C81247E006403CC /* CopyFiles */,
+				572C457C1C866FDF00A41935 /* Copy Carthage Resources */,
 			);
 			buildRules = (
 			);
@@ -225,9 +183,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5701ABB71C6916A900D7D9BB /* Build configuration list for PBXNativeTarget "BookshelfTests" */;
 			buildPhases = (
+				738E4D86C61C92C710ACF742 /* Check Pods Manifest.lock */,
 				5701AB9C1C6916A900D7D9BB /* Sources */,
 				5701AB9D1C6916A900D7D9BB /* Frameworks */,
 				5701AB9E1C6916A900D7D9BB /* Resources */,
+				ED23CD9DE3485DF19ED4E72E /* Embed Pods Frameworks */,
+				670BE93B7F16AC3CA796CFE1 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -243,9 +204,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5701ABBA1C6916A900D7D9BB /* Build configuration list for PBXNativeTarget "BookshelfUITests" */;
 			buildPhases = (
+				C8D6AA6B6C35F0015ADDC946 /* Check Pods Manifest.lock */,
 				5701ABA71C6916A900D7D9BB /* Sources */,
 				5701ABA81C6916A900D7D9BB /* Frameworks */,
 				5701ABA91C6916A900D7D9BB /* Resources */,
+				FC1F94B8133AB25FFCBD798D /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -328,22 +291,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		755FC1A3B7C0836F1DDD3C99 /* Embed Pods Frameworks */ = {
+		572C457C1C866FDF00A41935 /* Copy Carthage Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/KeychainAccess.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/PromiseKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Realm.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SVProgressHUD.framework",
 			);
-			name = "Embed Pods Frameworks";
+			name = "Copy Carthage Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bookshelf/Pods-Bookshelf-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
 		};
-		91B3576C6121D4B065E17FBA /* Copy Pods Resources */ = {
+		670BE93B7F16AC3CA796CFE1 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -355,10 +321,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bookshelf/Pods-Bookshelf-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BookshelfTests/Pods-BookshelfTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EAF610F5C7CC6F4D3C748873 /* Check Pods Manifest.lock */ = {
+		738E4D86C61C92C710ACF742 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -371,6 +337,51 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C8D6AA6B6C35F0015ADDC946 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		ED23CD9DE3485DF19ED4E72E /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BookshelfTests/Pods-BookshelfTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FC1F94B8133AB25FFCBD798D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BookshelfUITests/Pods-BookshelfUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -523,12 +534,12 @@
 		};
 		5701ABB51C6916A900D7D9BB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CCA53723B7B210E84D647E3E /* Pods-Bookshelf.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Bookshelf/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -539,12 +550,12 @@
 		};
 		5701ABB61C6916A900D7D9BB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 218B9F26CB3273C40F49F4FD /* Pods-Bookshelf.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Bookshelf/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
