@@ -105,7 +105,7 @@ SWIFT_CLASS_NAMED("Acl")
 @class KNVQuery;
 
 SWIFT_PROTOCOL_NAMED("Cache")
-@protocol KNVCache
+@protocol __KNVCache
 @property (nonatomic, copy) NSString * __nonnull persistenceId;
 @property (nonatomic, copy) NSString * __nonnull collectionName;
 - (void)saveEntity:(NSDictionary<NSString *, id> * __nonnull)entity;
@@ -118,14 +118,21 @@ SWIFT_PROTOCOL_NAMED("Cache")
 - (void)removeAllEntities;
 @end
 
-@class KNVUser;
+
+SWIFT_CLASS_NAMED("CacheManager")
+@interface __KNVCacheManager : NSObject
+- (id <__KNVCache> __nonnull)cache:(NSString * __nullable)collectionName;
+@end
+
+@class __KNVUser;
 @class NSURL;
+@class __KNVSyncManager;
 @class KNVPush;
 
 SWIFT_CLASS_NAMED("Client")
-@interface KNVClient : NSObject
-+ (KNVClient * __nonnull)sharedClient;
-@property (nonatomic, readonly, strong) KNVUser * __nullable activeUser;
+@interface __KNVClient : NSObject
++ (__KNVClient * __nonnull)sharedClient;
+@property (nonatomic, readonly, strong) __KNVUser * __nullable activeUser;
 @property (nonatomic, readonly, copy) NSString * __nullable appKey;
 @property (nonatomic, readonly, copy) NSString * __nullable appSecret;
 @property (nonatomic, readonly, strong) NSURL * __nonnull apiHostName;
@@ -136,23 +143,25 @@ SWIFT_CLASS_NAMED("Client")
 @property (nonatomic, copy) NSDictionary<NSString *, NSString *> * __nonnull customRequestProperties;
 + (NSURL * __nonnull)defaultApiHostName;
 + (NSURL * __nonnull)defaultAuthHostName;
+@property (nonatomic, readonly, strong) __KNVCacheManager * __null_unspecified cacheManager;
+@property (nonatomic, readonly, strong) __KNVSyncManager * __null_unspecified syncManager;
 @property (nonatomic, readonly, strong) KNVPush * __null_unspecified push;
-@property (nonatomic) SWIFT_METATYPE(KNVUser) __nonnull userType;
+@property (nonatomic) SWIFT_METATYPE(__KNVUser) __nonnull userType;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 + (void)initialize;
 - (nonnull instancetype)initWithAppKey:(NSString * __nonnull)appKey appSecret:(NSString * __nonnull)appSecret apiHostName:(NSURL * __nonnull)apiHostName authHostName:(NSURL * __nonnull)authHostName;
-- (KNVClient * __nonnull)initializeWithAppKey:(NSString * __nonnull)appKey appSecret:(NSString * __nonnull)appSecret apiHostName:(NSURL * __nonnull)apiHostName authHostName:(NSURL * __nonnull)authHostName;
+- (__KNVClient * __nonnull)initializeWithAppKey:(NSString * __nonnull)appKey appSecret:(NSString * __nonnull)appSecret apiHostName:(NSURL * __nonnull)apiHostName authHostName:(NSURL * __nonnull)authHostName;
 @property (nonatomic, readonly, copy) NSString * __nullable authorizationHeader;
 @end
 
-
-SWIFT_CLASS_NAMED("Constants")
-@interface KNVConstants : NSObject
-+ (NSString * __nonnull)PersistableIdKey;
-+ (NSString * __nonnull)PersistableAclKey;
-+ (NSString * __nonnull)PersistableMetadataKey;
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-@end
+typedef SWIFT_ENUM(NSUInteger, Error) {
+  ErrorObjectIdMissing = 0,
+  ErrorInvalidResponse = 1,
+  ErrorNoActiveUser = 2,
+  ErrorRequestCanceled = 3,
+  ErrorInvalidStoreType = 4,
+};
+static NSString * const ErrorDomain = @"Kinvey.Error";
 
 @class KNVMetadata;
 @class NSDate;
@@ -170,8 +179,42 @@ SWIFT_CLASS_NAMED("File")
 @end
 
 
+SWIFT_CLASS_NAMED("Operation")
+@interface __KNVOperation : NSObject
+@end
+
+@class NSError;
+@protocol KNVRequest;
+
+SWIFT_CLASS_NAMED("ReadOperation")
+@interface __KNVReadOperation : __KNVOperation
+- (id <KNVRequest> __nonnull)execute:(void (^ __nullable)(id __nullable, NSError * __nullable))completionHandler;
+@end
+
+enum ReadPolicy : NSUInteger;
+
+SWIFT_CLASS_NAMED("FindOperation")
+@interface __KNVFindOperation : __KNVReadOperation
+- (nonnull instancetype)initWithQuery:(KNVQuery * __nonnull)query readPolicy:(enum ReadPolicy)readPolicy persistableClass:(Class __nonnull)persistableClass cache:(id <__KNVCache> __nonnull)cache client:(__KNVClient * __nonnull)client;
+@end
+
+
+SWIFT_CLASS_NAMED("GetOperation")
+@interface __KNVGetOperation : __KNVReadOperation
+- (nonnull instancetype)initWithId:(NSString * __nonnull)id readPolicy:(enum ReadPolicy)readPolicy persistableClass:(Class __nonnull)persistableClass cache:(id <__KNVCache> __nonnull)cache client:(__KNVClient * __nonnull)client;
+@end
+
+
+SWIFT_PROTOCOL_NAMED("Request")
+@protocol KNVRequest
+@property (nonatomic, readonly) BOOL executing;
+@property (nonatomic, readonly) BOOL canceled;
+- (void)cancel;
+@end
+
+
 SWIFT_CLASS_NAMED("HttpRequest")
-@interface KNVHttpRequest : NSObject
+@interface KNVHttpRequest : NSObject <KNVRequest>
 @property (nonatomic, readonly) BOOL executing;
 @property (nonatomic, readonly) BOOL canceled;
 - (void)cancel;
@@ -183,6 +226,14 @@ SWIFT_PROTOCOL_NAMED("JsonObject")
 @optional
 - (void)fromJson:(NSDictionary<NSString *, id> * __nonnull)json;
 - (NSDictionary<NSString *, id> * __nonnull)toJson;
+@end
+
+
+SWIFT_CLASS_NAMED("LocalRequest")
+@interface __KNVLocalRequest : NSObject <KNVRequest>
+@property (nonatomic, readonly) BOOL executing;
+@property (nonatomic, readonly) BOOL canceled;
+- (void)cancel;
 @end
 
 
@@ -200,11 +251,30 @@ SWIFT_CLASS_NAMED("Metadata")
 @end
 
 
+SWIFT_CLASS_NAMED("MultiRequest")
+@interface __KNVMultiRequest : NSObject <KNVRequest>
+- (void)addRequest:(id <KNVRequest> __nonnull)request;
+@property (nonatomic, readonly) BOOL executing;
+@property (nonatomic, readonly) BOOL canceled;
+- (void)cancel;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
 @interface NSData (SWIFT_EXTENSION(Kinvey))
 @end
 
 
 @interface NSDate (SWIFT_EXTENSION(Kinvey))
+@end
+
+
+@class NSURLRequest;
+
+SWIFT_PROTOCOL_NAMED("PendingOperation")
+@protocol KNVPendingOperation
+@property (nonatomic, readonly, copy) NSString * __nullable objectId;
+- (NSURLRequest * __nonnull)buildRequest;
 @end
 
 
@@ -214,14 +284,45 @@ SWIFT_PROTOCOL_NAMED("Persistable")
 + (NSDictionary<NSString *, NSString *> * __nonnull)kinveyPropertyMapping;
 @end
 
+
+SWIFT_CLASS_NAMED("WriteOperation")
+@interface __KNVWriteOperation : __KNVOperation
+- (id <KNVRequest> __nonnull)execute:(void (^ __nullable)(id __nullable, NSError * __nullable))completionHandler;
+@end
+
+
+SWIFT_CLASS_NAMED("SyncOperation")
+@interface __KNVSyncOperation : __KNVWriteOperation
+- (id <KNVRequest> __nonnull)execute:(void (^ __nullable)(id __nullable, NSError * __nullable))completionHandler;
+- (id <KNVRequest> __nonnull)executeUInt:(void (^ __nullable)(NSUInteger, NSError * __nullable))completionHandler;
+@end
+
+@protocol __KNVSync;
+
+SWIFT_CLASS_NAMED("PullOperation")
+@interface __KNVPullOperation : __KNVSyncOperation
+- (nonnull instancetype)initWithQuery:(KNVQuery * __nonnull)query sync:(id <__KNVSync> __nonnull)sync persistableType:(Class <KNVPersistable> __nonnull)persistableType cache:(id <__KNVCache> __nonnull)cache client:(__KNVClient * __nonnull)client OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+SWIFT_CLASS_NAMED("PurgeOperation")
+@interface __KNVPurgeOperation : __KNVSyncOperation
+- (nonnull instancetype)initWithSync:(id <__KNVSync> __nonnull)sync persistableType:(Class <KNVPersistable> __nonnull)persistableType cache:(id <__KNVCache> __nonnull)cache client:(__KNVClient * __nonnull)client OBJC_DESIGNATED_INITIALIZER;
+@end
+
 @class UIApplication;
-@class NSError;
 
 SWIFT_CLASS_NAMED("Push")
 @interface KNVPush : NSObject
 - (void)registerForPush;
 - (void)application:(UIApplication * __nonnull)application didFailToRegisterForRemoteNotificationsWithError:(NSError * __nonnull)error;
 - (void)application:(UIApplication * __nonnull)application didReceiveRemoteNotification:(NSDictionary * __nonnull)userInfo;
+@end
+
+
+SWIFT_CLASS_NAMED("PushOperation")
+@interface __KNVPushOperation : __KNVSyncOperation
+- (nonnull instancetype)initWithSync:(id <__KNVSync> __nonnull)sync persistableType:(Class <KNVPersistable> __nonnull)persistableType cache:(id <__KNVCache> __nonnull)cache client:(__KNVClient * __nonnull)client OBJC_DESIGNATED_INITIALIZER;
 @end
 
 @class NSPredicate;
@@ -231,7 +332,10 @@ SWIFT_CLASS_NAMED("Query")
 @interface KNVQuery : NSObject
 @property (nonatomic, strong) NSPredicate * __nullable predicate;
 @property (nonatomic, copy) NSArray<NSSortDescriptor *> * __nullable sortDescriptors;
-- (nonnull instancetype)initWithPredicate:(NSPredicate * __nullable)predicate sortDescriptors:(NSArray<NSSortDescriptor *> * __nullable)sortDescriptors OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)init;
+- (nonnull instancetype)initWithPredicate:(NSPredicate * __nonnull)predicate;
+- (nonnull instancetype)initWithSortDescriptors:(NSArray<NSSortDescriptor *> * __nonnull)sortDescriptors;
+- (nonnull instancetype)initWithPredicate:(NSPredicate * __nullable)predicate sortDescriptors:(NSArray<NSSortDescriptor *> * __nullable)sortDescriptors;
 - (nonnull instancetype)initWithFormat:(NSString * __nonnull)format argumentArray:(NSArray * __nullable)argumentArray;
 @end
 
@@ -240,21 +344,105 @@ SWIFT_CLASS_NAMED("Query")
 @end
 
 
+typedef SWIFT_ENUM(NSUInteger, ReadPolicy) {
+  ReadPolicyForceLocal = 0,
+  ReadPolicyForceNetwork = 1,
+  ReadPolicyBoth = 2,
+};
+
+enum WritePolicy : NSUInteger;
+
+SWIFT_CLASS_NAMED("RemoveOperation")
+@interface __KNVRemoveOperation : __KNVWriteOperation
+- (nonnull instancetype)initWithQuery:(KNVQuery * __nonnull)query writePolicy:(enum WritePolicy)writePolicy sync:(id <__KNVSync> __nonnull)sync persistableType:(Class <KNVPersistable> __nonnull)persistableType cache:(id <__KNVCache> __nonnull)cache client:(__KNVClient * __nonnull)client OBJC_DESIGNATED_INITIALIZER;
+- (id <KNVRequest> __nonnull)executeUInt:(void (^ __nullable)(NSUInteger, NSError * __nullable))completionHandler;
+@end
+
+
+
+SWIFT_CLASS_NAMED("SaveOperation")
+@interface __KNVSaveOperation : __KNVWriteOperation
+- (nonnull instancetype)initWithPersistable:(id <KNVPersistable> __nonnull)persistable writePolicy:(enum WritePolicy)writePolicy sync:(id <__KNVSync> __nonnull)sync cache:(id <__KNVCache> __nonnull)cache client:(__KNVClient * __nonnull)client OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+SWIFT_PROTOCOL_NAMED("Sync")
+@protocol __KNVSync
+@property (nonatomic, copy) NSString * __nonnull persistenceId;
+@property (nonatomic, copy) NSString * __nonnull collectionName;
+- (null_unspecified instancetype)initWithPersistenceId:(NSString * __nonnull)persistenceId collectionName:(NSString * __nonnull)collectionName;
+- (id <KNVPendingOperation> __nonnull)createPendingOperation:(NSURLRequest * __null_unspecified)request objectId:(NSString * __nullable)objectId;
+- (void)savePendingOperation:(id <KNVPendingOperation> __nonnull)pendingOperation;
+- (NSArray<id <KNVPendingOperation>> * __nonnull)pendingOperations;
+- (NSArray<id <KNVPendingOperation>> * __nonnull)pendingOperations:(NSString * __nullable)objectId;
+- (void)removePendingOperation:(id <KNVPendingOperation> __nonnull)pendingOperation;
+- (void)removeAllPendingOperations;
+- (void)removeAllPendingOperations:(NSString * __nullable)objectId;
+@end
+
+
+SWIFT_CLASS_NAMED("SyncManager")
+@interface __KNVSyncManager : NSObject
+- (id <__KNVSync> __nonnull)sync:(NSString * __nonnull)collectionName;
+@end
+
+
+
 SWIFT_CLASS_NAMED("User")
-@interface KNVUser : NSObject
+@interface __KNVUser : NSObject
 + (NSString * __nonnull)PersistableUsernameKey;
 @property (nonatomic, readonly, copy) NSString * __nonnull userId;
 @property (nonatomic, readonly, strong) KNVAcl * __nullable acl;
 @property (nonatomic, readonly, strong) KNVMetadata * __nullable metadata;
 @property (nonatomic, copy) NSString * __nullable username;
 @property (nonatomic, copy) NSString * __nullable email;
-+ (void)resetPasswordWithUsername:(NSString * __nonnull)username client:(KNVClient * __nonnull)client;
-+ (void)forgotUsernameWithEmail:(NSString * __nonnull)email client:(KNVClient * __nonnull)client;
-- (nonnull instancetype)initWithUserId:(NSString * __nonnull)userId acl:(KNVAcl * __nullable)acl metadata:(KNVMetadata * __nullable)metadata client:(KNVClient * __nonnull)client OBJC_DESIGNATED_INITIALIZER;
-- (nonnull instancetype)initWithJson:(NSDictionary<NSString *, id> * __nonnull)json client:(KNVClient * __nonnull)client OBJC_DESIGNATED_INITIALIZER;
++ (void)resetPasswordWithUsername:(NSString * __nonnull)username client:(__KNVClient * __nonnull)client;
++ (void)forgotUsernameWithEmail:(NSString * __nonnull)email client:(__KNVClient * __nonnull)client;
+- (nonnull instancetype)initWithUserId:(NSString * __nonnull)userId acl:(KNVAcl * __nullable)acl metadata:(KNVMetadata * __nullable)metadata client:(__KNVClient * __nonnull)client OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithJson:(NSDictionary<NSString *, id> * __nonnull)json client:(__KNVClient * __nonnull)client OBJC_DESIGNATED_INITIALIZER;
 - (NSDictionary<NSString *, id> * __nonnull)toJson;
 - (void)logout;
 @property (nonatomic, readonly, copy) NSString * __nullable authorizationHeader;
+@end
+
+
+@interface __KNVUser (SWIFT_EXTENSION(Kinvey))
++ (id <KNVRequest> __nonnull)existsWithUsername:(NSString * __nonnull)username client:(__KNVClient * __nonnull)client completionHandler:(void (^ __nullable)(BOOL, NSError * __nullable))completionHandler;
++ (id <KNVRequest> __nonnull)loginWithUsername:(NSString * __nonnull)username password:(NSString * __nonnull)password client:(__KNVClient * __nonnull)client completionHandler:(void (^ __nullable)(__KNVUser * __nullable, NSError * __nullable))completionHandler;
++ (id <KNVRequest> __nonnull)signupWithUsername:(NSString * __nullable)username password:(NSString * __nullable)password client:(__KNVClient * __nonnull)client completionHandler:(void (^ __nullable)(__KNVUser * __nullable, NSError * __nullable))completionHandler;
+@end
+
+
+typedef SWIFT_ENUM(NSUInteger, WritePolicy) {
+  WritePolicyLocalThenNetwork = 0,
+  WritePolicyForceLocal = 1,
+  WritePolicyForceNetwork = 2,
+};
+
+
+SWIFT_CLASS("_TtC6Kinvey10__KNVError")
+@interface __KNVError : NSObject
++ (NSError * __nonnull)ObjectIdMissing;
++ (NSError * __nonnull)InvalidResponse;
++ (NSError * __nonnull)NoActiveUser;
++ (NSError * __nonnull)RequestCanceled;
++ (NSError * __nonnull)InvalidStoreType;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+SWIFT_CLASS("_TtC6Kinvey16__KNVPersistable")
+@interface __KNVPersistable : NSObject
++ (NSString * __nonnull)idKey:(Class <KNVPersistable> __nonnull)type;
++ (NSString * __nullable)kinveyObjectId:(id <KNVPersistable> __nonnull)persistable;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+SWIFT_CLASS("_TtC6Kinvey10__KNVQuery")
+@interface __KNVQuery : NSObject
++ (KNVQuery * __nonnull)query:(KNVQuery * __nonnull)query persistableType:(Class <KNVPersistable> __nonnull)persistableType;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
 #pragma clang diagnostic pop

@@ -2,27 +2,97 @@
 //  KNVDataStore.h
 //  Kinvey
 //
-//  Created by Victor Barros on 2016-02-23.
+//  Created by Victor Barros on 2016-03-04.
 //  Copyright © 2016 Kinvey. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "KNVRequest.h"
+#import "KNVReadPolicy.h"
+#import "KNVWritePolicy.h"
 
-@protocol KNVPersistable;
 @class KNVQuery;
+@protocol KNVPersistable;
 
-#define KNVObjectCompletionHandler(T) void (^ _Nullable)(T _Nullable object, NSError* _Nullable error)
-#define KNVArrayCompletionHandler(T) void (^ _Nullable)(NSArray<T>* _Nullable results, NSError* _Nullable error)
+NS_SWIFT_UNAVAILABLE("Please use 'DataStoreType' enum")
+typedef NS_ENUM(NSUInteger, KNVDataStoreType) {
+    KNVDataStoreTypeSync,
+    KNVDataStoreTypeCache,
+    KNVDataStoreTypeNetwork
+};
 
-@interface KNVDataStore<T : NSObject<KNVPersistable>*> : NSObject
+#define KNVDataStoreHandler(T) void(^ _Nullable)(T, NSError* _Nullable)
+#define KNVDataStoreHandler2(T1, T2) void(^ _Nullable)(T1, T2, NSError* _Nullable)
 
--(id<KNVRequest> _Nonnull)findById:(NSString* _Nonnull)objectId
-                 completionHandler:(KNVObjectCompletionHandler(T))completionHandler;
+NS_SWIFT_UNAVAILABLE("Please use 'DataStore' class")
+@interface KNVDataStore<T: NSObject<KNVPersistable>*> : NSObject
 
--(id<KNVRequest> _Nonnull)find:(KNVArrayCompletionHandler(T))completionHandler;
++(instancetype _Nonnull)getInstance:(KNVDataStoreType)type
+                           forClass:(Class _Nonnull)cls;
 
--(id<KNVRequest> _Nonnull)find:(KNVQuery* _Nonnull)query
-             completionHandler:(KNVArrayCompletionHandler(T))completionHandler;
+-(id<KNVRequest> _Nonnull)save:(T _Nonnull)persistable
+             completionHandler:(KNVDataStoreHandler(T _Nullable))completionHandler;
+
+-(id<KNVRequest> _Nonnull)save:(T _Nonnull)persistable
+                  writePolicty:(KNVWritePolicy)writePolicy
+             completionHandler:(KNVDataStoreHandler(T _Nullable))completionHandler;
+
+-(id<KNVRequest> _Nonnull)find:(KNVDataStoreHandler(NSArray<T>* _Nullable))completionHandler;
+
+-(id<KNVRequest> _Nonnull)find:(KNVQuery* _Nullable)query
+             completionHandler:(KNVDataStoreHandler(NSArray<T>* _Nullable))completionHandler;
+
+-(id<KNVRequest> _Nonnull)find:(KNVQuery* _Nullable)query
+                    readPolicy:(KNVReadPolicy)readPolicy
+             completionHandler:(KNVDataStoreHandler(NSArray<T>* _Nullable))completionHandler;
+
+-(id<KNVRequest> _Nonnull)remove:(NSObject<KNVPersistable>* _Nonnull)persistable
+               completionHandler:(KNVDataStoreHandler(NSUInteger))completionHandler;
+
+-(id<KNVRequest> _Nonnull)remove:(NSObject<KNVPersistable>* _Nonnull)persistable
+                     writePolicy:(KNVWritePolicy)writePolicy
+               completionHandler:(KNVDataStoreHandler(NSUInteger))completionHandler;
+
+-(id<KNVRequest> _Nonnull)removeById:(NSString* _Nonnull)objectId
+                   completionHandler:(KNVDataStoreHandler(NSUInteger))completionHandler;
+
+-(id<KNVRequest> _Nonnull)removeById:(NSString* _Nonnull)objectId
+                         writePolicy:(KNVWritePolicy)writePolicy
+                   completionHandler:(KNVDataStoreHandler(NSUInteger))completionHandler;
+
+-(id<KNVRequest> _Nonnull)removeByIds:(NSArray<NSString*>* _Nonnull)ids
+                    completionHandler:(KNVDataStoreHandler(NSUInteger))completionHandler;
+
+-(id<KNVRequest> _Nonnull)removeByIds:(NSArray<NSString*>* _Nonnull)ids
+                          writePolicy:(KNVWritePolicy)writePolicy
+                    completionHandler:(KNVDataStoreHandler(NSUInteger))completionHandler;
+
+-(id<KNVRequest> _Nonnull)removeAll:(KNVDataStoreHandler(NSUInteger))completionHandler;
+
+-(id<KNVRequest> _Nonnull)removeAllWithWritePolicy:(KNVWritePolicy)writePolicy
+                                 completionHandler:(KNVDataStoreHandler(NSUInteger))completionHandler;
+
+-(id<KNVRequest> _Nonnull)removeWithQuery:(KNVQuery* _Nullable)query
+                        completionHandler:(KNVDataStoreHandler(NSUInteger))completionHandler;
+
+-(id<KNVRequest> _Nonnull)removeWithQuery:(KNVQuery* _Nullable)query
+                              writePolicy:(KNVWritePolicy)writePolicy
+                        completionHandler:(KNVDataStoreHandler(NSUInteger))completionHandler;
+
+-(id<KNVRequest> _Nonnull)push:(KNVDataStoreHandler(NSUInteger))completionHandler;
+
+-(id<KNVRequest> _Nonnull)pull:(KNVDataStoreHandler(NSArray<T>* _Nullable))completionHandler;
+
+-(id<KNVRequest> _Nonnull)pullWithQuery:(KNVQuery* _Nullable)query
+                      completionHandler:(KNVDataStoreHandler(NSArray<T>* _Nullable))completionHandler;
+
+-(id<KNVRequest> _Nonnull)purge:(KNVDataStoreHandler(NSUInteger))completionHandler;
+
+-(id<KNVRequest> _Nonnull)purgeWithQuery:(KNVQuery* _Nullable)query
+                       completionHandler:(KNVDataStoreHandler(NSUInteger))completionHandler;
+
+-(id<KNVRequest> _Nonnull)sync:(KNVDataStoreHandler2(NSUInteger, NSArray<T>* _Nullable))completionHandler;
+
+-(id<KNVRequest> _Nonnull)syncWithQuery:(KNVQuery* _Nullable)query
+                      completionHandler:(KNVDataStoreHandler2(NSUInteger, NSArray<T>* _Nullable))completionHandler;
 
 @end

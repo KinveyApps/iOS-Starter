@@ -7,7 +7,8 @@
 //
 
 @import Foundation;
-#import "KCSPendingOperation.h"
+
+@protocol KNVPendingOperation;
 
 @protocol KCSSync <NSObject>
 
@@ -17,14 +18,14 @@
 -(instancetype)initWithPersistenceId:(NSString *)persistenceId
                       collectionName:(NSString *)collectionName;
 
--(id<KCSPendingOperation>)createPendingOperation:(NSURLRequest*)request
+-(id<KNVPendingOperation>)createPendingOperation:(NSURLRequest*)request
                                         objectId:(NSString*)objectId;
 
--(void)savePendingOperation:(id<KCSPendingOperation>)pendingOperation;
+-(void)savePendingOperation:(id<KNVPendingOperation>)pendingOperation;
 
--(NSArray<id<KCSPendingOperation>>*)pendingOperations;
+-(NSArray<id<KNVPendingOperation>>*)pendingOperations;
 
--(void)removePendingOperation:(id<KCSPendingOperation>)pendingOperation;
+-(void)removePendingOperation:(id<KNVPendingOperation>)pendingOperation;
 
 -(void)removeAllPendingOperations;
 
