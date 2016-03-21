@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        Kinvey.sharedClient.initialize(appKey: "kid_WJg0WNTX5e", appSecret: "6d4737a89c1d4f0f9cdf8ed6f1a82915")
+        Kinvey.sharedClient.initialize(appKey: "appKey", appSecret: "appSecret")
         
         // Override point for customization after application launch.
         let splitViewController = self.window!.rootViewController as! UISplitViewController

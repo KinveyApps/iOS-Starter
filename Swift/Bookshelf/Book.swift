@@ -13,7 +13,6 @@ class Book: NSObject, Persistable {
     
     dynamic var objectId: String?
     dynamic var title: String?
-    dynamic var publicationDate: NSDate?
     
     override init() {
     }
@@ -29,9 +28,8 @@ class Book: NSObject, Persistable {
     static func kinveyPropertyMapping() -> [String : String] {
         return [
             "objectId" : Kinvey.PersistableIdKey,
-            "title" : "title",
-            "publicationDate" : "publication_date"
+            "title" : "title"
         ]
     }
-    
+
 }

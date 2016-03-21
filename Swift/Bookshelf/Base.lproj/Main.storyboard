@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="H1p-Uh-vWS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="H1p-Uh-vWS">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -40,28 +40,53 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W7J-md-nV2">
-                                <rect key="frame" x="20" y="101" width="560" height="30"/>
+                                <rect key="frame" x="20" y="100" width="560" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="300" placeholderIntrinsicHeight="30" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="MaP-tG-LpN">
+                                <rect key="frame" x="150" y="152" width="300" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zyq-AF-XSc">
+                                        <rect key="frame" x="0.0" y="0.0" width="140" height="30"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Save">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="d66-rS-BGt" kind="unwind" identifier="save" unwindAction="unwindToMasterView:" id="hHD-Wm-VDs"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="cancel" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ibe-Do-Y8O">
+                                        <rect key="frame" x="160" y="0.0" width="140" height="30"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="d66-rS-BGt" kind="unwind" identifier="cancel" unwindAction="unwindToMasterView:" id="xLZ-UB-FI6"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="W0n-XH-PvZ"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="O1g-IJ-uMk" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" id="66Q-IA-1Se"/>
+                            <constraint firstItem="MaP-tG-LpN" firstAttribute="centerX" secondItem="svH-Pt-448" secondAttribute="centerX" id="CdB-Lb-PGc"/>
+                            <constraint firstItem="MaP-tG-LpN" firstAttribute="centerX" secondItem="svH-Pt-448" secondAttribute="centerX" id="DSI-jn-3SK"/>
                             <constraint firstItem="W7J-md-nV2" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" id="Dau-ix-EcU"/>
+                            <constraint firstItem="MaP-tG-LpN" firstAttribute="top" secondItem="W7J-md-nV2" secondAttribute="bottom" constant="22" id="eLM-xR-qWv"/>
                             <constraint firstItem="O1g-IJ-uMk" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="8" id="pPJ-gD-XLL"/>
                             <constraint firstItem="W7J-md-nV2" firstAttribute="trailing" secondItem="svH-Pt-448" secondAttribute="trailingMargin" id="pZp-u0-wrM"/>
                             <constraint firstItem="W7J-md-nV2" firstAttribute="top" secondItem="O1g-IJ-uMk" secondAttribute="bottom" constant="8" id="xEr-Yd-6m2"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Rif-8q-K6N">
-                            <connections>
-                                <segue destination="d66-rS-BGt" kind="unwind" identifier="save" unwindAction="unwindToMasterView:" id="wIa-aK-c4N"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
                     <connections>
                         <outlet property="titleTextField" destination="W7J-md-nV2" id="a3V-bQ-jtt"/>
                     </connections>

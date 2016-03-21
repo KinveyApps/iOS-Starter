@@ -19,13 +19,15 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var takeChoosePictureButton: UIButton!
 
+    var store: DataStore<Book>!
+    
     var book: Book! {
         didSet {
             // Update the view.
             self.configureView()
         }
     }
-
+    
     func configureView() {
         // Update the user interface for the detail item.
         if let book = book, let titleTextField = titleTextField {
@@ -50,10 +52,8 @@ class DetailViewController: UIViewController {
                 book = Book()
             }
             book.title = titleTextField.text
-            book.publicationDate = NSDate()
-            
-            let store = DataStore<Book>.getInstance(.Sync)
             SVProgressHUD.show()
+            
             store.save(book) { (book, error) -> Void in
                 SVProgressHUD.dismiss()
                 if let _ = book {
@@ -64,6 +64,25 @@ class DetailViewController: UIViewController {
                     self.presentViewController(alert, animated: true, completion: nil)
                 }
             }
+            return false
+            
+        case "cancel":
+            if book == nil {
+                book = Book()
+            }
+            
+            SVProgressHUD.show()
+            if let bookId = book.objectId {
+                SVProgressHUD.dismiss()
+
+                //user cancelled, reload book from the cache to disacard any local changes
+                store.findById(bookId) { (cachedBook, error) -> Void in
+                    if let _ = cachedBook {
+                        self.book = cachedBook
+                    }
+                }
+            }
+            
             return false
         default:
             return true
