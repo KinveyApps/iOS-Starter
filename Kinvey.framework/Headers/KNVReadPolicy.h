@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+NS_SWIFT_UNAVAILABLE("Please use 'ReadPolicy' enum")
 typedef NS_ENUM(NSUInteger, KNVReadPolicy) {
     
     KNVReadPolicyForceLocal,

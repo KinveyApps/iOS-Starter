@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-NS_SWIFT_UNAVAILABLE("Please use 'KNVWritePolicy' enum")
+NS_SWIFT_UNAVAILABLE("Please use 'WritePolicy' enum")
 typedef NS_ENUM(NSUInteger, KNVWritePolicy) {
     
     KNVWritePolicyLocalThenNetwork = 0,

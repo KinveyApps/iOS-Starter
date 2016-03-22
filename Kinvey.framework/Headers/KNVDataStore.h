@@ -26,6 +26,8 @@ typedef NS_ENUM(NSUInteger, KNVDataStoreType) {
 NS_SWIFT_UNAVAILABLE("Please use 'DataStore' class")
 @interface KNVDataStore<T: NSObject<KNVPersistable>*> : NSObject
 
+@property (nonatomic, assign) NSTimeInterval ttl;
+
 +(instancetype _Nonnull)getInstance:(KNVDataStoreType)type
                            forClass:(Class _Nonnull)cls;
 
