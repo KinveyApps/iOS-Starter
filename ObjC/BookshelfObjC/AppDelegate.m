@@ -22,8 +22,8 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [[KNVClient sharedClient] initializeWithAppKey:@"kid_WJg0WNTX5e"
-                                         appSecret:@"6d4737a89c1d4f0f9cdf8ed6f1a82915"];
+    [[KNVClient sharedClient] initializeWithAppKey:@"appKey"
+                                         appSecret:@"appSecret"];
     
     // Override point for customization after application launch.
     UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;

@@ -184,11 +184,36 @@ class MasterViewController: UITableViewController, UISearchBarDelegate {
         //Sync with the backend. 
         //This will push all local changes to the backend, then
         //pull changes from the backend to the app.
-        store.sync() { (count, books, error) -> Void in
+        store.sync() { (count, books, errors) -> Void in
             SVProgressHUD.dismiss()
-            self.books = books!
-            self.tableView.reloadData();
+            if let books = books {
+                self.books = books
+                self.tableView.reloadData();
+            } else if let errors = errors, let error = errors.first {
+                if let error = error as? Error {
+                    switch error {
+                    case .Unauthorized(let error, let description):
+                        let alert = UIAlertController(title: error, message: description, preferredStyle: .Alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (alertAction) in
+                            alert.dismissViewControllerAnimated(true, completion: nil)
+                        }))
+                        self.presentViewController(alert, animated: true, completion: nil)
+                    default:
+                        self.presentError(error as NSError)
+                    }
+                } else {
+                    self.presentError(error as NSError)
+                }
+            }
         }
+    }
+    
+    func presentError(error: NSError) {
+        let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (alertAction) in
+            alert.dismissViewControllerAnimated(true, completion: nil)
+        }))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {

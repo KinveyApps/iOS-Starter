@@ -7,7 +7,7 @@
 //
 
 @import Foundation;
-#import "KCSQuery.h"
+#import "KCSQueryProtocol.h"
 
 @protocol KCSCache <NSObject>
 

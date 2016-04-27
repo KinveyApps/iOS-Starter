@@ -325,6 +325,8 @@ KCS_CONSTANT KCSUserAttributeFacebookId;
                      accessDictionary:(NSDictionary*)accessDictionary
                   withCompletionBlock:(KCSUserCompletionBlock)completionBlock;
 
+#if TARGET_OS_IOS
+
 #pragma mark - MIC helper methods
 
 /**
@@ -411,6 +413,8 @@ KCS_CONSTANT KCSUserAttributeFacebookId;
  Getter that returns the MIC API Version
  */
 +(NSString*)micApiVersion;
+
+#endif
 
 #pragma mark -
 

@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+@class KNVMigration;
+
+typedef void (^KNVMigrationBlock) (KNVMigration* _Nonnull, unsigned long long);
+
 @class KNVUser;
 
 NS_SWIFT_UNAVAILABLE("Please use 'Client' class")

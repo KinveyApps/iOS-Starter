@@ -99,180 +99,196 @@ typedef int swift_int4  __attribute__((__ext_vector_type__(4)));
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
 #pragma clang diagnostic ignored "-Wduplicate-method-arg"
 
+
+/// This class represents the ACL (Access Control List) for a record.
 SWIFT_CLASS_NAMED("Acl")
 @interface KNVAcl : NSObject
-+ (NSString * _Nonnull)CreatorKey;
+
+/// The userId of the User used to create the record.
 @property (nonatomic, readonly, copy) NSString * _Nonnull creator;
+
+/// Constructs an Acl instance with the userId of the User used to create the record.
 - (nonnull instancetype)initWithCreator:(NSString * _Nonnull)creator OBJC_DESIGNATED_INITIALIZER;
+
+/// Constructor used to build a new Acl instance from a JSON object.
 - (nonnull instancetype)initWithJson:(NSDictionary<NSString *, id> * _Nonnull)json;
+
+/// The JSON representation for the Acl instance.
 - (NSDictionary<NSString *, id> * _Nonnull)toJson;
-@end
-
-@class KNVQuery;
-
-SWIFT_PROTOCOL_NAMED("Cache")
-@protocol __KNVCache
-@property (nonatomic, copy) NSString * _Nonnull persistenceId;
-@property (nonatomic, copy) NSString * _Nonnull collectionName;
-@property (nonatomic) NSTimeInterval ttl;
-- (void)saveEntity:(NSDictionary<NSString *, id> * _Nonnull)entity;
-- (void)saveEntities:(NSArray<NSDictionary<NSString *, id> *> * _Nonnull)entities;
-- (NSDictionary<NSString *, id> * _Nullable)findEntity:(NSString * _Nonnull)objectId;
-- (NSArray<NSDictionary<NSString *, id> *> * _Nonnull)findEntityByQuery:(KNVQuery * _Nonnull)query;
-- (NSDictionary<NSString *, NSString *> * _Nonnull)findIdsLmtsByQuery:(KNVQuery * _Nonnull)query;
-- (NSArray<NSDictionary<NSString *, id> *> * _Nonnull)findAll;
-- (NSUInteger)count;
-- (void)removeEntity:(NSDictionary<NSString *, id> * _Nonnull)entity;
-- (NSUInteger)removeEntitiesByQuery:(KNVQuery * _Nonnull)query;
-- (void)removeAllEntities;
-@end
-
-
-SWIFT_CLASS_NAMED("CacheManager")
-@interface __KNVCacheManager : NSObject
-- (id <__KNVCache> _Nonnull)cache:(NSString * _Nullable)collectionName;
 @end
 
 @class __KNVUser;
 @class NSURL;
-@class __KNVSyncManager;
 @class KNVPush;
+@class KNVMigration;
+@class NSData;
 
+
+/// This class provides a representation of a Kinvey environment holding App ID and App Secret. Please never use a Master Secret in a client application.
 SWIFT_CLASS_NAMED("Client")
 @interface __KNVClient : NSObject
+
+/// Shared client instance for simplicity. Use this instance if you don't need to handle with multiple Kinvey environments.
 + (__KNVClient * _Nonnull)sharedClient;
+
+/// It holds the User instance after logged in. If this variable is nil means that there's no logged user, which is necessary for some calls to in a Kinvey environment.
 @property (nonatomic, readonly, strong) __KNVUser * _Nullable activeUser;
+
+/// Holds the App ID for a specific Kinvey environment.
 @property (nonatomic, readonly, copy) NSString * _Nullable appKey;
+
+/// Holds the App Secret for a specific Kinvey environment.
 @property (nonatomic, readonly, copy) NSString * _Nullable appSecret;
+
+/// Holds the Host for a specific Kinvey environment. The default value is https://baas.kinvey.com/
 @property (nonatomic, readonly, strong) NSURL * _Nonnull apiHostName;
+
+/// Holds the Authentication Host for a specific Kinvey environment. The default value is https://auth.kinvey.com/
 @property (nonatomic, readonly, strong) NSURL * _Nonnull authHostName;
+
+/// Cache policy for this client instance.
 @property (nonatomic) NSURLRequestCachePolicy cachePolicy;
+
+/// Timeout interval for this client instance.
 @property (nonatomic) NSTimeInterval timeoutInterval;
+
+/// App version for this client instance.
 @property (nonatomic, copy) NSString * _Nullable clientAppVersion;
+
+/// Custom request properties for this client instance.
 @property (nonatomic, copy) NSDictionary<NSString *, NSString *> * _Nonnull customRequestProperties;
+
+/// The default value for apiHostName variable.
 + (NSURL * _Nonnull)defaultApiHostName;
+
+/// The default value for authHostName variable.
 + (NSURL * _Nonnull)defaultAuthHostName;
-@property (nonatomic, readonly, strong) __KNVCacheManager * _Null_unspecified cacheManager;
-@property (nonatomic, readonly, strong) __KNVSyncManager * _Null_unspecified syncManager;
+
+/// Set a different schema version to perform migrations in your local cache.
+@property (nonatomic, readonly) unsigned long long schemaVersion;
+
+/// Use this variable to handle push notifications.
 @property (nonatomic, readonly, strong) KNVPush * _Null_unspecified push;
+
+/// Set a different type if you need a custom User class. Extends from User allows you to have custom properties in your User instances.
 @property (nonatomic) SWIFT_METATYPE(__KNVUser) _Nonnull userType;
+
+/// Default constructor. The initialize method still need to be called after instanciate a new instance.
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+
+/// This method is called automatically before use any usage of the Client class.
 + (void)initialize;
+
+/// Constructor that already initialize the client. The initialize method is called automatically.
 - (nonnull instancetype)initWithAppKey:(NSString * _Nonnull)appKey appSecret:(NSString * _Nonnull)appSecret apiHostName:(NSURL * _Nonnull)apiHostName authHostName:(NSURL * _Nonnull)authHostName;
-- (__KNVClient * _Nonnull)initializeWithAppKey:(NSString * _Nonnull)appKey appSecret:(NSString * _Nonnull)appSecret apiHostName:(NSURL * _Nonnull)apiHostName authHostName:(NSURL * _Nonnull)authHostName;
+
+/// Initialize a Client instance with all the needed parameters and requires a boolean to encrypt or not any store created using this client instance.
+- (__KNVClient * _Nonnull)initializeWithAppKey:(NSString * _Nonnull)appKey appSecret:(NSString * _Nonnull)appSecret apiHostName:(NSURL * _Nonnull)apiHostName authHostName:(NSURL * _Nonnull)authHostName encrypted:(BOOL)encrypted schemaVersion:(unsigned long long)schemaVersion migrationHandler:(void (^ _Nullable)(KNVMigration * _Nonnull, unsigned long long))migrationHandler;
+
+/// Initialize a Client instance with all the needed parameters.
+- (__KNVClient * _Nonnull)initializeWithAppKey:(NSString * _Nonnull)appKey appSecret:(NSString * _Nonnull)appSecret apiHostName:(NSURL * _Nonnull)apiHostName authHostName:(NSURL * _Nonnull)authHostName encryptionKey:(NSData * _Nullable)encryptionKey schemaVersion:(unsigned long long)schemaVersion migrationHandler:(void (^ _Nullable)(KNVMigration * _Nonnull, unsigned long long))migrationHandler;
+
+/// Autorization header used for calls that don't requires a logged User.
 @property (nonatomic, readonly, copy) NSString * _Nullable authorizationHeader;
 @end
 
-typedef SWIFT_ENUM(NSUInteger, Error) {
-  ErrorObjectIdMissing = 0,
-  ErrorInvalidResponse = 1,
-  ErrorNoActiveUser = 2,
-  ErrorRequestCanceled = 3,
-  ErrorInvalidStoreType = 4,
-  ErrorUserWithoutEmailOrUsername = 5,
-};
-static NSString * _Nonnull const ErrorDomain = @"Kinvey.Error";
+
+
+/// Class to interact with a custom endpoint in the backend.
+SWIFT_CLASS_NAMED("CustomEndpoint")
+@interface KNVCustomEndpoint : NSObject
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
 
 @class KNVMetadata;
 @class NSDate;
 
+
+/// Class that represents a file in the backend holding all metadata of the file, but don't hold the data itself.
 SWIFT_CLASS_NAMED("File")
 @interface KNVFile : NSObject
+
+/// _id property of the file.
 @property (nonatomic, copy) NSString * _Nullable fileId;
+
+/// _filename property of the file.
 @property (nonatomic, copy) NSString * _Nullable fileName;
+
+/// mimeType property of the file.
 @property (nonatomic, copy) NSString * _Nullable mimeType;
+
+/// _public property of the file, which represents if the file is accessible without need of credentials.
 @property (nonatomic) BOOL publicAccessible;
+
+/// _acl property of the file.
 @property (nonatomic, strong) KNVAcl * _Nullable acl;
+
+/// _kmd property of the file.
 @property (nonatomic, strong) KNVMetadata * _Nullable metadata;
+
+/// Temporary download URL of the file.
 @property (nonatomic, strong) NSURL * _Nullable downloadURL;
+
+/// Expiration data of the downloadURL.
 @property (nonatomic, strong) NSDate * _Nullable expiresAt;
 @end
 
 
-SWIFT_CLASS_NAMED("Operation")
-@interface __KNVOperation : NSObject
-@end
 
-
-SWIFT_CLASS_NAMED("ReadOperation")
-@interface __KNVReadOperation : __KNVOperation
-@end
-
-
-SWIFT_CLASS_NAMED("FindOperation")
-@interface __KNVFindOperation : __KNVReadOperation
-@end
-
-enum ReadPolicy : NSUInteger;
-
-@interface __KNVFindOperation (SWIFT_EXTENSION(Kinvey))
-- (nonnull instancetype)initWithQuery:(KNVQuery * _Nonnull)query deltaSet:(BOOL)deltaSet readPolicy:(enum ReadPolicy)readPolicy persistableClass:(Class _Nonnull)persistableClass cache:(id <__KNVCache> _Nonnull)cache client:(__KNVClient * _Nonnull)client;
-@end
-
-
-SWIFT_CLASS_NAMED("GetOperation")
-@interface __KNVGetOperation : __KNVReadOperation
-@end
-
-
-@interface __KNVGetOperation (SWIFT_EXTENSION(Kinvey))
-- (nonnull instancetype)initWithId:(NSString * _Nonnull)id readPolicy:(enum ReadPolicy)readPolicy persistableClass:(Class _Nonnull)persistableClass cache:(id <__KNVCache> _Nonnull)cache client:(__KNVClient * _Nonnull)client;
-@end
-
-
-SWIFT_PROTOCOL_NAMED("Request")
-@protocol KNVRequest
-@property (nonatomic, readonly) BOOL executing;
-@property (nonatomic, readonly) BOOL canceled;
-- (void)cancel;
-@end
-
-
-SWIFT_CLASS_NAMED("HttpRequest")
-@interface __KNVHttpRequest : NSObject <KNVRequest>
-@property (nonatomic, readonly) BOOL executing;
-@property (nonatomic, readonly) BOOL canceled;
-- (void)cancel;
-@end
-
-
+/// Protocol used to serialize and deserialize JSON objects into objects.
 SWIFT_PROTOCOL_NAMED("JsonObject")
 @protocol KNVJsonObject
 @optional
+
+/// Deserialize JSON object into object.
 - (void)fromJson:(NSDictionary<NSString *, id> * _Nonnull)json;
+
+/// Serialize object to JSON.
 - (NSDictionary<NSString *, id> * _Nonnull)toJson;
 @end
 
 
-SWIFT_CLASS_NAMED("LocalRequest")
-@interface __KNVLocalRequest : NSObject <KNVRequest>
-@property (nonatomic, readonly) BOOL executing;
-@property (nonatomic, readonly) BOOL canceled;
-- (void)cancel;
-@end
 
-
+/// This class represents the metadata information for a record
 SWIFT_CLASS_NAMED("Metadata")
 @interface KNVMetadata : NSObject
+
+/// Last Modification Time Key.
 + (NSString * _Nonnull)LmtKey;
+
+/// Entity Creation Time Key.
 + (NSString * _Nonnull)EctKey;
+
+/// Authentication Token Key.
 + (NSString * _Nonnull)AuthTokenKey;
+
+/// Last Modification Time.
 @property (nonatomic, strong) NSDate * _Nullable lmt;
+
+/// Entity Creation Time.
 @property (nonatomic, strong) NSDate * _Nullable ect;
+
+/// Authentication Token.
 @property (nonatomic, readonly, copy) NSString * _Nullable authtoken;
+
+/// Default Constructor
 - (nonnull instancetype)initWithLmt:(NSString * _Nullable)lmt ect:(NSString * _Nullable)ect authtoken:(NSString * _Nullable)authtoken OBJC_DESIGNATED_INITIALIZER;
+
+/// Constructor used to build a new Metadata instance from a JSON object.
 - (nonnull instancetype)initWithJson:(NSDictionary<NSString *, id> * _Nonnull)json;
+
+/// The JSON representation for the Metadata instance.
 - (NSDictionary<NSString *, id> * _Nonnull)toJson;
 @end
 
 
-SWIFT_CLASS_NAMED("MultiRequest")
-@interface __KNVMultiRequest : NSObject <KNVRequest>
-- (void)addRequest:(id <KNVRequest> _Nonnull)request;
-@property (nonatomic, readonly) BOOL executing;
-@property (nonatomic, readonly) BOOL canceled;
-- (void)cancel;
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+
+/// Class used to perform migrations in your local cache.
+SWIFT_CLASS_NAMED("Migration")
+@interface KNVMigration : NSObject
+
+/// Method that performs a migration in a specific collection.
+- (void)execute:(Class _Nonnull)persistableClass migrationObjectHandler:(NSDictionary<NSString *, id> * _Nullable (^ _Nullable)(NSDictionary<NSString *, id> * _Nonnull))migrationObjectHandler;
 @end
 
 
@@ -288,61 +304,58 @@ SWIFT_CLASS_NAMED("MultiRequest")
 @end
 
 
-@class NSURLRequest;
 
-SWIFT_PROTOCOL_NAMED("PendingOperation")
-@protocol KNVPendingOperation
-@property (nonatomic, readonly, copy) NSString * _Nullable objectId;
-- (NSURLRequest * _Nonnull)buildRequest;
-@end
-
-
+/// Protocol that turns a NSObject into a persistable class to be used in a DataStore.
 SWIFT_PROTOCOL_NAMED("Persistable")
 @protocol KNVPersistable <KNVJsonObject, NSObject>
+
+/// Provides the collection name to be matched with the backend.
 + (NSString * _Nonnull)kinveyCollectionName;
+
+/// Provides the property mapping to be matched with the backend.
 + (NSDictionary<NSString *, NSString *> * _Nonnull)kinveyPropertyMapping;
 @end
 
-@protocol __KNVSync;
-
-SWIFT_CLASS_NAMED("SyncOperation")
-@interface __KNVSyncOperation : __KNVOperation
-- (nonnull instancetype)initWithSync:(id <__KNVSync> _Nonnull)sync persistableType:(Class <KNVPersistable> _Nonnull)persistableType cache:(id <__KNVCache> _Nonnull)cache client:(__KNVClient * _Nonnull)client OBJC_DESIGNATED_INITIALIZER;
-@end
 
 
-SWIFT_CLASS_NAMED("PurgeOperation")
-@interface __KNVPurgeOperation : __KNVSyncOperation
-- (nonnull instancetype)initWithSync:(id <__KNVSync> _Nonnull)sync persistableType:(Class <KNVPersistable> _Nonnull)persistableType cache:(id <__KNVCache> _Nonnull)cache client:(__KNVClient * _Nonnull)client OBJC_DESIGNATED_INITIALIZER;
-@end
-
-@class UIApplication;
-@class NSError;
-
+/// Class used to register and unregister a device to receive push notifications.
 SWIFT_CLASS_NAMED("Push")
 @interface KNVPush : NSObject
-- (void)registerForPush;
-- (void)application:(UIApplication * _Nonnull)application didFailToRegisterForRemoteNotificationsWithError:(NSError * _Nonnull)error;
-- (void)application:(UIApplication * _Nonnull)application didReceiveRemoteNotification:(NSDictionary * _Nonnull)userInfo;
-@end
 
+/// Sets and returns the number for the icon badge for the current running app.
+@property (nonatomic) NSInteger badgeNumber;
 
-SWIFT_CLASS_NAMED("PushOperation")
-@interface __KNVPushOperation : __KNVSyncOperation
-- (nonnull instancetype)initWithSync:(id <__KNVSync> _Nonnull)sync persistableType:(Class <KNVPersistable> _Nonnull)persistableType cache:(id <__KNVCache> _Nonnull)cache client:(__KNVClient * _Nonnull)client OBJC_DESIGNATED_INITIALIZER;
+/// Resets the badge number to zero.
+- (void)resetBadgeNumber;
 @end
 
 @class NSPredicate;
 @class NSSortDescriptor;
 
+
+/// Class that represents a query including filters and sorts.
 SWIFT_CLASS_NAMED("Query")
 @interface KNVQuery : NSObject
+
+/// NSPredicate used to filter records.
 @property (nonatomic, strong) NSPredicate * _Nullable predicate;
+
+/// Array of NSSortDescriptors used to sort records.
 @property (nonatomic, copy) NSArray<NSSortDescriptor *> * _Nullable sortDescriptors;
+
+/// Default Constructor.
 - (nonnull instancetype)init;
+
+/// Constructor using a NSPredicate to filter records.
 - (nonnull instancetype)initWithPredicate:(NSPredicate * _Nonnull)predicate;
+
+/// Constructor using an array of NSSortDescriptors to sort records.
 - (nonnull instancetype)initWithSortDescriptors:(NSArray<NSSortDescriptor *> * _Nonnull)sortDescriptors;
+
+/// Constructor using a NSPredicate to filter records and an array of NSSortDescriptors to sort records.
 - (nonnull instancetype)initWithPredicate:(NSPredicate * _Nullable)predicate sortDescriptors:(NSArray<NSSortDescriptor *> * _Nullable)sortDescriptors;
+
+/// Constructor using a similar way to construct a NSPredicate.
 - (nonnull instancetype)initWithFormat:(NSString * _Nonnull)format argumentArray:(NSArray * _Nullable)argumentArray;
 @end
 
@@ -351,135 +364,119 @@ SWIFT_CLASS_NAMED("Query")
 @end
 
 
-
-@interface __KNVReadOperation (SWIFT_EXTENSION(Kinvey))
-- (id <KNVRequest> _Nonnull)execute:(void (^ _Nullable)(id _Nullable, NSError * _Nullable))completionHandler;
-@end
-
+/// Policy that describes how a read operation should perform.
 typedef SWIFT_ENUM(NSUInteger, ReadPolicy) {
+
+/// Doesn't hit the network, forcing the data to be read only from the local cache.
   ReadPolicyForceLocal = 0,
+
+/// Doesn't hit the local cache, forcing the data to be read only from the network (backend).
   ReadPolicyForceNetwork = 1,
+
+/// Read first from the local cache and then try to get data from the network (backend).
   ReadPolicyBoth = 2,
 };
 
 
-SWIFT_CLASS_NAMED("WriteOperation")
-@interface __KNVWriteOperation : __KNVOperation
-@end
 
-enum WritePolicy : NSUInteger;
+/// Protocol that represents a request made to the backend.
+SWIFT_PROTOCOL_NAMED("Request")
+@protocol KNVRequest
 
-SWIFT_CLASS_NAMED("RemoveOperation")
-@interface __KNVRemoveOperation : __KNVWriteOperation
-- (nonnull instancetype)initWithQuery:(KNVQuery * _Nonnull)query writePolicy:(enum WritePolicy)writePolicy sync:(id <__KNVSync> _Nonnull)sync persistableType:(Class <KNVPersistable> _Nonnull)persistableType cache:(id <__KNVCache> _Nonnull)cache client:(__KNVClient * _Nonnull)client OBJC_DESIGNATED_INITIALIZER;
-@end
+/// Indicates if a request still executing or not.
+@property (nonatomic, readonly) BOOL executing;
 
+/// Indicates if a request was cancelled or not.
+@property (nonatomic, readonly) BOOL cancelled;
 
-@interface __KNVRemoveOperation (SWIFT_EXTENSION(Kinvey))
-- (id <KNVRequest> _Nonnull)executeUInt:(void (^ _Nullable)(NSUInteger, NSError * _Nullable))completionHandler;
-@end
-
-
-
-SWIFT_CLASS_NAMED("SaveOperation")
-@interface __KNVSaveOperation : __KNVWriteOperation
-- (nonnull instancetype)initWithPersistable:(id <KNVPersistable> _Nonnull)persistable writePolicy:(enum WritePolicy)writePolicy sync:(id <__KNVSync> _Nonnull)sync cache:(id <__KNVCache> _Nonnull)cache client:(__KNVClient * _Nonnull)client OBJC_DESIGNATED_INITIALIZER;
-@end
-
-
-SWIFT_PROTOCOL_NAMED("Sync")
-@protocol __KNVSync
-@property (nonatomic, copy) NSString * _Nonnull persistenceId;
-@property (nonatomic, copy) NSString * _Nonnull collectionName;
-- (null_unspecified instancetype)initWithPersistenceId:(NSString * _Nonnull)persistenceId collectionName:(NSString * _Nonnull)collectionName;
-- (id <KNVPendingOperation> _Nonnull)createPendingOperation:(NSURLRequest * _Null_unspecified)request objectId:(NSString * _Nullable)objectId;
-- (void)savePendingOperation:(id <KNVPendingOperation> _Nonnull)pendingOperation;
-- (NSArray<id <KNVPendingOperation>> * _Nonnull)pendingOperations;
-- (NSArray<id <KNVPendingOperation>> * _Nonnull)pendingOperations:(NSString * _Nullable)objectId;
-- (void)removePendingOperation:(id <KNVPendingOperation> _Nonnull)pendingOperation;
-- (void)removeAllPendingOperations;
-- (void)removeAllPendingOperations:(NSString * _Nullable)objectId;
-@end
-
-
-SWIFT_CLASS_NAMED("SyncManager")
-@interface __KNVSyncManager : NSObject
-- (id <__KNVSync> _Nonnull)sync:(NSString * _Nonnull)collectionName;
+/// Cancels a request in progress.
+- (void)cancel;
 @end
 
 
 
-@interface __KNVSyncOperation (SWIFT_EXTENSION(Kinvey))
-- (id <KNVRequest> _Nonnull)execute:(void (^ _Nullable)(id _Nullable, NSError * _Nullable))completionHandler;
-- (id <KNVRequest> _Nonnull)executeUInt:(void (^ _Nullable)(NSUInteger, NSError * _Nullable))completionHandler;
-@end
-
-
+/// Class that represents an User.
 SWIFT_CLASS_NAMED("User")
 @interface __KNVUser : NSObject
+
+/// Username Key.
 + (NSString * _Nonnull)PersistableUsernameKey;
+
+/// _id property of the user.
 @property (nonatomic, readonly, copy) NSString * _Nonnull userId;
+
+/// _acl property of the user.
 @property (nonatomic, readonly, strong) KNVAcl * _Nullable acl;
+
+/// _kmd property of the user.
 @property (nonatomic, readonly, strong) KNVMetadata * _Nullable metadata;
+
+/// username property of the user.
 @property (nonatomic, copy) NSString * _Nullable username;
+
+/// email property of the user.
 @property (nonatomic, copy) NSString * _Nullable email;
+
+/// Default Constructor.
 - (nonnull instancetype)initWithUserId:(NSString * _Nonnull)userId acl:(KNVAcl * _Nullable)acl metadata:(KNVMetadata * _Nullable)metadata client:(__KNVClient * _Nonnull)client OBJC_DESIGNATED_INITIALIZER;
+
+/// Constructor used to build a new User instance from a JSON object.
 - (nullable instancetype)initWithJson:(NSDictionary<NSString *, id> * _Nonnull)json client:(__KNVClient * _Nonnull)client OBJC_DESIGNATED_INITIALIZER;
+
+/// The JSON representation for the User instance.
 - (NSDictionary<NSString *, id> * _Nonnull)toJson;
+
+/// Sign out the current active user.
 - (void)logout;
+
+/// Autorization header used for calls that requires a logged User.
 @property (nonatomic, readonly, copy) NSString * _Nullable authorizationHeader;
 @end
 
+@class NSError;
 
 @interface __KNVUser (SWIFT_EXTENSION(Kinvey))
+
+/// Checks if a username already exists or not.
 + (id <KNVRequest> _Nonnull)existsWithUsername:(NSString * _Nonnull)username client:(__KNVClient * _Nonnull)client completionHandler:(void (^ _Nullable)(BOOL, NSError * _Nullable))completionHandler;
+
+/// Sign in a user and set as a current active user.
 + (id <KNVRequest> _Nonnull)loginWithUsername:(NSString * _Nonnull)username password:(NSString * _Nonnull)password client:(__KNVClient * _Nonnull)client completionHandler:(void (^ _Nullable)(__KNVUser * _Nullable, NSError * _Nullable))completionHandler;
+
+/// Creates a new User taking (optionally) a username and password. If no username or password was provided, random values will be generated automatically.
 + (id <KNVRequest> _Nonnull)signupWithUsername:(NSString * _Nullable)username password:(NSString * _Nullable)password client:(__KNVClient * _Nonnull)client completionHandler:(void (^ _Nullable)(__KNVUser * _Nullable, NSError * _Nullable))completionHandler;
+
+/// Deletes a User by the userId property.
 + (id <KNVRequest> _Nonnull)destroyWithUserId:(NSString * _Nonnull)userId hard:(BOOL)hard client:(__KNVClient * _Nonnull)client completionHandler:(void (^ _Nullable)(NSError * _Nullable))completionHandler;
+
+/// Deletes the User.
 - (id <KNVRequest> _Nonnull)destroyWithHard:(BOOL)hard client:(__KNVClient * _Nonnull)client completionHandler:(void (^ _Nullable)(NSError * _Nullable))completionHandler;
+
+/// Gets a User instance using the userId property.
 + (id <KNVRequest> _Nonnull)getWithUserId:(NSString * _Nonnull)userId client:(__KNVClient * _Nonnull)client completionHandler:(void (^ _Nullable)(__KNVUser * _Nullable, NSError * _Nullable))completionHandler;
+
+/// Creates or updates a User.
 - (id <KNVRequest> _Nonnull)saveWithClient:(__KNVClient * _Nonnull)client completionHandler:(void (^ _Nullable)(__KNVUser * _Nullable, NSError * _Nullable))completionHandler;
+
+/// Presents the MIC View Controller to sign in a user using MIC (Mobile Identity Connect).
 + (void)presentMICViewControllerWithRedirectURI:(NSURL * _Nonnull)redirectURI timeout:(NSTimeInterval)timeout client:(__KNVClient * _Nonnull)client completionHandler:(void (^ _Nullable)(__KNVUser * _Nullable, NSError * _Nullable))completionHandler;
+
+/// Presents the MIC View Controller to sign in a user using MIC (Mobile Identity Connect).
 + (void)presentMICViewControllerWithRedirectURI:(NSURL * _Nonnull)redirectURI timeout:(NSTimeInterval)timeout forceUIWebView:(BOOL)forceUIWebView client:(__KNVClient * _Nonnull)client completionHandler:(void (^ _Nullable)(__KNVUser * _Nullable, NSError * _Nullable))completionHandler;
 @end
 
 
-
-@interface __KNVWriteOperation (SWIFT_EXTENSION(Kinvey))
-- (id <KNVRequest> _Nonnull)execute:(void (^ _Nullable)(id _Nullable, NSError * _Nullable))completionHandler;
-@end
-
+/// Policy that describes how a write operation should perform.
 typedef SWIFT_ENUM(NSUInteger, WritePolicy) {
+
+/// Writes in the local cache first and then try to write trought the network (backend).
   WritePolicyLocalThenNetwork = 0,
+
+/// Doesn't hit the network, forcing to write the data only in the local cache.
   WritePolicyForceLocal = 1,
+
+/// Doesn't hit the local cache, forcing to write the data only trought the network (backend).
   WritePolicyForceNetwork = 2,
 };
-
-
-SWIFT_CLASS("_TtC6Kinvey10__KNVError")
-@interface __KNVError : NSObject
-+ (NSError * _Nonnull)ObjectIdMissing;
-+ (NSError * _Nonnull)InvalidResponse;
-+ (NSError * _Nonnull)NoActiveUser;
-+ (NSError * _Nonnull)RequestCanceled;
-+ (NSError * _Nonnull)InvalidStoreType;
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-@end
-
-
-SWIFT_CLASS("_TtC6Kinvey16__KNVPersistable")
-@interface __KNVPersistable : NSObject
-+ (NSString * _Nonnull)idKey:(Class <KNVPersistable> _Nonnull)type;
-+ (NSString * _Nullable)kmdKey:(Class <KNVPersistable> _Nonnull)type;
-+ (NSString * _Nullable)kinveyObjectId:(id <KNVPersistable> _Nonnull)persistable;
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-@end
-
-
-SWIFT_CLASS("_TtC6Kinvey10__KNVQuery")
-@interface __KNVQuery : NSObject
-+ (KNVQuery * _Nonnull)query:(KNVQuery * _Nonnull)query persistableType:(Class <KNVPersistable> _Nonnull)persistableType;
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-@end
 
 #pragma clang diagnostic pop

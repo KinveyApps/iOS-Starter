@@ -116,6 +116,19 @@ class ErrorHandlingTests_Swift: XCTestCase {
         }
     }
 
+    // a temporary alias `onError` exists for the `error` function
+    func test7() {
+        twice { promise, ex in
+            PMKUnhandledErrorHandler = { err in
+                XCTFail()
+            }
+
+            promise.onError { error in
+                ex.fulfill()
+            }
+        }
+    }
+
     func testDoubleRejectDoesNotTriggerUnhandler() {
         enum Error: ErrorType {
             case Test
@@ -153,7 +166,7 @@ class ErrorHandlingTests_Swift: XCTestCase {
             case Test
         }
 
-        Promise<Void> { _, reject in
+        _ = Promise<Void> { _, reject in
             after(0.1).then {
                 throw Error.Test
             }.error { err in
