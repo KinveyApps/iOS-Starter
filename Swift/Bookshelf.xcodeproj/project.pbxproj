@@ -16,16 +16,16 @@
 		5701ABA51C6916A900D7D9BB /* BookshelfTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701ABA41C6916A900D7D9BB /* BookshelfTests.swift */; };
 		5701ABB01C6916A900D7D9BB /* BookshelfUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701ABAF1C6916A900D7D9BB /* BookshelfUITests.swift */; };
 		5701ABC01C69187200D7D9BB /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701ABBF1C69187200D7D9BB /* Book.swift */; };
+		5771F9EC1D2EEBE500903777 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5771F9E71D2EEBA700903777 /* SVProgressHUD.framework */; };
+		5771F9EE1D2EEC6100903777 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5771F9ED1D2EEC6100903777 /* RealmSwift.framework */; };
+		5771F9F11D2EECC200903777 /* Kinvey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5771F9F01D2EECC200903777 /* Kinvey.framework */; };
+		5771F9F21D2EECD900903777 /* RealmSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5771F9ED1D2EEC6100903777 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5771F9F31D2EECE500903777 /* SVProgressHUD.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5771F9E71D2EEBA700903777 /* SVProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5771F9F61D2EED0000903777 /* Realm.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5771F9F41D2EECF800903777 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		57A3BEC71C88DBF000DCD439 /* KeychainAccess.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 571A7A2C1C87B8D400B8D282 /* KeychainAccess.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		57A3BEC81C88DBF000DCD439 /* PromiseKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 571A7A2D1C87B8D400B8D282 /* PromiseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		57A3BEC91C88DBF000DCD439 /* Realm.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 571A7A2E1C87B8D400B8D282 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		57A3BECB1C88DC5700DCD439 /* KeychainAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 571A7A2C1C87B8D400B8D282 /* KeychainAccess.framework */; };
 		57A3BECC1C88DC5700DCD439 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 571A7A2D1C87B8D400B8D282 /* PromiseKit.framework */; };
-		57A3BECD1C88DC5700DCD439 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 571A7A2E1C87B8D400B8D282 /* Realm.framework */; };
-		57A3BECE1C88DC5700DCD439 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 571A7A2F1C87B8D400B8D282 /* SVProgressHUD.framework */; };
-		57E4DB0A1C8A0EBB0017B406 /* SVProgressHUD.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 571A7A2F1C87B8D400B8D282 /* SVProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		57FF4F711CD17F74002947FF /* Kinvey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57FF4F701CD17F74002947FF /* Kinvey.framework */; };
-		57FF4F721CD17FF1002947FF /* Kinvey.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 57FF4F701CD17F74002947FF /* Kinvey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,11 +52,11 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				57FF4F721CD17FF1002947FF /* Kinvey.framework in CopyFiles */,
+				5771F9F31D2EECE500903777 /* SVProgressHUD.framework in CopyFiles */,
 				57A3BEC71C88DBF000DCD439 /* KeychainAccess.framework in CopyFiles */,
 				57A3BEC81C88DBF000DCD439 /* PromiseKit.framework in CopyFiles */,
-				57A3BEC91C88DBF000DCD439 /* Realm.framework in CopyFiles */,
-				57E4DB0A1C8A0EBB0017B406 /* SVProgressHUD.framework in CopyFiles */,
+				5771F9F61D2EED0000903777 /* Realm.framework in CopyFiles */,
+				5771F9F21D2EECD900903777 /* RealmSwift.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,9 +80,10 @@
 		5701ABBF1C69187200D7D9BB /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		571A7A2C1C87B8D400B8D282 /* KeychainAccess.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainAccess.framework; path = ../Carthage/Build/iOS/KeychainAccess.framework; sourceTree = "<group>"; };
 		571A7A2D1C87B8D400B8D282 /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = ../Carthage/Build/iOS/PromiseKit.framework; sourceTree = "<group>"; };
-		571A7A2E1C87B8D400B8D282 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = ../Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
-		571A7A2F1C87B8D400B8D282 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = ../Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
-		57FF4F701CD17F74002947FF /* Kinvey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kinvey.framework; path = ../Kinvey.framework; sourceTree = "<group>"; };
+		5771F9E71D2EEBA700903777 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = ../Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
+		5771F9ED1D2EEC6100903777 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
+		5771F9F01D2EECC200903777 /* Kinvey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kinvey.framework; path = "../../../Library/Developer/Xcode/DerivedData/Bookshelf-duudulduwwbwmpdixcwujxcsfvak/Build/Products/Debug-iphonesimulator/Kinvey.framework"; sourceTree = "<group>"; };
+		5771F9F41D2EECF800903777 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = ../Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,11 +91,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5771F9F11D2EECC200903777 /* Kinvey.framework in Frameworks */,
 				57A3BECB1C88DC5700DCD439 /* KeychainAccess.framework in Frameworks */,
-				57FF4F711CD17F74002947FF /* Kinvey.framework in Frameworks */,
 				57A3BECC1C88DC5700DCD439 /* PromiseKit.framework in Frameworks */,
-				57A3BECD1C88DC5700DCD439 /* Realm.framework in Frameworks */,
-				57A3BECE1C88DC5700DCD439 /* SVProgressHUD.framework in Frameworks */,
+				5771F9EE1D2EEC6100903777 /* RealmSwift.framework in Frameworks */,
+				5771F9EC1D2EEBE500903777 /* SVProgressHUD.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,11 +119,12 @@
 		25FD6AAB5C1BE0458C3A2769 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				57FF4F701CD17F74002947FF /* Kinvey.framework */,
+				5771F9ED1D2EEC6100903777 /* RealmSwift.framework */,
+				5771F9F41D2EECF800903777 /* Realm.framework */,
+				5771F9F01D2EECC200903777 /* Kinvey.framework */,
+				5771F9E71D2EEBA700903777 /* SVProgressHUD.framework */,
 				571A7A2C1C87B8D400B8D282 /* KeychainAccess.framework */,
 				571A7A2D1C87B8D400B8D282 /* PromiseKit.framework */,
-				571A7A2E1C87B8D400B8D282 /* Realm.framework */,
-				571A7A2F1C87B8D400B8D282 /* SVProgressHUD.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -544,8 +546,7 @@
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/../Carthage/Build/iOS",
-					"$(PROJECT_DIR)/../",
+					../Carthage/Build/iOS,
 				);
 				INFOPLIST_FILE = Bookshelf/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -562,8 +563,7 @@
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/../Carthage/Build/iOS",
-					"$(PROJECT_DIR)/../",
+					../Carthage/Build/iOS,
 				);
 				INFOPLIST_FILE = Bookshelf/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

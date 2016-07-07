@@ -2,9 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Swift/Bookshelf.xcodeproj">
+      location = "group:../ios-library/Kinvey/Kinvey.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:ObjC/BookshelfObjC.xcodeproj">
+      location = "group:Swift/Bookshelf.xcodeproj">
    </FileRef>
 </Workspace>

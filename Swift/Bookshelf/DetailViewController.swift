@@ -67,23 +67,21 @@ class DetailViewController: UIViewController {
             return false
             
         case "cancel":
-            if book == nil {
-                book = Book()
-            }
-            
-            SVProgressHUD.show()
-            if let bookId = book.objectId {
-                SVProgressHUD.dismiss()
-
+            if let bookId = book?.entityId {
+                SVProgressHUD.show()
+                
                 //user cancelled, reload book from the cache to disacard any local changes
                 store.findById(bookId) { (cachedBook, error) -> Void in
+                    SVProgressHUD.dismiss()
                     if let _ = cachedBook {
                         self.book = cachedBook
                     }
+                    self.performSegueWithIdentifier(identifier, sender: sender)
                 }
+                return false
+            } else {
+                fallthrough
             }
-            
-            return false
         default:
             return true
         }
