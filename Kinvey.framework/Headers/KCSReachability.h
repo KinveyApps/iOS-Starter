@@ -15,6 +15,8 @@
 // contents is a violation of applicable laws.
 //
 
+#if !TARGET_OS_WATCH
+
 #ifndef KinveyKit_KCSReachability_h
 #define KinveyKit_KCSReachability_h
 
@@ -79,5 +81,7 @@ KCS_CONSTANT KCSReachabilityChangedNotification;
 - (BOOL) isReachableViaWiFi;
 
 @end
+
+#endif
 
 #endif

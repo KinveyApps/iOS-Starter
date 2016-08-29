@@ -6,7 +6,7 @@
 //  Copyright © 2015 Kinvey. All rights reserved.
 //
 
-@import UIKit;
+@import Foundation;
 
 //! Project version number for Kinvey.
 FOUNDATION_EXPORT double KinveyVersionNumber;
@@ -23,10 +23,10 @@ FOUNDATION_EXPORT const unsigned char KinveyVersionString[];
 #import <Kinvey/KNVError.h>
 
 // KinveyKit
-#import <Kinvey/KCSRealmEntityPersistence.h>
 #import <Kinvey/KCSReachability.h>
 #import <Kinvey/KCSKeychain.h>
 #import <Kinvey/KCSMICLoginViewController.h>
+#import <Kinvey/KCSClient.h>
 
 // NSPredicate-MongoDB-Adaptor => https://github.com/tjboneman/NSPredicate-MongoDB-Adaptor
 #import <Kinvey/MongoDBPredicateAdaptor.h>

@@ -26,6 +26,8 @@
 		57E4DB0A1C8A0EBB0017B406 /* SVProgressHUD.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 571A7A2F1C87B8D400B8D282 /* SVProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		57FF4F711CD17F74002947FF /* Kinvey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57FF4F701CD17F74002947FF /* Kinvey.framework */; };
 		57FF4F721CD17FF1002947FF /* Kinvey.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 57FF4F701CD17F74002947FF /* Kinvey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		964609B01D73904A0022CE65 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 964609AF1D73904A0022CE65 /* RealmSwift.framework */; };
+		964609B11D7390A60022CE65 /* RealmSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 964609AF1D73904A0022CE65 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				964609B11D7390A60022CE65 /* RealmSwift.framework in CopyFiles */,
 				57FF4F721CD17FF1002947FF /* Kinvey.framework in CopyFiles */,
 				57A3BEC71C88DBF000DCD439 /* KeychainAccess.framework in CopyFiles */,
 				57A3BEC81C88DBF000DCD439 /* PromiseKit.framework in CopyFiles */,
@@ -83,6 +86,7 @@
 		571A7A2E1C87B8D400B8D282 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = ../Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
 		571A7A2F1C87B8D400B8D282 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = ../Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
 		57FF4F701CD17F74002947FF /* Kinvey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kinvey.framework; path = ../Kinvey.framework; sourceTree = "<group>"; };
+		964609AF1D73904A0022CE65 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,10 +94,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57A3BECB1C88DC5700DCD439 /* KeychainAccess.framework in Frameworks */,
 				57FF4F711CD17F74002947FF /* Kinvey.framework in Frameworks */,
+				57A3BECB1C88DC5700DCD439 /* KeychainAccess.framework in Frameworks */,
 				57A3BECC1C88DC5700DCD439 /* PromiseKit.framework in Frameworks */,
 				57A3BECD1C88DC5700DCD439 /* Realm.framework in Frameworks */,
+				964609B01D73904A0022CE65 /* RealmSwift.framework in Frameworks */,
 				57A3BECE1C88DC5700DCD439 /* SVProgressHUD.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -118,6 +123,7 @@
 		25FD6AAB5C1BE0458C3A2769 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				964609AF1D73904A0022CE65 /* RealmSwift.framework */,
 				57FF4F701CD17F74002947FF /* Kinvey.framework */,
 				571A7A2C1C87B8D400B8D282 /* KeychainAccess.framework */,
 				571A7A2D1C87B8D400B8D282 /* PromiseKit.framework */,

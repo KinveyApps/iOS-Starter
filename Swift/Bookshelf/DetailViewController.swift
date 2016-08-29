@@ -72,7 +72,7 @@ class DetailViewController: UIViewController {
             }
             
             SVProgressHUD.show()
-            if let bookId = book.objectId {
+            if let bookId = book.entityId {
                 SVProgressHUD.dismiss()
 
                 //user cancelled, reload book from the cache to disacard any local changes

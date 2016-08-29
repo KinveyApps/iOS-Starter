@@ -20,7 +20,7 @@ class MasterViewController: UITableViewController, UISearchBarDelegate {
     
     lazy var store: DataStore<Book>! = {
         //Create a DataStore of type "Sync"
-        return DataStore<Book>.getInstance(.Sync)
+        return DataStore<Book>.collection(.Sync)
     }()
 
     override func viewDidLoad() {

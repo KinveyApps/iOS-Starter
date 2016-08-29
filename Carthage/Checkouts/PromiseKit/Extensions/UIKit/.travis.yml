@@ -1,0 +1,13 @@
+language: objective-c
+osx_image: xcode8
+
+env:
+  - PLATFORM=iOS  SDK=iphonesimulator  UUID='9793E592-F0FF-4C4A-BEEF-FDD50A67E8C1'
+  - PLATFORM=tvOS SDK=appletvsimulator UUID='273D776F-196E-4F2A-AEF2-E1E3EAE99B47'
+
+install:
+  - carthage bootstrap --platform $PLATFORM
+
+script:
+  - if [ -n "$UUID" ]; then xcrun instruments -w "$UUID" || true; sleep 15; fi
+  - set -o pipefail && xcodebuild -scheme PMKUIKit -sdk $SDK -destination "id=$UUID" clean build test | xcpretty

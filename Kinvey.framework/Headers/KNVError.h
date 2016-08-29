@@ -13,7 +13,7 @@
 + (NSError * _Nonnull)ObjectIdMissing;
 + (NSError * _Nonnull)InvalidResponse;
 + (NSError * _Nonnull)NoActiveUser;
-+ (NSError * _Nonnull)RequestCanceled;
++ (NSError * _Nonnull)RequestCancelled;
 + (NSError * _Nonnull)InvalidStoreType;
 
 @end
