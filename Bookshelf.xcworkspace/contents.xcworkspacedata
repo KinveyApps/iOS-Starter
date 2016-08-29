@@ -4,7 +4,4 @@
    <FileRef
       location = "group:Swift/Bookshelf.xcodeproj">
    </FileRef>
-   <FileRef
-      location = "group:ObjC/BookshelfObjC.xcodeproj">
-   </FileRef>
 </Workspace>

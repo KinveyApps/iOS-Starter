@@ -6,18 +6,23 @@
 //  Copyright (c) 2015 Kinvey. All rights reserved.
 //
 
+#if TARGET_OS_IOS
+
 @import UIKit;
 #import "KinveyUser.h"
 
 @interface KCSMICLoginViewController : UIViewController
 
-@property (nonatomic, strong) id client;
+@property (nonatomic, strong) id _Nonnull client;
+@property (nonatomic, strong) NSString* _Nullable micApiVersion;
 
--(instancetype)initWithRedirectURI:(NSString*)redirectURI
-               withCompletionBlock:(KCSUserCompletionBlock)completionBlock;
+-(instancetype _Nonnull)initWithRedirectURI:(NSString* _Nonnull)redirectURI
+                        withCompletionBlock:(KCSUserCompletionBlock _Nonnull)completionBlock;
 
--(instancetype)initWithRedirectURI:(NSString*)redirectURI
-                           timeout:(NSTimeInterval)timeout
-               withCompletionBlock:(KCSUserCompletionBlock)completionBlock;
+-(instancetype _Nonnull)initWithRedirectURI:(NSString* _Nonnull)redirectURI
+                                    timeout:(NSTimeInterval)timeout
+                        withCompletionBlock:(KCSUserCompletionBlock _Nonnull)completionBlock;
 
 @end
+
+#endif

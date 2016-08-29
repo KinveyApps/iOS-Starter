@@ -92,29 +92,42 @@ typedef int swift_int4  __attribute__((__ext_vector_type__(4)));
 # endif
 #endif
 #if defined(__has_feature) && __has_feature(modules)
+@import RealmSwift;
 @import ObjectiveC;
 @import Foundation;
 #endif
 
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
 #pragma clang diagnostic ignored "-Wduplicate-method-arg"
+@class RLMSchema;
+@class RLMRealm;
+@class RLMObjectSchema;
 
 
 /// This class represents the ACL (Access Control List) for a record.
-SWIFT_CLASS_NAMED("Acl")
-@interface KNVAcl : NSObject
+SWIFT_CLASS("_TtC6Kinvey3Acl")
+@interface Acl : RealmSwiftObject <NSObject>
 
 /// The userId of the User used to create the record.
-@property (nonatomic, readonly, copy) NSString * _Nonnull creator;
+@property (nonatomic, copy) NSString * _Nullable creator;
 
-/// Constructs an Acl instance with the userId of the User used to create the record.
-- (nonnull instancetype)initWithCreator:(NSString * _Nonnull)creator OBJC_DESIGNATED_INITIALIZER;
+/// Specifies the list of user _ids that are explicitly allowed to read the entity.
+@property (nonatomic, copy) NSArray<NSString *> * _Nullable readers;
 
-/// Constructor used to build a new Acl instance from a JSON object.
-- (nonnull instancetype)initWithJson:(NSDictionary<NSString *, id> * _Nonnull)json;
+/// Specifies the list of user _ids that are explicitly allowed to modify the entity.
+@property (nonatomic, copy) NSArray<NSString *> * _Nullable writers;
 
-/// The JSON representation for the Acl instance.
-- (NSDictionary<NSString *, id> * _Nonnull)toJson;
+/// Default Constructor.
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+
+/// WARNING: This is an internal initializer not intended for public use. :nodoc:
+- (nonnull instancetype)initWithValue:(id _Nonnull)value schema:(RLMSchema * _Nonnull)schema OBJC_DESIGNATED_INITIALIZER;
+
+/// WARNING: This is an internal initializer not intended for public use. :nodoc:
+- (nonnull instancetype)initWithRealm:(RLMRealm * _Nonnull)realm schema:(RLMObjectSchema * _Nonnull)schema OBJC_DESIGNATED_INITIALIZER;
+
+/// WARNING: This is an internal initializer not intended for public use. :nodoc:
++ (NSArray<NSString *> * _Nonnull)ignoredProperties;
 @end
 
 @class __KNVUser;
@@ -173,20 +186,26 @@ SWIFT_CLASS_NAMED("Client")
 /// Set a different type if you need a custom User class. Extends from User allows you to have custom properties in your User instances.
 @property (nonatomic) SWIFT_METATYPE(__KNVUser) _Nonnull userType;
 
+/// Default Value for DataStore tag
++ (NSString * _Nonnull)defaultTag;
+
+/// Enables logging for any network calls.
+@property (nonatomic) BOOL logNetworkEnabled;
+
+/// Stores the MIC API Version to be used in MIC calls
+@property (nonatomic, copy) NSString * _Nullable micApiVersion;
+
 /// Default constructor. The initialize method still need to be called after instanciate a new instance.
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-
-/// This method is called automatically before use any usage of the Client class.
-+ (void)initialize;
 
 /// Constructor that already initialize the client. The initialize method is called automatically.
 - (nonnull instancetype)initWithAppKey:(NSString * _Nonnull)appKey appSecret:(NSString * _Nonnull)appSecret apiHostName:(NSURL * _Nonnull)apiHostName authHostName:(NSURL * _Nonnull)authHostName;
 
 /// Initialize a Client instance with all the needed parameters and requires a boolean to encrypt or not any store created using this client instance.
-- (__KNVClient * _Nonnull)initializeWithAppKey:(NSString * _Nonnull)appKey appSecret:(NSString * _Nonnull)appSecret apiHostName:(NSURL * _Nonnull)apiHostName authHostName:(NSURL * _Nonnull)authHostName encrypted:(BOOL)encrypted schemaVersion:(unsigned long long)schemaVersion migrationHandler:(void (^ _Nullable)(KNVMigration * _Nonnull, unsigned long long))migrationHandler;
+- (__KNVClient * _Nonnull)initializeWithAppKey:(NSString * _Nonnull)appKey appSecret:(NSString * _Nonnull)appSecret apiHostName:(NSURL * _Nonnull)apiHostName authHostName:(NSURL * _Nonnull)authHostName encrypted:(BOOL)encrypted schemaVersion:(unsigned long long)schemaVersion migrationHandler:(void (^ _Nullable)(KNVMigration * _Nonnull, uint64_t))migrationHandler;
 
 /// Initialize a Client instance with all the needed parameters.
-- (__KNVClient * _Nonnull)initializeWithAppKey:(NSString * _Nonnull)appKey appSecret:(NSString * _Nonnull)appSecret apiHostName:(NSURL * _Nonnull)apiHostName authHostName:(NSURL * _Nonnull)authHostName encryptionKey:(NSData * _Nullable)encryptionKey schemaVersion:(unsigned long long)schemaVersion migrationHandler:(void (^ _Nullable)(KNVMigration * _Nonnull, unsigned long long))migrationHandler;
+- (__KNVClient * _Nonnull)initializeWithAppKey:(NSString * _Nonnull)appKey appSecret:(NSString * _Nonnull)appSecret apiHostName:(NSURL * _Nonnull)apiHostName authHostName:(NSURL * _Nonnull)authHostName encryptionKey:(NSData * _Nullable)encryptionKey schemaVersion:(unsigned long long)schemaVersion migrationHandler:(void (^ _Nullable)(KNVMigration * _Nonnull, uint64_t))migrationHandler;
 
 /// Autorization header used for calls that don't requires a logged User.
 @property (nonatomic, readonly, copy) NSString * _Nullable authorizationHeader;
@@ -200,13 +219,47 @@ SWIFT_CLASS_NAMED("CustomEndpoint")
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
-@class KNVMetadata;
+@class Metadata;
+
+
+/// Base class for entity classes that are mapped to a collection in Kinvey.
+SWIFT_CLASS("_TtC6Kinvey6Entity")
+@interface Entity : RealmSwiftObject <NSObject>
+
+/// Override this method and return the name of the collection for Kinvey.
++ (NSString * _Nonnull)collectionName;
+
+/// The _id property mapped in the Kinvey backend.
+@property (nonatomic, copy) NSString * _Nullable entityId;
+
+/// The _kmd property mapped in the Kinvey backend.
+@property (nonatomic, strong) Metadata * _Nullable metadata;
+
+/// The _acl property mapped in the Kinvey backend.
+@property (nonatomic, strong) Acl * _Nullable acl;
+
+/// Default Constructor.
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+
+/// WARNING: This is an internal initializer not intended for public use. :nodoc:
+- (nonnull instancetype)initWithRealm:(RLMRealm * _Nonnull)realm schema:(RLMObjectSchema * _Nonnull)schema OBJC_DESIGNATED_INITIALIZER;
+
+/// WARNING: This is an internal initializer not intended for public use. :nodoc:
+- (nonnull instancetype)initWithValue:(id _Nonnull)value schema:(RLMSchema * _Nonnull)schema OBJC_DESIGNATED_INITIALIZER;
+
+/// WARNING: This is an internal initializer not intended for public use. :nodoc:
++ (NSString * _Nullable)primaryKey;
+
+/// WARNING: This is an internal initializer not intended for public use. :nodoc:
++ (NSArray<NSString *> * _Nonnull)ignoredProperties;
+@end
+
 @class NSDate;
 
 
 /// Class that represents a file in the backend holding all metadata of the file, but don't hold the data itself.
-SWIFT_CLASS_NAMED("File")
-@interface KNVFile : NSObject
+SWIFT_CLASS("_TtC6Kinvey4File")
+@interface File : RealmSwiftObject <NSObject>
 
 /// _id property of the file.
 @property (nonatomic, copy) NSString * _Nullable fileId;
@@ -221,16 +274,37 @@ SWIFT_CLASS_NAMED("File")
 @property (nonatomic) BOOL publicAccessible;
 
 /// _acl property of the file.
-@property (nonatomic, strong) KNVAcl * _Nullable acl;
+@property (nonatomic, strong) Acl * _Nullable acl;
 
 /// _kmd property of the file.
-@property (nonatomic, strong) KNVMetadata * _Nullable metadata;
+@property (nonatomic, strong) Metadata * _Nullable metadata;
+
+/// Temporary download URL String of the file.
+@property (nonatomic, copy) NSString * _Nullable download;
 
 /// Temporary download URL of the file.
 @property (nonatomic, strong) NSURL * _Nullable downloadURL;
 
 /// Expiration data of the downloadURL.
 @property (nonatomic, strong) NSDate * _Nullable expiresAt;
+
+/// Default Constructor
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+
+/// WARNING: This is an internal initializer not intended for public use. :nodoc:
+- (nonnull instancetype)initWithRealm:(RLMRealm * _Nonnull)realm schema:(RLMObjectSchema * _Nonnull)schema OBJC_DESIGNATED_INITIALIZER;
+
+/// WARNING: This is an internal initializer not intended for public use. :nodoc:
+- (nonnull instancetype)initWithValue:(id _Nonnull)value schema:(RLMSchema * _Nonnull)schema OBJC_DESIGNATED_INITIALIZER;
+
+/// Constructor of a file instance.
+- (nonnull instancetype)init:(void (^ _Nonnull)(File * _Nonnull))block OBJC_DESIGNATED_INITIALIZER;
+
+/// WARNING: This is an internal initializer not intended for public use. :nodoc:
++ (NSString * _Nullable)primaryKey;
+
+/// WARNING: This is an internal initializer not intended for public use. :nodoc:
++ (NSArray<NSString *> * _Nonnull)ignoredProperties;
 @end
 
 
@@ -250,8 +324,8 @@ SWIFT_PROTOCOL_NAMED("JsonObject")
 
 
 /// This class represents the metadata information for a record
-SWIFT_CLASS_NAMED("Metadata")
-@interface KNVMetadata : NSObject
+SWIFT_CLASS("_TtC6Kinvey8Metadata")
+@interface Metadata : RealmSwiftObject <NSObject>
 
 /// Last Modification Time Key.
 + (NSString * _Nonnull)LmtKey;
@@ -262,23 +336,29 @@ SWIFT_CLASS_NAMED("Metadata")
 /// Authentication Token Key.
 + (NSString * _Nonnull)AuthTokenKey;
 
+/// Last Read Time
+@property (nonatomic, strong) NSDate * _Nonnull lastReadTime;
+
 /// Last Modification Time.
-@property (nonatomic, strong) NSDate * _Nullable lmt;
+@property (nonatomic, strong) NSDate * _Nullable lastModifiedTime;
 
 /// Entity Creation Time.
-@property (nonatomic, strong) NSDate * _Nullable ect;
+@property (nonatomic, strong) NSDate * _Nullable entityCreationTime;
 
 /// Authentication Token.
 @property (nonatomic, readonly, copy) NSString * _Nullable authtoken;
 
-/// Default Constructor
-- (nonnull instancetype)initWithLmt:(NSString * _Nullable)lmt ect:(NSString * _Nullable)ect authtoken:(NSString * _Nullable)authtoken OBJC_DESIGNATED_INITIALIZER;
+/// Default Constructor.
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 
-/// Constructor used to build a new Metadata instance from a JSON object.
-- (nonnull instancetype)initWithJson:(NSDictionary<NSString *, id> * _Nonnull)json;
+/// WARNING: This is an internal initializer not intended for public use. :nodoc:
+- (nonnull instancetype)initWithRealm:(RLMRealm * _Nonnull)realm schema:(RLMObjectSchema * _Nonnull)schema OBJC_DESIGNATED_INITIALIZER;
 
-/// The JSON representation for the Metadata instance.
-- (NSDictionary<NSString *, id> * _Nonnull)toJson;
+/// WARNING: This is an internal initializer not intended for public use. :nodoc:
+- (nonnull instancetype)initWithValue:(id _Nonnull)value schema:(RLMSchema * _Nonnull)schema OBJC_DESIGNATED_INITIALIZER;
+
+/// WARNING: This is an internal initializer not intended for public use. :nodoc:
++ (NSArray<NSString *> * _Nonnull)ignoredProperties;
 @end
 
 
@@ -286,9 +366,6 @@ SWIFT_CLASS_NAMED("Metadata")
 /// Class used to perform migrations in your local cache.
 SWIFT_CLASS_NAMED("Migration")
 @interface KNVMigration : NSObject
-
-/// Method that performs a migration in a specific collection.
-- (void)execute:(Class _Nonnull)persistableClass migrationObjectHandler:(NSDictionary<NSString *, id> * _Nullable (^ _Nullable)(NSDictionary<NSString *, id> * _Nonnull))migrationObjectHandler;
 @end
 
 
@@ -300,20 +377,43 @@ SWIFT_CLASS_NAMED("Migration")
 @end
 
 
+@interface NSHTTPURLResponse (SWIFT_EXTENSION(Kinvey))
+
+/// Description for the NSHTTPURLResponse including url and headers
+@property (nonatomic, readonly, copy) NSString * _Nonnull description;
+
+/// Description for the NSHTTPURLResponse including url, headers and the body content
+- (NSString * _Nonnull)description:(NSData * _Nullable)body;
+@end
+
+
 @interface NSString (SWIFT_EXTENSION(Kinvey))
 @end
 
 
+@interface NSURLRequest (SWIFT_EXTENSION(Kinvey))
 
-/// Protocol that turns a NSObject into a persistable class to be used in a DataStore.
-SWIFT_PROTOCOL_NAMED("Persistable")
-@protocol KNVPersistable <KNVJsonObject, NSObject>
+/// Description for the NSURLRequest including url, headers and the body content
+@property (nonatomic, readonly, copy) NSString * _Nonnull description;
+@end
 
-/// Provides the collection name to be matched with the backend.
-+ (NSString * _Nonnull)kinveyCollectionName;
 
-/// Provides the property mapping to be matched with the backend.
-+ (NSDictionary<NSString *, NSString *> * _Nonnull)kinveyPropertyMapping;
+
+/// It holds the progress status of a request.
+SWIFT_CLASS_NAMED("ProgressStatus")
+@interface KNVProgressStatus : NSObject
+
+/// The number of bytes that the request has sent to the server in the request body. (read-only)
+@property (nonatomic, readonly) int64_t countOfBytesSent;
+
+/// The number of bytes that the request expects to send in the request body. (read-only)
+@property (nonatomic, readonly) int64_t countOfBytesExpectedToSend;
+
+/// The number of bytes that the request has received from the server in the response body. (read-only)
+@property (nonatomic, readonly) int64_t countOfBytesReceived;
+
+/// The number of bytes that the request expects to receive in the response body. (read-only)
+@property (nonatomic, readonly) int64_t countOfBytesExpectedToReceive;
 @end
 
 
@@ -337,6 +437,9 @@ SWIFT_CLASS_NAMED("Push")
 SWIFT_CLASS_NAMED("Query")
 @interface KNVQuery : NSObject
 
+/// Fields to be included in the results of the query.
+@property (nonatomic, copy) NSSet<NSString *> * _Nullable fields;
+
 /// NSPredicate used to filter records.
 @property (nonatomic, strong) NSPredicate * _Nullable predicate;
 
@@ -357,10 +460,12 @@ SWIFT_CLASS_NAMED("Query")
 
 /// Constructor using a similar way to construct a NSPredicate.
 - (nonnull instancetype)initWithFormat:(NSString * _Nonnull)format argumentArray:(NSArray * _Nullable)argumentArray;
-@end
 
+/// Copy Constructor.
+- (nonnull instancetype)init:(KNVQuery * _Nonnull)query;
 
-@interface KNVQuery (SWIFT_EXTENSION(Kinvey))
+/// Copy Constructor.
+- (nonnull instancetype)init:(KNVQuery * _Nonnull)query :(void (^ _Nonnull)(KNVQuery * _Nonnull))block;
 @end
 
 
@@ -391,6 +496,9 @@ SWIFT_PROTOCOL_NAMED("Request")
 
 /// Cancels a request in progress.
 - (void)cancel;
+
+/// Report upload progress of the request
+@property (nonatomic, copy) void (^ _Nullable progress)(KNVProgressStatus * _Nonnull);
 @end
 
 
@@ -406,10 +514,10 @@ SWIFT_CLASS_NAMED("User")
 @property (nonatomic, readonly, copy) NSString * _Nonnull userId;
 
 /// _acl property of the user.
-@property (nonatomic, readonly, strong) KNVAcl * _Nullable acl;
+@property (nonatomic, readonly, strong) Acl * _Nullable acl;
 
 /// _kmd property of the user.
-@property (nonatomic, readonly, strong) KNVMetadata * _Nullable metadata;
+@property (nonatomic, readonly, strong) Metadata * _Nullable metadata;
 
 /// username property of the user.
 @property (nonatomic, copy) NSString * _Nullable username;
@@ -418,13 +526,7 @@ SWIFT_CLASS_NAMED("User")
 @property (nonatomic, copy) NSString * _Nullable email;
 
 /// Default Constructor.
-- (nonnull instancetype)initWithUserId:(NSString * _Nonnull)userId acl:(KNVAcl * _Nullable)acl metadata:(KNVMetadata * _Nullable)metadata client:(__KNVClient * _Nonnull)client OBJC_DESIGNATED_INITIALIZER;
-
-/// Constructor used to build a new User instance from a JSON object.
-- (nullable instancetype)initWithJson:(NSDictionary<NSString *, id> * _Nonnull)json client:(__KNVClient * _Nonnull)client OBJC_DESIGNATED_INITIALIZER;
-
-/// The JSON representation for the User instance.
-- (NSDictionary<NSString *, id> * _Nonnull)toJson;
+- (nonnull instancetype)initWithUserId:(NSString * _Nonnull)userId acl:(Acl * _Nullable)acl metadata:(Metadata * _Nullable)metadata client:(__KNVClient * _Nonnull)client OBJC_DESIGNATED_INITIALIZER;
 
 /// Sign out the current active user.
 - (void)logout;
@@ -456,7 +558,7 @@ SWIFT_CLASS_NAMED("User")
 + (id <KNVRequest> _Nonnull)getWithUserId:(NSString * _Nonnull)userId client:(__KNVClient * _Nonnull)client completionHandler:(void (^ _Nullable)(__KNVUser * _Nullable, NSError * _Nullable))completionHandler;
 
 /// Creates or updates a User.
-- (id <KNVRequest> _Nonnull)saveWithClient:(__KNVClient * _Nonnull)client completionHandler:(void (^ _Nullable)(__KNVUser * _Nullable, NSError * _Nullable))completionHandler;
+- (id <KNVRequest> _Nonnull)saveWithClient:(__KNVClient * _Nonnull)client completionHandler:(void (^ _Nonnull)(__KNVUser * _Nullable, NSError * _Nullable))completionHandler;
 
 /// Presents the MIC View Controller to sign in a user using MIC (Mobile Identity Connect).
 + (void)presentMICViewControllerWithRedirectURI:(NSURL * _Nonnull)redirectURI timeout:(NSTimeInterval)timeout client:(__KNVClient * _Nonnull)client completionHandler:(void (^ _Nullable)(__KNVUser * _Nullable, NSError * _Nullable))completionHandler;
