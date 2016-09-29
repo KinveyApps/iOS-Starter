@@ -24,8 +24,9 @@
 		57A3BECD1C88DC5700DCD439 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 571A7A2E1C87B8D400B8D282 /* Realm.framework */; };
 		57A3BECE1C88DC5700DCD439 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 571A7A2F1C87B8D400B8D282 /* SVProgressHUD.framework */; };
 		57E4DB0A1C8A0EBB0017B406 /* SVProgressHUD.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 571A7A2F1C87B8D400B8D282 /* SVProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		57FF4F711CD17F74002947FF /* Kinvey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57FF4F701CD17F74002947FF /* Kinvey.framework */; };
-		57FF4F721CD17FF1002947FF /* Kinvey.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 57FF4F701CD17F74002947FF /* Kinvey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9611F0251D9C6E560043C7D2 /* Kinvey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9611F0241D9C6E560043C7D2 /* Kinvey.framework */; };
+		9611F0261D9C6E620043C7D2 /* Kinvey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9611F0241D9C6E560043C7D2 /* Kinvey.framework */; };
+		9611F0271D9C6E620043C7D2 /* Kinvey.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9611F0241D9C6E560043C7D2 /* Kinvey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		964609B01D73904A0022CE65 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 964609AF1D73904A0022CE65 /* RealmSwift.framework */; };
 		964609B11D7390A60022CE65 /* RealmSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 964609AF1D73904A0022CE65 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -54,8 +55,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				9611F0271D9C6E620043C7D2 /* Kinvey.framework in CopyFiles */,
 				964609B11D7390A60022CE65 /* RealmSwift.framework in CopyFiles */,
-				57FF4F721CD17FF1002947FF /* Kinvey.framework in CopyFiles */,
 				57A3BEC71C88DBF000DCD439 /* KeychainAccess.framework in CopyFiles */,
 				57A3BEC81C88DBF000DCD439 /* PromiseKit.framework in CopyFiles */,
 				57A3BEC91C88DBF000DCD439 /* Realm.framework in CopyFiles */,
@@ -85,7 +86,8 @@
 		571A7A2D1C87B8D400B8D282 /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = ../Carthage/Build/iOS/PromiseKit.framework; sourceTree = "<group>"; };
 		571A7A2E1C87B8D400B8D282 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = ../Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
 		571A7A2F1C87B8D400B8D282 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = ../Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
-		57FF4F701CD17F74002947FF /* Kinvey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kinvey.framework; path = ../Kinvey.framework; sourceTree = "<group>"; };
+		9611F0241D9C6E560043C7D2 /* Kinvey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kinvey.framework; path = ../Kinvey.framework; sourceTree = "<group>"; };
+		9611F0281D9CB3A30043C7D2 /* Bookshelf.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Bookshelf.entitlements; sourceTree = "<group>"; };
 		964609AF1D73904A0022CE65 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,7 +96,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57FF4F711CD17F74002947FF /* Kinvey.framework in Frameworks */,
+				9611F0251D9C6E560043C7D2 /* Kinvey.framework in Frameworks */,
+				9611F0261D9C6E620043C7D2 /* Kinvey.framework in Frameworks */,
 				57A3BECB1C88DC5700DCD439 /* KeychainAccess.framework in Frameworks */,
 				57A3BECC1C88DC5700DCD439 /* PromiseKit.framework in Frameworks */,
 				57A3BECD1C88DC5700DCD439 /* Realm.framework in Frameworks */,
@@ -123,8 +126,8 @@
 		25FD6AAB5C1BE0458C3A2769 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9611F0241D9C6E560043C7D2 /* Kinvey.framework */,
 				964609AF1D73904A0022CE65 /* RealmSwift.framework */,
-				57FF4F701CD17F74002947FF /* Kinvey.framework */,
 				571A7A2C1C87B8D400B8D282 /* KeychainAccess.framework */,
 				571A7A2D1C87B8D400B8D282 /* PromiseKit.framework */,
 				571A7A2E1C87B8D400B8D282 /* Realm.framework */,
@@ -157,6 +160,7 @@
 		5701AB8C1C6916A900D7D9BB /* Bookshelf */ = {
 			isa = PBXGroup;
 			children = (
+				9611F0281D9CB3A30043C7D2 /* Bookshelf.entitlements */,
 				5701AB8D1C6916A900D7D9BB /* AppDelegate.swift */,
 				5701AB8F1C6916A900D7D9BB /* MasterViewController.swift */,
 				5701AB911C6916A900D7D9BB /* DetailViewController.swift */,
@@ -256,18 +260,27 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Kinvey;
 				TargetAttributes = {
 					5701AB891C6916A900D7D9BB = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = 5W7CYNR7UE;
+						LastSwiftMigration = 0800;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					5701AB9F1C6916A900D7D9BB = {
 						CreatedOnToolsVersion = 7.2.1;
+						LastSwiftMigration = 0800;
 						TestTargetID = 5701AB891C6916A900D7D9BB;
 					};
 					5701ABAA1C6916A900D7D9BB = {
 						CreatedOnToolsVersion = 7.2.1;
+						LastSwiftMigration = 0800;
 						TestTargetID = 5701AB891C6916A900D7D9BB;
 					};
 				};
@@ -473,8 +486,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -518,8 +533,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -538,6 +555,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -546,8 +564,10 @@
 		5701ABB51C6916A900D7D9BB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				CODE_SIGN_ENTITLEMENTS = Bookshelf/Bookshelf.entitlements;
+				DEVELOPMENT_TEAM = 5W7CYNR7UE;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../Carthage/Build/iOS",
@@ -558,14 +578,17 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kinvey.Bookshelf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		5701ABB61C6916A900D7D9BB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				CODE_SIGN_ENTITLEMENTS = Bookshelf/Bookshelf.entitlements;
+				DEVELOPMENT_TEAM = 5W7CYNR7UE;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../Carthage/Build/iOS",
@@ -576,6 +599,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kinvey.Bookshelf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -587,6 +611,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kinvey.BookshelfTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bookshelf.app/Bookshelf";
 			};
 			name = Debug;
@@ -599,6 +624,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kinvey.BookshelfTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bookshelf.app/Bookshelf";
 			};
 			name = Release;
@@ -610,6 +636,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kinvey.BookshelfUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = Bookshelf;
 				USES_XCTRUNNER = YES;
 			};
@@ -622,6 +649,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kinvey.BookshelfUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = Bookshelf;
 				USES_XCTRUNNER = YES;
 			};

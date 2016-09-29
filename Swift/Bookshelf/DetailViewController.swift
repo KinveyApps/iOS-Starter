@@ -35,7 +35,7 @@ class DetailViewController: UIViewController {
         }
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         self.titleTextField.becomeFirstResponder()
     }
     
@@ -45,7 +45,7 @@ class DetailViewController: UIViewController {
         self.configureView()
     }
     
-    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         switch identifier {
         case "save":
             if book == nil {
@@ -57,11 +57,11 @@ class DetailViewController: UIViewController {
             store.save(book) { (book, error) -> Void in
                 SVProgressHUD.dismiss()
                 if let _ = book {
-                    self.performSegueWithIdentifier(identifier, sender: sender)
+                    self.performSegue(withIdentifier: identifier, sender: sender)
                 } else {
-                    let alert = UIAlertController(title: "Error", message: "Operation not completed", preferredStyle: .Alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-                    self.presentViewController(alert, animated: true, completion: nil)
+                    let alert = UIAlertController(title: "Error", message: "Operation not completed", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
                 }
             }
             return false
@@ -76,7 +76,7 @@ class DetailViewController: UIViewController {
                 SVProgressHUD.dismiss()
 
                 //user cancelled, reload book from the cache to disacard any local changes
-                store.findById(bookId) { (cachedBook, error) -> Void in
+                store.find(bookId) { (cachedBook, error) -> Void in
                     if let _ = cachedBook {
                         self.book = cachedBook
                     }
