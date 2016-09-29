@@ -23,6 +23,7 @@ FOUNDATION_EXPORT const unsigned char KinveyVersionString[];
 #import <Kinvey/KNVError.h>
 
 // KinveyKit
+#import <Kinvey/KCSURLProtocol.h>
 #import <Kinvey/KCSReachability.h>
 #import <Kinvey/KCSKeychain.h>
 #import <Kinvey/KCSMICLoginViewController.h>
