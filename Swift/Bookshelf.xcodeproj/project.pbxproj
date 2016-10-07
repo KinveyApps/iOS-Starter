@@ -25,7 +25,6 @@
 		57A3BECE1C88DC5700DCD439 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 571A7A2F1C87B8D400B8D282 /* SVProgressHUD.framework */; };
 		57E4DB0A1C8A0EBB0017B406 /* SVProgressHUD.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 571A7A2F1C87B8D400B8D282 /* SVProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9611F0251D9C6E560043C7D2 /* Kinvey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9611F0241D9C6E560043C7D2 /* Kinvey.framework */; };
-		9611F0261D9C6E620043C7D2 /* Kinvey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9611F0241D9C6E560043C7D2 /* Kinvey.framework */; };
 		9611F0271D9C6E620043C7D2 /* Kinvey.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9611F0241D9C6E560043C7D2 /* Kinvey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		964609B01D73904A0022CE65 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 964609AF1D73904A0022CE65 /* RealmSwift.framework */; };
 		964609B11D7390A60022CE65 /* RealmSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 964609AF1D73904A0022CE65 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -97,7 +96,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9611F0251D9C6E560043C7D2 /* Kinvey.framework in Frameworks */,
-				9611F0261D9C6E620043C7D2 /* Kinvey.framework in Frameworks */,
 				57A3BECB1C88DC5700DCD439 /* KeychainAccess.framework in Frameworks */,
 				57A3BECC1C88DC5700DCD439 /* PromiseKit.framework in Frameworks */,
 				57A3BECD1C88DC5700DCD439 /* Realm.framework in Frameworks */,
