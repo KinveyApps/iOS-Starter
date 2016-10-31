@@ -1,0 +1,76 @@
+{
+	"version": "0.1.0",
+	// List of configurations. Add new configurations or edit existing ones.
+	"configurations": [
+		{
+			// Name of configuration; appears in the launch configuration drop down menu.
+			"name": "JnJ",
+			// Type of configuration.
+			"type": "node",
+			// Workspace relative or absolute path to the program.
+			"program": "index.js",
+			// Automatically stop program after launch.
+			"stopOnEntry": false,
+			// Command line arguments passed to the program.
+			"args": [
+			],
+			// Workspace relative or absolute path to the working directory of the program being debugged. Default is the current workspace.
+			"cwd": ".",
+			// Workspace relative or absolute path to the runtime executable to be used. Default is the runtime executable on the PATH.
+			"runtimeExecutable": null,
+			// Optional arguments passed to the runtime executable.
+			"runtimeArgs": ["--nolazy"],
+			// Environment variables passed to the program.
+			"env": {
+				"NODE_ENV": "development"
+			},
+			// Use JavaScript source maps (if they exist).
+			"sourceMaps": false,
+			// If JavaScript source maps are enabled, the generated code is expected in this directory.
+			"outDir": null
+		},
+		{
+			// Name of configuration; appears in the launch configuration drop down menu.
+			"name": "Local",
+			// Type of configuration.
+			"type": "node",
+			// Workspace relative or absolute path to the program.
+			"program": "index.js",
+			// Automatically stop program after launch.
+			"stopOnEntry": false,
+			// Command line arguments passed to the program.
+			"args": [
+				"--appKey=kid_-1WAs8Rh2",
+				"--appSecret=2f355bfaa8cb4f7299e914e8e85d8c98",
+				"--username=448d0794-8406-44a2-ba97-220111034021",
+				"--password=75030924-06a9-46b2-b8a1-2ab4b68f77d7",
+				"--collection=persons",
+				"--output=filesystem",
+				"--output=sqlite"
+			],
+			// Workspace relative or absolute path to the working directory of the program being debugged. Default is the current workspace.
+			"cwd": ".",
+			// Workspace relative or absolute path to the runtime executable to be used. Default is the runtime executable on the PATH.
+			"runtimeExecutable": null,
+			// Optional arguments passed to the runtime executable.
+			"runtimeArgs": ["--nolazy"],
+			// Environment variables passed to the program.
+			"env": {
+				"NODE_ENV": "development"
+			},
+			// Use JavaScript source maps (if they exist).
+			"sourceMaps": false,
+			// If JavaScript source maps are enabled, the generated code is expected in this directory.
+			"outDir": null
+		},
+		{
+			"name": "Attach",
+			"type": "node",
+			// TCP/IP address. Default is "localhost".
+			"address": "localhost",
+			// Port to attach to.
+			"port": 5858,
+			"sourceMaps": false
+		}
+	]
+}

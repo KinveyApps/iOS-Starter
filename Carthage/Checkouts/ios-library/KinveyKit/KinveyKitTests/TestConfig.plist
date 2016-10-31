@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>KCS_APP_SECRET</key>
+	<string>TEST_SECRET</string>
+	<key>KCS_APP_KEY</key>
+	<string>TEST_KEY</string>
+	<key>NOT USED</key>
+	<string>FOO</string>
+</dict>
+</plist>

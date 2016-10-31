@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ubr-xb-sHW">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="3yM-oN-AZl">
+            <objects>
+                <navigationController id="ubr-xb-sHW" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="seH-x9-sAn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="6BZ-nQ-2Kh" kind="relationship" relationship="rootViewController" id="if2-9b-5ci"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ATm-Hl-qDW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="640" y="131"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Wsj-qz-5hr">
+            <objects>
+                <viewController id="6BZ-nQ-2Kh" customClass="ViewController" customModule="MICSampleApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="M30-CJ-eQB"/>
+                        <viewControllerLayoutGuide type="bottom" id="Dfj-84-jHp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zZw-Sx-cqe">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AppKey:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W3j-FS-Pmy">
+                                <rect key="frame" x="20" y="75" width="96" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3UZ-gF-Dsg">
+                                <rect key="frame" x="124" y="72" width="456" height="30"/>
+                                <accessibility key="accessibilityConfiguration" label="App Key"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AppSecret:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MSa-Q7-qjJ">
+                                <rect key="frame" x="20" y="113" width="96" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RaL-0x-7ms">
+                                <rect key="frame" x="124" y="110" width="456" height="30"/>
+                                <accessibility key="accessibilityConfiguration" label="App Secret"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iDS-Tn-ecj">
+                                <rect key="frame" x="124" y="148" width="456" height="30"/>
+                                <accessibility key="accessibilityConfiguration" label="Redirect URI"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RedirectURI:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E2P-Wz-aq6">
+                                <rect key="frame" x="20" y="151" width="96" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NPn-An-Q3c">
+                                <rect key="frame" x="174" y="186" width="252" height="30"/>
+                                <state key="normal" title="Present MIC View Controller to Login"/>
+                                <connections>
+                                    <action selector="touchUpInsidePresentMICViewControllerToLogin:" destination="6BZ-nQ-2Kh" eventType="touchUpInside" id="kW8-7b-xUT"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="MSa-Q7-qjJ" firstAttribute="baseline" secondItem="RaL-0x-7ms" secondAttribute="baseline" id="5No-jh-3a1"/>
+                            <constraint firstItem="iDS-Tn-ecj" firstAttribute="trailing" secondItem="zZw-Sx-cqe" secondAttribute="trailingMargin" id="5XM-8b-Nc0"/>
+                            <constraint firstItem="RaL-0x-7ms" firstAttribute="leading" secondItem="MSa-Q7-qjJ" secondAttribute="trailing" constant="8" id="5qA-W0-rkO"/>
+                            <constraint firstItem="RaL-0x-7ms" firstAttribute="trailing" secondItem="zZw-Sx-cqe" secondAttribute="trailingMargin" id="8Wx-Ii-ApZ"/>
+                            <constraint firstItem="Dfj-84-jHp" firstAttribute="top" secondItem="NPn-An-Q3c" secondAttribute="bottom" constant="20" id="9AE-ec-ruy"/>
+                            <constraint firstItem="3UZ-gF-Dsg" firstAttribute="leading" secondItem="W3j-FS-Pmy" secondAttribute="trailing" constant="8" id="ACk-Pc-zm8"/>
+                            <constraint firstItem="3UZ-gF-Dsg" firstAttribute="top" secondItem="M30-CJ-eQB" secondAttribute="bottom" constant="8" id="C2P-Wv-DkV"/>
+                            <constraint firstItem="3UZ-gF-Dsg" firstAttribute="width" secondItem="RaL-0x-7ms" secondAttribute="width" id="CX4-PX-PVe"/>
+                            <constraint firstItem="RaL-0x-7ms" firstAttribute="leading" secondItem="MSa-Q7-qjJ" secondAttribute="trailing" constant="8" id="JqN-iR-p2u"/>
+                            <constraint firstItem="RaL-0x-7ms" firstAttribute="top" secondItem="3UZ-gF-Dsg" secondAttribute="bottom" constant="8" id="Ktl-ff-50D"/>
+                            <constraint firstItem="NPn-An-Q3c" firstAttribute="top" secondItem="iDS-Tn-ecj" secondAttribute="bottom" constant="8" id="Lz0-ce-6o0"/>
+                            <constraint firstItem="iDS-Tn-ecj" firstAttribute="leading" secondItem="E2P-Wz-aq6" secondAttribute="trailing" constant="8" id="SlJ-CI-fAi"/>
+                            <constraint firstItem="RaL-0x-7ms" firstAttribute="width" secondItem="iDS-Tn-ecj" secondAttribute="width" id="UCM-Nb-X4h"/>
+                            <constraint firstItem="E2P-Wz-aq6" firstAttribute="baseline" secondItem="iDS-Tn-ecj" secondAttribute="baseline" id="VRn-mp-P50"/>
+                            <constraint firstItem="E2P-Wz-aq6" firstAttribute="leading" secondItem="zZw-Sx-cqe" secondAttribute="leadingMargin" id="WRw-t0-Ju7"/>
+                            <constraint firstItem="NPn-An-Q3c" firstAttribute="centerX" secondItem="zZw-Sx-cqe" secondAttribute="centerX" id="bqL-t7-Tjk"/>
+                            <constraint firstItem="MSa-Q7-qjJ" firstAttribute="leading" secondItem="zZw-Sx-cqe" secondAttribute="leadingMargin" id="eaE-ar-vNC"/>
+                            <constraint firstItem="iDS-Tn-ecj" firstAttribute="leading" secondItem="E2P-Wz-aq6" secondAttribute="trailing" constant="8" id="hRC-eW-Hlf"/>
+                            <constraint firstItem="W3j-FS-Pmy" firstAttribute="leading" secondItem="zZw-Sx-cqe" secondAttribute="leadingMargin" id="jSg-Ni-99w"/>
+                            <constraint firstItem="W3j-FS-Pmy" firstAttribute="baseline" secondItem="3UZ-gF-Dsg" secondAttribute="baseline" id="o7g-Ri-Q2W"/>
+                            <constraint firstItem="iDS-Tn-ecj" firstAttribute="top" secondItem="RaL-0x-7ms" secondAttribute="bottom" constant="8" id="osX-A9-eC7"/>
+                            <constraint firstItem="3UZ-gF-Dsg" firstAttribute="leading" secondItem="W3j-FS-Pmy" secondAttribute="trailing" constant="8" id="qUx-Bh-h3Q"/>
+                            <constraint firstItem="3UZ-gF-Dsg" firstAttribute="trailing" secondItem="zZw-Sx-cqe" secondAttribute="trailingMargin" id="r16-2Y-JzR"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="qUx-Bh-h3Q"/>
+                                <exclude reference="9AE-ec-ruy"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" id="Bku-0n-2XP"/>
+                    <connections>
+                        <outlet property="textFieldAppKey" destination="3UZ-gF-Dsg" id="raO-HH-Lnu"/>
+                        <outlet property="textFieldAppSecret" destination="RaL-0x-7ms" id="djD-tj-X6j"/>
+                        <outlet property="textFieldRedirectURI" destination="iDS-Tn-ecj" id="hhj-Bx-BHl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n2q-Iw-SS5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1368" y="131"/>
+        </scene>
+    </scenes>
+</document>

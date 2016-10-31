@@ -1,0 +1,60 @@
+#!/bin/bash
+
+function refreshdir {
+if [ -d  $1 ]
+then
+  rm -rf $1
+fi
+mkdir $1
+}
+function TEST_STATUS {
+echo "Status: $1"
+if [ $1 -ne 0 ]
+then
+	echo "exit, error"
+    exit
+fi
+}
+
+echo "-----------------------------------------------------------------------------------"
+
+## Prepare the ios-lib documentation.  Right now just use appledoc, but soon-ish
+## use both appledoc and doxygen.
+
+## The output/input locations are passed in via command line
+if [ $# -lt 1 ]
+then
+	echo "Usage: build-samples KinveyKit"
+	exit
+fi
+
+echo "creating sample directory..."
+
+KK=../$1
+KKDIR=${KK}/build/Release-iphoneos
+
+SAMPDIR=samples
+
+## Make output dirs
+refreshdir ${SAMPDIR}
+cd ${SAMPDIR}
+
+#----- TESTDRIVE
+
+echo "getting TestDrive-iOS..."
+
+git clone git@github.com:KinveyApps/TestDrive-iOS.git
+TEST_STATUS $?
+
+echo "updating KinveyKit..."
+TDDIR=TestDrive-iOS
+TDKKDIR=${TDDIR}/Kinvey
+
+refreshdir ${TDKKDIR}
+cp -r ${KKDIR}/KinveyKit.framework ${TDKKDIR}
+TEST_STATUS $?
+cp ${KK}/LICENSES ${TDKKDIR}
+TEST_STATUS $?
+
+cd TestDrive-iOS
+xcodebuild

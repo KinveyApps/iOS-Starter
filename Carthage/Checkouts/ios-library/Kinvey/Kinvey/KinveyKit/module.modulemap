@@ -1,0 +1,16 @@
+module KinveyKit {
+    header "../../../KinveyKit/KinveyKit/Source/KCSKeychain.h"
+    header "../../../KinveyKit/KinveyKit/Source/KinveyUser.h"
+    header "../../../KinveyKit/KinveyKit/Source/KCSMICLoginViewController.h"
+    header "../../../KinveyKit/KinveyKit/Source/KCSObjcRuntime.h"
+    header "../../../KinveyKit/KinveyKit/Source/KCSRealmEntityPersistence.h"
+    header "../../../KinveyKit/KinveyKit/Source/KCSQueryAdapter.h"
+    header "../../../KinveyKit/KinveyKit/Source/KCSPendingOperationRealm.h"
+    header "../../../KinveyKit/KinveyKit/Source/KCSCache.h"
+    header "../../../KinveyKit/KinveyKit/Source/KCSCacheManager.h"
+    header "../../../KinveyKit/KinveyKit/Source/KCSSync.h"
+    header "../../../KinveyKit/KinveyKit/Source/KCSSyncManager.h"
+    header "../../../KinveyKit/KinveyKit/Source/KCSPush.h"
+    header "../../../KinveyKit/KinveyKit/3rdParty/Reachability/KCSReachability.h"
+    export *
+}

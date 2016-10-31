@@ -16,18 +16,18 @@
 		5701ABA51C6916A900D7D9BB /* BookshelfTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701ABA41C6916A900D7D9BB /* BookshelfTests.swift */; };
 		5701ABB01C6916A900D7D9BB /* BookshelfUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701ABAF1C6916A900D7D9BB /* BookshelfUITests.swift */; };
 		5701ABC01C69187200D7D9BB /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701ABBF1C69187200D7D9BB /* Book.swift */; };
-		57A3BEC71C88DBF000DCD439 /* KeychainAccess.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 571A7A2C1C87B8D400B8D282 /* KeychainAccess.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		57A3BEC81C88DBF000DCD439 /* PromiseKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 571A7A2D1C87B8D400B8D282 /* PromiseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		57A3BEC91C88DBF000DCD439 /* Realm.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 571A7A2E1C87B8D400B8D282 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		57A3BECB1C88DC5700DCD439 /* KeychainAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 571A7A2C1C87B8D400B8D282 /* KeychainAccess.framework */; };
-		57A3BECC1C88DC5700DCD439 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 571A7A2D1C87B8D400B8D282 /* PromiseKit.framework */; };
-		57A3BECD1C88DC5700DCD439 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 571A7A2E1C87B8D400B8D282 /* Realm.framework */; };
-		57A3BECE1C88DC5700DCD439 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 571A7A2F1C87B8D400B8D282 /* SVProgressHUD.framework */; };
-		57E4DB0A1C8A0EBB0017B406 /* SVProgressHUD.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 571A7A2F1C87B8D400B8D282 /* SVProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		9611F0251D9C6E560043C7D2 /* Kinvey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9611F0241D9C6E560043C7D2 /* Kinvey.framework */; };
-		9611F0271D9C6E620043C7D2 /* Kinvey.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9611F0241D9C6E560043C7D2 /* Kinvey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		964609B01D73904A0022CE65 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 964609AF1D73904A0022CE65 /* RealmSwift.framework */; };
-		964609B11D7390A60022CE65 /* RealmSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 964609AF1D73904A0022CE65 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		576501C61DC7CBBB00898F15 /* KeychainAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 576501C11DC7CBAF00898F15 /* KeychainAccess.framework */; };
+		576501C71DC7CBBB00898F15 /* KeychainAccess.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 576501C11DC7CBAF00898F15 /* KeychainAccess.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		576501C81DC7CBBB00898F15 /* Kinvey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 576501C21DC7CBAF00898F15 /* Kinvey.framework */; };
+		576501C91DC7CBBB00898F15 /* Kinvey.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 576501C21DC7CBAF00898F15 /* Kinvey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		576501CA1DC7CBBB00898F15 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 576501C31DC7CBAF00898F15 /* PromiseKit.framework */; };
+		576501CB1DC7CBBB00898F15 /* PromiseKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 576501C31DC7CBAF00898F15 /* PromiseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		576501CC1DC7CBBB00898F15 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 576501C41DC7CBAF00898F15 /* Realm.framework */; };
+		576501CD1DC7CBBB00898F15 /* Realm.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 576501C41DC7CBAF00898F15 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		576501CE1DC7CBBB00898F15 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 576501C51DC7CBAF00898F15 /* RealmSwift.framework */; };
+		576501CF1DC7CBBB00898F15 /* RealmSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 576501C51DC7CBAF00898F15 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		576501D01DC7CBBB00898F15 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 576501C01DC7CB9E00898F15 /* SVProgressHUD.framework */; };
+		576501D11DC7CBBB00898F15 /* SVProgressHUD.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 576501C01DC7CB9E00898F15 /* SVProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,12 +54,12 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				9611F0271D9C6E620043C7D2 /* Kinvey.framework in CopyFiles */,
-				964609B11D7390A60022CE65 /* RealmSwift.framework in CopyFiles */,
-				57A3BEC71C88DBF000DCD439 /* KeychainAccess.framework in CopyFiles */,
-				57A3BEC81C88DBF000DCD439 /* PromiseKit.framework in CopyFiles */,
-				57A3BEC91C88DBF000DCD439 /* Realm.framework in CopyFiles */,
-				57E4DB0A1C8A0EBB0017B406 /* SVProgressHUD.framework in CopyFiles */,
+				576501D11DC7CBBB00898F15 /* SVProgressHUD.framework in CopyFiles */,
+				576501CD1DC7CBBB00898F15 /* Realm.framework in CopyFiles */,
+				576501CF1DC7CBBB00898F15 /* RealmSwift.framework in CopyFiles */,
+				576501CB1DC7CBBB00898F15 /* PromiseKit.framework in CopyFiles */,
+				576501C91DC7CBBB00898F15 /* Kinvey.framework in CopyFiles */,
+				576501C71DC7CBBB00898F15 /* KeychainAccess.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,13 +81,13 @@
 		5701ABAF1C6916A900D7D9BB /* BookshelfUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookshelfUITests.swift; sourceTree = "<group>"; };
 		5701ABB11C6916A900D7D9BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5701ABBF1C69187200D7D9BB /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
-		571A7A2C1C87B8D400B8D282 /* KeychainAccess.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainAccess.framework; path = ../Carthage/Build/iOS/KeychainAccess.framework; sourceTree = "<group>"; };
-		571A7A2D1C87B8D400B8D282 /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = ../Carthage/Build/iOS/PromiseKit.framework; sourceTree = "<group>"; };
-		571A7A2E1C87B8D400B8D282 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = ../Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
-		571A7A2F1C87B8D400B8D282 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = ../Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
-		9611F0241D9C6E560043C7D2 /* Kinvey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kinvey.framework; path = ../Kinvey.framework; sourceTree = "<group>"; };
+		576501C01DC7CB9E00898F15 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = ../Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
+		576501C11DC7CBAF00898F15 /* KeychainAccess.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainAccess.framework; path = ../Carthage/Build/iOS/KeychainAccess.framework; sourceTree = "<group>"; };
+		576501C21DC7CBAF00898F15 /* Kinvey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kinvey.framework; path = ../Carthage/Build/iOS/Kinvey.framework; sourceTree = "<group>"; };
+		576501C31DC7CBAF00898F15 /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = ../Carthage/Build/iOS/PromiseKit.framework; sourceTree = "<group>"; };
+		576501C41DC7CBAF00898F15 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = ../Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
+		576501C51DC7CBAF00898F15 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 		9611F0281D9CB3A30043C7D2 /* Bookshelf.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Bookshelf.entitlements; sourceTree = "<group>"; };
-		964609AF1D73904A0022CE65 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,12 +95,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9611F0251D9C6E560043C7D2 /* Kinvey.framework in Frameworks */,
-				57A3BECB1C88DC5700DCD439 /* KeychainAccess.framework in Frameworks */,
-				57A3BECC1C88DC5700DCD439 /* PromiseKit.framework in Frameworks */,
-				57A3BECD1C88DC5700DCD439 /* Realm.framework in Frameworks */,
-				964609B01D73904A0022CE65 /* RealmSwift.framework in Frameworks */,
-				57A3BECE1C88DC5700DCD439 /* SVProgressHUD.framework in Frameworks */,
+				576501D01DC7CBBB00898F15 /* SVProgressHUD.framework in Frameworks */,
+				576501CC1DC7CBBB00898F15 /* Realm.framework in Frameworks */,
+				576501CE1DC7CBBB00898F15 /* RealmSwift.framework in Frameworks */,
+				576501CA1DC7CBBB00898F15 /* PromiseKit.framework in Frameworks */,
+				576501C81DC7CBBB00898F15 /* Kinvey.framework in Frameworks */,
+				576501C61DC7CBBB00898F15 /* KeychainAccess.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,12 +124,12 @@
 		25FD6AAB5C1BE0458C3A2769 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9611F0241D9C6E560043C7D2 /* Kinvey.framework */,
-				964609AF1D73904A0022CE65 /* RealmSwift.framework */,
-				571A7A2C1C87B8D400B8D282 /* KeychainAccess.framework */,
-				571A7A2D1C87B8D400B8D282 /* PromiseKit.framework */,
-				571A7A2E1C87B8D400B8D282 /* Realm.framework */,
-				571A7A2F1C87B8D400B8D282 /* SVProgressHUD.framework */,
+				576501C11DC7CBAF00898F15 /* KeychainAccess.framework */,
+				576501C21DC7CBAF00898F15 /* Kinvey.framework */,
+				576501C31DC7CBAF00898F15 /* PromiseKit.framework */,
+				576501C41DC7CBAF00898F15 /* Realm.framework */,
+				576501C51DC7CBAF00898F15 /* RealmSwift.framework */,
+				576501C01DC7CB9E00898F15 /* SVProgressHUD.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -576,7 +576,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kinvey.Bookshelf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 3.0.1;
 			};
 			name = Debug;
 		};
@@ -597,7 +597,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kinvey.Bookshelf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 3.0.1;
 			};
 			name = Release;
 		};
@@ -609,7 +609,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kinvey.BookshelfTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 3.0.1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bookshelf.app/Bookshelf";
 			};
 			name = Debug;
@@ -622,7 +622,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kinvey.BookshelfTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 3.0.1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bookshelf.app/Bookshelf";
 			};
 			name = Release;
@@ -634,7 +634,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kinvey.BookshelfUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 3.0.1;
 				TEST_TARGET_NAME = Bookshelf;
 				USES_XCTRUNNER = YES;
 			};
@@ -647,7 +647,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kinvey.BookshelfUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 3.0.1;
 				TEST_TARGET_NAME = Bookshelf;
 				USES_XCTRUNNER = YES;
 			};

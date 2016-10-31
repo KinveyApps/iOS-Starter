@@ -1,0 +1,25 @@
+//
+//  Kinvey.xcconfig
+//  Kinvey
+//
+//  Created by Victor Barros on 2016-05-05.
+//  Copyright © 2016 Kinvey. All rights reserved.
+//
+
+SDKROOT =
+SUPPORTED_PLATFORMS = macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator
+VALID_ARCHS[sdk=iphoneos*] = arm64 armv7 armv7s
+VALID_ARCHS[sdk=appletvos*] = arm64
+VALID_ARCHS[sdk=watchos*] = armv7k
+
+OTHER_LDFLAGS = $(inherited) -ObjC -framework "Realm"
+
+FRAMEWORK_SEARCH_PATHS[sdk=macosx*] = $(inherited) $(PROJECT_DIR)/Carthage/Build/Mac
+FRAMEWORK_SEARCH_PATHS[sdk=iphoneos*] = $(inherited) $(PROJECT_DIR)/Carthage/Build/iOS
+FRAMEWORK_SEARCH_PATHS[sdk=iphonesimulator*] = $(inherited) $(PROJECT_DIR)/Carthage/Build/iOS
+FRAMEWORK_SEARCH_PATHS[sdk=appletvos*] = $(inherited) $(PROJECT_DIR)/Carthage/Build/tvOS
+FRAMEWORK_SEARCH_PATHS[sdk=appletvsimulator*] = $(inherited) $(PROJECT_DIR)/Carthage/Build/tvOS
+FRAMEWORK_SEARCH_PATHS[sdk=watchos*] = $(inherited) $(PROJECT_DIR)/Carthage/Build/watchOS
+FRAMEWORK_SEARCH_PATHS[sdk=watchsimulator*] = $(inherited) $(PROJECT_DIR)/Carthage/Build/watchOS
+
+TARGETED_DEVICE_FAMILY = 1,2,3,4

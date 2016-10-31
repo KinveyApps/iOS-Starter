@@ -1,0 +1,12 @@
+//
+//  KinveyTests.xcconfig
+//  Kinvey
+//
+//  Created by Victor Barros on 2016-05-06.
+//  Copyright © 2016 Kinvey. All rights reserved.
+//
+
+BUNDLE_LOADER[sdk=iphoneos*] = $(BUILT_PRODUCTS_DIR)/KinveyApp.app/KinveyApp
+BUNDLE_LOADER[sdk=iphonesimulator*] = $(BUILT_PRODUCTS_DIR)/KinveyApp.app/KinveyApp
+TEST_HOST[sdk=iphoneos*] = $(BUNDLE_LOADER)
+TEST_HOST[sdk=iphonesimulator*] = $(BUNDLE_LOADER)
