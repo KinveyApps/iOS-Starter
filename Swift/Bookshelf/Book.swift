@@ -20,7 +20,7 @@ class Book: Entity {
     }
     
     //Map properties in your backend collection to the members of this entity
-    override func propertyMapping(map: Map) {
+    override func propertyMapping(_ map: Map) {
         
         //This maps the "_id", "_kmd" and "_acl" properties
         super.propertyMapping(map)

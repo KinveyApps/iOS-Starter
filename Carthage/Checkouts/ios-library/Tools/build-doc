@@ -1,0 +1,92 @@
+#!/bin/bash
+
+## Prepare the ios-lib documentation.  Right now just use appledoc, but soon-ish
+## use both appledoc and doxygen.
+
+## The output/input locations are passed in via command line
+if [ $# -lt 1 ]
+then
+	echo "Usage: build-doc <KinveyKit Location>"
+	exit
+fi
+KINVEYKITLOC=$1
+
+# GENERATING License.html file
+HTMLHEADER="<html>
+    <head>
+        <title>KinveyKit Open Source License Usage</title>
+    </head>
+    <body>
+        <h2>KinveyKit License And Open Source Usage</h2>
+        <pre>"
+
+HTMLFOOTER="</pre></body></html>"
+
+if [ -e ${KINVEYKITLOC}/LICENSES.html ]
+then
+  rm ${KINVEYKITLOC}/LICENSES.html
+fi
+  
+echo ${HTMLHEADER} > ${KINVEYKITLOC}/LICENSES.html
+cat ${KINVEYKITLOC}/LICENSES >> ${KINVEYKITLOC}/LICENSES.html
+echo ${HTMLFOOTER} >> ${KINVEYKITLOC}/LICENSES.html
+
+echo "Building docs for ${KINVEYKITLOC}..."
+
+APPLEDOC=$PWD/appledoc/appledoc
+#/Users/mike/Library/Developer/Xcode/DerivedData/appledoc-dbpuscstfpupnxfbevymysrpdquv/Build/Products/Debug/appledoc
+#${HOME}/bin/appledoc
+COMPANY=Kinvey
+PROJECT=KinveyKit
+COMPANYID="com.kinvey"
+
+
+## Make HTML (-h), Make Docset (-d), Prep Docset for publishing (-u)
+OUTPUTARGS="-h -d -u"
+
+EXCLUDES="--ignore 3rdParty --ignore .m"
+
+WARNINGS="--no-warn-invalid-crossref"
+OUTPUTLOC="${KINVEYKITLOC}/doc/"
+TEXTOUT="${OUTPUTLOC}/output"
+DOCOUT="${OUTPUTLOC}/built-docs"
+INDEX="--index-desc ${KINVEYKITLOC}/README.md"
+LICENSES="--include ${KINVEYKITLOC}/LICENSES.html"
+CHANGES="--include ${KINVEYKITLOC}/KinveyKit-History-template.md"
+SETTINGS="${KINVEYKITLOC}/AppledocSettings.plist"
+VERBOSE="--verbose 6"
+
+UTILPATH=""
+#"--docsetutil-path /Applications/Xcode.app/Contents/Developer/usr/bin/docsetutil"
+
+if [ ! -d $OUTPUTLOC ]
+then
+	mkdir -p -m 775 $OUTPUTLOC
+fi
+
+if [ ! -d $TEXTOUT ]
+then
+	mkdir -m 775 $TEXTOUT
+fi
+
+if [ ! -d $DOCOUT ]
+then
+	mkdir -m 775 $DOCOUT
+fi
+
+if [ ! -d $DOCOUT ]
+then
+	## Last check, if this doesn't exist, bail...
+	echo "!!! Unable to verify output directories... exiting..."
+	exit
+fi
+
+
+COMMAND="${APPLEDOC} ${VERBOSE} ${UTILPATH} ${OUTPUTARGS} ${WARNINGS} ${INDEX} -o ${TEXTOUT} --docset-install-path ${DOCOUT} ${LICENSES} ${CHANGES} ${SETTINGS} ${KINVEYKITLOC}/KinveyKit ${KINVEYKITLOC}/KinveyKitExtras"
+#COMMAND="${APPLEDOC} ${SETTINGS} ${KINVEYKITLOC}/KinveyKit ${KINVEYKITLOC}/KinveyKitExtras"
+
+echo $COMMAND
+$COMMAND
+
+
+echo "Done!"

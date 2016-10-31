@@ -1,0 +1,76 @@
+#!/bin/bash
+
+echo "-----------------------------------------------------------------------------------"
+
+## Prepare the ios-lib documentation.  Right now just use appledoc, but soon-ish
+## use both appledoc and doxygen.
+
+## The output/input locations are passed in via command line
+if [ $# -lt 2 ]
+then
+	echo "Usage: release-kinvey <KinveyKit Location> <release location> <optional release number>"
+	exit
+fi
+
+KINVEYKITLOC=$1
+RELEASEDIR=$2
+
+if [ $# -lt 3 ]
+then
+    RELEASENO=`date "+%Y%m%d-%H%M%S"`
+else
+    RELEASENO=$3
+fi
+
+KK=KinveyKit-${RELEASENO}
+API=KinveyKit-API-Reference-${RELEASENO}
+RKK=${RELEASEDIR}/${KK}
+#RAPI=${RELEASEDIR}/${API}
+REXTRAS=${RKK}/Extras
+
+echo "Building KinveyKit ($RELEASENO) release media in ${RELEASEDIR} for ${KINVEYKITLOC}..."
+
+
+if [ ! -d ${RELEASEDIR} ]
+then
+    mkdir ${RELEASEDIR}
+fi
+
+
+## Cleanup
+if [ -d  ${RKK} ]
+then
+  rm -rf ${RKK}
+fi
+
+
+## Make output dirs
+mkdir ${RKK}
+#mkdir ${REXTRAS}
+
+# This needs to be an option...
+
+# Copy KinveyKit.framework
+( cd ${KINVEYKITLOC}/build/Release-iphoneos/ && tar cf - ./KinveyKit.framework )| ( cd ${RKK}/ && tar -xf - )
+#cp -R ${KINVEYKITLOC}/build/Debug-iphoneos/KinveyKit.framework  ${RELEASEDIR}/KinveyKit-${RELEASENO}/
+
+# Copy Docs
+( cd doc/install/ && tar cf - ./com.kinvey.KinveyKit.docset ) | ( cd ${RKK}/ && tar -xf - )
+#cp -R ${KINVEYKITLOC}/doc/built-docs/com.kinvey.KinveyKit.docset ${RELEASEDIR}/KinveyKit-API-Reference-${RELEASENO}/
+
+# Copy LICENSE
+( cd ${KINVEYKITLOC}/ && tar cf - ./LICENSES ) | ( cd ${RKK}/ && tar -xf - )
+
+
+# Copy Project & Add Lib
+#( cd ${KINVEYKITLOC}/.. && tar cf - ./ProjectTemplates) | (cd ${REXTRAS}/ && tar -xf - ) 
+#cp -R ${RKK}/KinveyKit.framework "${REXTRAS}/ProjectTemplates/Single View Application (Kinvey).xctemplate/"
+#cp ${RKK}/Airship/*.a "${REXTRAS}/ProjectTemplates/Single View Application (Kinvey).xctemplate/"
+
+# Clean up SVN
+find ${RELEASEDIR}/ -name '.svn' -print0 | xargs -0 rm -r
+
+
+# Build zipfiles
+(cd ${RELEASEDIR} && ditto -c -k --sequesterRsrc --keepParent ${KK} ${KK}.zip)
+#put docs in zip file(cd ${RELEASEDIR} && ditto -c -k --sequesterRsrc --keepParent ${API} ${API}.zip)

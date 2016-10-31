@@ -1,0 +1,44 @@
+#!/bin/sh
+ 
+if [ $# -lt 2 ]
+then
+	echo "Usage: point-branch release-number ticket-number"
+	exit
+fi 
+ 
+BRANCH="$1"
+TICKET="$2"
+
+HISTORY_TEMPLATE="KinveyKit/KinveyKit-History-template.md"
+TODAY=$(date "+%B\\x20%d,\\x20%Y")
+DATE_EX="s/TBD/TODAY/g" #"'s/** Release Date:** TBD/** Release Date:** $TODAY/g'"
+UPDATE_RELEASE_DATE_CMD="/usr/bin/perl -pi -e s/TBD/$TODAY/g KinveyKit/KinveyKit-History-template.md"
+
+echo "-> Updating Release Notes to mark today's date..."
+$UPDATE_RELEASE_DATE_CMD
+STATUS=$?
+echo "Status: $STATUS"
+if [ $STATUS -ne 0 ]
+then
+	echo "exit, error"
+    exit
+fi
+
+
+echo "-> Commiting changes"
+CI_COMMAND="svn ci -m \"update files for branch $BRANCH re #$TICKET\""
+echo $CI_COMMAND
+
+STATUS=$?
+echo "Status: $STATUS"
+if [ $STATUS -ne 0 ]
+then
+	echo "exit, error"
+    exit
+fi
+
+echo "-> Update branch in svn"
+
+BRANCH_COMMAND="svn cp . https://subversion.assembla.com/svn/kinvey/ios-library/branches/$BRANCH -m \"branch $BRANCH re #$TICKET\""
+echo $BRANCH_COMMAND
+

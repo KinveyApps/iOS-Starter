@@ -1,10 +1,10 @@
 //
-//  SVProgressHUDViewController.h
-//  SVProgressHUD
+//  ViewController.h
+//  SVProgressHUD, https://github.com/SVProgressHUD/SVProgressHUD
 //
-//  Created by Sam Vermette on 27.03.11.
-//  Copyright 2011 Sam Vermette. All rights reserved.
+//  Copyright (c) 2011-2016 Sam Vermette and contributors. All rights reserved.
 //
+
 
 #import <UIKit/UIKit.h>
 
@@ -14,9 +14,13 @@
 - (IBAction)showWithStatus;
 
 - (IBAction)dismiss;
-- (IBAction)dismissInfo;
-- (IBAction)dismissSuccess;
-- (IBAction)dismissError;
+- (IBAction)showInfoWithStatus;
+- (IBAction)showSuccessWithStatus;
+- (IBAction)showErrorWithStatus;
+
+- (IBAction)changeStyle:(id)sender;
+- (IBAction)changeAnimationType:(id)sender;
+- (IBAction)changeMaskType:(id)sender;
 
 @end
 
