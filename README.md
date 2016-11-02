@@ -11,8 +11,10 @@ This is a iOS Sample app to illustrate how to use version 3.x of the [Kinvey](ht
 ## Prerequisites
 * iOS 9 or later
 * XCode 8.1 or above
-* Kinvey iOS library 3.3 (bundled in as a developer preview)
+* Kinvey iOS library v3.3 (bundled in as a developer preview).
 * [Kinvey](https://console.kinvey.com) app ID and secret. Before compiling, replace `appKey` and `appSecret` in the `AppDelegate` with values you obtain from the console.
+
+__Note__: The `master` branch of this starter app uses Swift 3. If you prefer to use Swift 2.3, refer to the Swift 2.3 branch on this repo. Each branch uses the corresponding [Swift-compatible](https://devcenter.kinvey.com/ios/downloads) version of the Kinvey SDK.
 
 ## License
 
