@@ -1,0 +1,10 @@
+framework module Kinvey {
+  umbrella header "Kinvey.h"
+
+  export *
+  module * { export * }
+}
+
+module Kinvey.Swift {
+    header "Kinvey-Swift.h"
+}
