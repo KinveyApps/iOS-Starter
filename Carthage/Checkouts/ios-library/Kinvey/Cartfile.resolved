@@ -1,6 +1,0 @@
-github "kif-framework/KIF" "v3.5.1"
-github "kishikawakatsumi/KeychainAccess" "v3.0.1"
-github "tjboneman/NSPredicate-MongoDB-Adaptor" "19e76bab788f4a96e210f4ffca196cc9e52f856a"
-github "Hearst-DD/ObjectMapper" "2.2.0"
-github "mxcl/PromiseKit" "4.0.5"
-github "realm/realm-cocoa" "v1.1.0"

@@ -1,0 +1,4 @@
+language: swift
+osx_image: xcode8.1
+xcode_workspace: Bookshelf.xcworkspace
+xcode_scheme: Bookshelf

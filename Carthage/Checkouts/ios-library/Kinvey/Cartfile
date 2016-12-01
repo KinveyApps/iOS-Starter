@@ -1,6 +1,0 @@
-github "tjboneman/NSPredicate-MongoDB-Adaptor" "master"
-github "mxcl/PromiseKit" ~> 4.0
-github "kishikawakatsumi/KeychainAccess" ~> 3.0
-github "realm/realm-cocoa" ~> 1.0
-github "Hearst-DD/ObjectMapper" ~> 2.0
-github "kif-framework/KIF" ~> 3.5
