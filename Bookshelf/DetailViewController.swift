@@ -18,6 +18,8 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var pictureImageView: UIImageView!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var takeChoosePictureButton: UIButton!
+    
+    var authorsTVC: AuthorsTableViewController!
 
     var store: DataStore<Book>!
     
@@ -45,6 +47,33 @@ class DetailViewController: UIViewController {
         self.configureView()
     }
     
+    @IBAction func addAuthor(_ sender: Any) {
+        authorsTVC.authors.append(Author())
+        let indexPath = IndexPath(row: authorsTVC.authors.count - 1, section: 0)
+        authorsTVC.tableView.insertRows(at: [indexPath], with: .automatic)
+        let cell = authorsTVC.tableView.cellForRow(at: indexPath) as? AuthorTableViewCell
+        if let cell = cell {
+            cell.textField.becomeFirstResponder()
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let identifier = segue.identifier {
+            switch identifier {
+            case "authors":
+                authorsTVC = segue.destination as! AuthorsTableViewController
+                authorsTVC.authors = book.authors.map {
+                    let author = Author()
+                    author.firstName = $0.firstName
+                    author.lastName = $0.lastName
+                    return author
+                }
+            default:
+                break
+            }
+        }
+    }
+    
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         switch identifier {
         case "save":
@@ -52,6 +81,8 @@ class DetailViewController: UIViewController {
                 book = Book()
             }
             book.title = titleTextField.text
+            book.authors.removeAll()
+            book.authors.append(objectsIn: authorsTVC.authors)
             SVProgressHUD.show()
             
             store.save(book) { (book, error) -> Void in

@@ -9,11 +9,12 @@
 import Foundation
 import Kinvey
 import ObjectMapper
+import RealmSwift
 
 class Book: Entity {
     
     dynamic var title: String?
-    dynamic var authorName: String?
+    let authors = List<Author>()
     
     override class func collectionName() -> String {
         //return the name of the backend collection corresponding to this entity
@@ -29,6 +30,33 @@ class Book: Entity {
         //Each property in your entity should be mapped using the following scheme:
         //<member variable> <- ("<backend property>", map["<backend property>"])
         title <- ("title", map["title"])
-        authorName <- ("author", map["author"])
+        authors <- ("authors", map["authors"])
+    }
+}
+
+func <-<T: StaticMappable>(lhs: List<T>, rhs: (String, Map)) {
+    var list = lhs
+    let transform = TransformOf<List<T>, [[String : Any]]>(fromJSON: { (array) -> List<T>? in
+        if let array = array {
+            let list = List<T>()
+            for item in array {
+                if let item = T(JSON: item) {
+                    list.append(item)
+                }
+            }
+            return list
+        }
+        return nil
+    }, toJSON: { (list) -> [[String : Any]]? in
+        if let list = list {
+            return list.map { $0.toJSON() }
+        }
+        return nil
+    })
+    switch rhs.1.mappingType {
+    case .fromJSON:
+        list <- (rhs.1, transform)
+    case .toJSON:
+        list <- (rhs.1, transform)
     }
 }

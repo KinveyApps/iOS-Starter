@@ -210,25 +210,12 @@ class MasterViewController: UITableViewController, UISearchBarDelegate {
                 self.books = books
                 self.tableView.reloadData();
             } else if let errors = errors, let error = errors.first {
-                if let error = error as? Kinvey.Error {
-                    switch error {
-                    case .unauthorized(let error, let description):
-                        let alert = UIAlertController(title: error, message: description, preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (alertAction) in
-                            alert.dismiss(animated: true, completion: nil)
-                        }))
-                        self.present(alert, animated: true, completion: nil)
-                    default:
-                        self.presentError(error as NSError)
-                    }
-                } else {
-                    self.presentError(error as NSError)
-                }
+                self.present(error: error)
             }
         }
     }
     
-    func presentError(_ error: NSError) {
+    func present(error: Swift.Error) {
         let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (alertAction) in
             alert.dismiss(animated: true, completion: nil)

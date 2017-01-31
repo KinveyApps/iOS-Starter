@@ -23,6 +23,8 @@
 		576501CC1DC7CBBB00898F15 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 576501C41DC7CBAF00898F15 /* Realm.framework */; };
 		576501CE1DC7CBBB00898F15 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 576501C51DC7CBAF00898F15 /* RealmSwift.framework */; };
 		576501D01DC7CBBB00898F15 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 576501C01DC7CB9E00898F15 /* SVProgressHUD.framework */; };
+		57A5264F1E412AA200B33A51 /* AuthorsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A5264E1E412AA200B33A51 /* AuthorsTableViewController.swift */; };
+		57A526511E412B0400B33A51 /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A526501E412B0400B33A51 /* Author.swift */; };
 		6AA5FF2C8DDE367D1F1A2AFA /* Pods_Bookshelf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81E110661DC26F87619D83EA /* Pods_Bookshelf.framework */; };
 		B761E7BE18671702251B3270 /* Pods_BookshelfTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2F687139D5672BA953CBEC4 /* Pods_BookshelfTests.framework */; };
 /* End PBXBuildFile section */
@@ -69,6 +71,8 @@
 		576501C31DC7CBAF00898F15 /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = "/Users/victor/Documents/iOS-Starter/Carthage/Build/iOS/PromiseKit.framework"; sourceTree = "<absolute>"; };
 		576501C41DC7CBAF00898F15 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "/Users/victor/Documents/iOS-Starter/Carthage/Build/iOS/Realm.framework"; sourceTree = "<absolute>"; };
 		576501C51DC7CBAF00898F15 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "/Users/victor/Documents/iOS-Starter/Carthage/Build/iOS/RealmSwift.framework"; sourceTree = "<absolute>"; };
+		57A5264E1E412AA200B33A51 /* AuthorsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorsTableViewController.swift; sourceTree = "<group>"; };
+		57A526501E412B0400B33A51 /* Author.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
 		64448BC1EE73FB33974B0174 /* Pods-BookshelfUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookshelfUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BookshelfUITests/Pods-BookshelfUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		81E110661DC26F87619D83EA /* Pods_Bookshelf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bookshelf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9611F0281D9CB3A30043C7D2 /* Bookshelf.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Bookshelf.entitlements; sourceTree = "<group>"; };
@@ -169,6 +173,8 @@
 				5701AB981C6916A900D7D9BB /* LaunchScreen.storyboard */,
 				5701AB9B1C6916A900D7D9BB /* Info.plist */,
 				5701ABBF1C69187200D7D9BB /* Book.swift */,
+				57A526501E412B0400B33A51 /* Author.swift */,
+				57A5264E1E412AA200B33A51 /* AuthorsTableViewController.swift */,
 			);
 			path = Bookshelf;
 			sourceTree = "<group>";
@@ -478,8 +484,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57A526511E412B0400B33A51 /* Author.swift in Sources */,
 				5701ABC01C69187200D7D9BB /* Book.swift in Sources */,
 				5701AB921C6916A900D7D9BB /* DetailViewController.swift in Sources */,
+				57A5264F1E412AA200B33A51 /* AuthorsTableViewController.swift in Sources */,
 				5701AB901C6916A900D7D9BB /* MasterViewController.swift in Sources */,
 				5701AB8E1C6916A900D7D9BB /* AppDelegate.swift in Sources */,
 			);
