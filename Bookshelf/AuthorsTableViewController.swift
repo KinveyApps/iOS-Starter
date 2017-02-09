@@ -51,7 +51,11 @@ class AuthorTableViewCell: UITableViewCell, UITextFieldDelegate {
 
 class AuthorsTableViewController: UITableViewController {
     
-    var authors: [Author]!
+    var authors: [Author]! {
+        didSet {
+            tableView.reloadData()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
