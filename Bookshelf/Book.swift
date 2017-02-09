@@ -34,7 +34,7 @@ class Book: Entity {
     }
 }
 
-func <-<T: StaticMappable>(lhs: List<T>, rhs: (String, Map)) {
+func <-<T: BaseMappable>(lhs: List<T>, rhs: (String, Map)) {
     var list = lhs
     let transform = TransformOf<List<T>, [[String : Any]]>(fromJSON: { (array) -> List<T>? in
         if let array = array {

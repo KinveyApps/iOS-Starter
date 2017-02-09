@@ -10,12 +10,12 @@ import Kinvey
 import RealmSwift
 import ObjectMapper
 
-class Author: Object, StaticMappable {
+class Author: Object, Mappable {
     
     dynamic var firstName: String?
     dynamic var lastName: String?
     
-    static func objectForMapping(map: Map) -> BaseMappable? {
+    convenience required init?(map: Map) {
         guard
             let firstName: String = map["first_name"].value(),
             let lastName: String = map["last_name"].value()
@@ -24,10 +24,9 @@ class Author: Object, StaticMappable {
             return nil
         }
         
-        let author = Author()
-        author.firstName = firstName
-        author.lastName = lastName
-        return author
+        self.init()
+        self.firstName = firstName
+        self.lastName = lastName
     }
     
     func mapping(map: Map) {
