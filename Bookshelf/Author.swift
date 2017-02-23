@@ -10,10 +10,16 @@ import Kinvey
 import RealmSwift
 import ObjectMapper
 
-class Author: Object, Mappable {
+class Author: Entity {
     
     dynamic var firstName: String?
     dynamic var lastName: String?
+    let books = LinkingObjects(fromType: Book.self, property: "authors")
+    
+    override class func collectionName() -> String {
+        //return the name of the backend collection corresponding to this entity
+        return "Author"
+    }
     
     convenience required init?(map: Map) {
         guard
@@ -29,7 +35,9 @@ class Author: Object, Mappable {
         self.lastName = lastName
     }
     
-    func mapping(map: Map) {
+    override func propertyMapping(_ map: Map) {
+        super.propertyMapping(map)
+        
         firstName <- ("firstName", map["first_name"])
         lastName <- ("lastName", map["last_name"])
     }

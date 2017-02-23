@@ -19,37 +19,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     }()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
-        Kinvey.sharedClient.initialize(appKey: "<appkey>", appSecret: "<appsecret>")
-        
-        // Override point for customization after application launch.
         let splitViewController = self.window!.rootViewController as! UISplitViewController
         let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as! UINavigationController
         navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
         splitViewController.delegate = self
         
-        if let _ = Kinvey.sharedClient.activeUser {
-            //do nothing
-        } else {
-            SVProgressHUD.show()
-
-            User.exists(username: "test") { exists, error in
-                if exists {
-                    User.login(username: "test", password: "test") { user, error in
-                        SVProgressHUD.dismiss()
-                        if let _ = user {
-                            //do nothing
-                        } else {
-                            //do something!
+        Kinvey.sharedClient.initialize(appKey: "<appkey>", appSecret: "<appsecret>") { user, error in
+            if let _ = user {
+                //do nothing
+            } else {
+                SVProgressHUD.show()
+                
+                User.exists(username: "test") { exists, error in
+                    if exists {
+                        User.login(username: "test", password: "test") { user, error in
+                            SVProgressHUD.dismiss()
+                            if let _ = user {
+                                //do nothing
+                            } else {
+                                //do something!
+                            }
                         }
-                    }
-                } else {
-                    User.signup(username: "test", password: "test") { user, error in
-                        SVProgressHUD.dismiss()
-                        if let _ = user {
-                            //do nothing
-                        } else {
-                            //do something!
+                    } else {
+                        User.signup(username: "test", password: "test") { user, error in
+                            SVProgressHUD.dismiss()
+                            if let _ = user {
+                                //do nothing
+                            } else {
+                                //do something!
+                            }
                         }
                     }
                 }

@@ -94,8 +94,10 @@ class AuthorsTableViewController: UITableViewController {
         cell.author = author
         cell.authorChanged = { author in
             if author == nil {
+                tableView.beginUpdates()
                 self.authors.remove(at: index)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
+                tableView.endUpdates()
             }
         }
 

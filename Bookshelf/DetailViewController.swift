@@ -48,9 +48,11 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func addAuthor(_ sender: Any) {
+        authorsTVC.tableView.beginUpdates()
         authorsTVC.authors.append(Author())
         let indexPath = IndexPath(row: authorsTVC.authors.count - 1, section: 0)
         authorsTVC.tableView.insertRows(at: [indexPath], with: .automatic)
+        authorsTVC.tableView.endUpdates()
         let cell = authorsTVC.tableView.cellForRow(at: indexPath) as? AuthorTableViewCell
         if let cell = cell {
             cell.textField.becomeFirstResponder()
@@ -64,6 +66,7 @@ class DetailViewController: UIViewController {
                 authorsTVC = segue.destination as! AuthorsTableViewController
                 authorsTVC.authors = book.authors.map {
                     let author = Author()
+                    author.entityId = $0.entityId
                     author.firstName = $0.firstName
                     author.lastName = $0.lastName
                     return author
