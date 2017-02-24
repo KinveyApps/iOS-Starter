@@ -117,7 +117,10 @@ class Book: Entity {
     }
 }
 
-// overloading the <- operator in order to transform the list of authors to a json array
+/*
+this overloads the <- operator
+overloading allows us to express the mapping using the standard mapping operator
+ */
 func <-(lhs: List<Author>, rhs: (String, Map)) {
     var list = lhs
     let transform = TransformOf<List<Author>, [[String : Any]]>(fromJSON: { (array) -> List<Author>? in
