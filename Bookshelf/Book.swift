@@ -123,6 +123,7 @@ overloading allows us to express the mapping using the standard mapping operator
  */
 func <-(lhs: List<Author>, rhs: (String, Map)) {
     var list = lhs
+    //the transform defines how to convert from List<Author> to JSON Array and vice versa
     let transform = TransformOf<List<Author>, [[String : Any]]>(fromJSON: { (array) -> List<Author>? in
         if let array = array {
             list.removeAll()
