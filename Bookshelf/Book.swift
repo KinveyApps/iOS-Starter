@@ -117,6 +117,7 @@ class Book: Entity {
     }
 }
 
+// overloading the <- operator in order to transform the list of authors to a json array
 func <-(lhs: List<Author>, rhs: (String, Map)) {
     var list = lhs
     let transform = TransformOf<List<Author>, [[String : Any]]>(fromJSON: { (array) -> List<Author>? in
