@@ -35,7 +35,7 @@ class MasterViewController: UITableViewController, UISearchBarDelegate {
     @IBOutlet weak var searchBar: UISearchBar!
 
     var detailViewController: DetailViewController? = nil
-    var books = [Book]()
+    var books = AnyRandomAccessCollection<Book>([])
     var selectedBook: Book?
     
     lazy var store: DataStore<Book>! = {
@@ -66,15 +66,24 @@ class MasterViewController: UITableViewController, UISearchBarDelegate {
         } else {
             query = Query()
         }
-        store.find(query) { (books, error) -> Void in
+        store.find(query, options: nil) { (result: Result<AnyRandomAccessCollection<Book>, Swift.Error>) in
             SVProgressHUD.dismiss()
-            if let books = books {
+            switch result {
+            case .success(let books):
                 self.books = books
-                if self.refreshControl?.isRefreshing ?? false {
-                    self.refreshControl?.endRefreshing()
-                }
-                self.tableView.reloadData()
+            case .failure(let error):
+                self.books = AnyRandomAccessCollection<Book>([])
+                let alert = UIAlertController(
+                    title: "Error",
+                    message: error.localizedDescription,
+                    preferredStyle: .alert
+                )
+                self.present(alert, animated: true)
             }
+            if self.refreshControl?.isRefreshing ?? false {
+                self.refreshControl?.endRefreshing()
+            }
+            self.tableView.reloadData()
         }
     }
 
@@ -88,6 +97,7 @@ class MasterViewController: UITableViewController, UISearchBarDelegate {
         // Dispose of any resources that can be recreated.
     }
 
+    @objc
     func insertNewBook(_ sender: AnyObject) {
         selectedBook = Book()
         performSegue(withIdentifier: "showDetail", sender: sender)
@@ -115,7 +125,7 @@ class MasterViewController: UITableViewController, UISearchBarDelegate {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return books.count
+        return Int(books.count)
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -136,11 +146,18 @@ class MasterViewController: UITableViewController, UISearchBarDelegate {
             let book = books[(indexPath as NSIndexPath).row]
             do {
                 SVProgressHUD.show()
-                try store.remove(book) { (count, error) -> Void in
+                try store.remove(book, options: nil) {
                     SVProgressHUD.dismiss()
-                    if count > 0 {
-                        self.books.remove(at: (indexPath as NSIndexPath).row)
-                        tableView.deleteRows(at: [indexPath], with: .fade)
+                    switch $0 {
+                    case .success(let count):
+                        if count > 0, let bookIdToBeRemoved = self.books[indexPath.row].entityId {
+                            self.books = AnyRandomAccessCollection(self.books.lazy.filter({ (book) -> Bool in
+                                return book.entityId == bookIdToBeRemoved
+                            }))
+                            tableView.deleteRows(at: [indexPath], with: .fade)
+                        }
+                    case .failure:
+                        break
                     }
                 }
             } catch let error {
@@ -169,12 +186,15 @@ class MasterViewController: UITableViewController, UISearchBarDelegate {
         SVProgressHUD.show()
         
         //Pull data from the backend to the sync datastore
-        store.pull() { (books, error) -> Void in
+        store.pull(options: nil) {
             SVProgressHUD.dismiss()
-            if let books = books {
+            switch $0 {
+            case .success(let books):
                 self.books = books
+                self.tableView.reloadData()
+            case .failure:
+                break
             }
-            self.tableView.reloadData();
         }
     }
     
@@ -204,13 +224,16 @@ class MasterViewController: UITableViewController, UISearchBarDelegate {
         //Sync with the backend. 
         //This will push all local changes to the backend, then
         //pull changes from the backend to the app.
-        store.sync() { (count, books, errors) -> Void in
+        store.sync(options: nil) { (result: Result<(UInt, AnyRandomAccessCollection<Book>), [Swift.Error]>) in
             SVProgressHUD.dismiss()
-            if let books = books {
+            switch result {
+            case .success(_, let books):
                 self.books = books
                 self.tableView.reloadData();
-            } else if let errors = errors, let error = errors.first {
-                self.present(error: error)
+            case .failure(let errors):
+                if let error = errors.first {
+                    self.present(error: error)
+                }
             }
         }
     }

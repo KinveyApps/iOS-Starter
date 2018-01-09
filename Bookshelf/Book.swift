@@ -96,7 +96,7 @@ function onPostFetch(request, response, modules) {
  */
 class Book: Entity {
     
-    dynamic var title: String?
+    @objc dynamic var title: String?
     let authors = List<Author>()
     
     override class func collectionName() -> String {
@@ -114,37 +114,5 @@ class Book: Entity {
         //<member variable> <- ("<backend property>", map["<backend property>"])
         title <- ("title", map["title"])
         authors <- ("authors", map["authors"])
-    }
-}
-
-/*
-this overloads the <- operator
-overloading allows us to express the mapping using the standard mapping operator
- */
-func <-(lhs: List<Author>, rhs: (String, Map)) {
-    var list = lhs
-    //the transform defines how to convert from List<Author> to JSON Array and vice versa
-    let transform = TransformOf<List<Author>, [[String : Any]]>(fromJSON: { (array) -> List<Author>? in
-        if let array = array {
-            list.removeAll()
-            for item in array {
-                if let item = Author(JSON: item) {
-                    list.append(item)
-                }
-            }
-            return list
-        }
-        return nil
-    }, toJSON: { (list) -> [[String : Any]]? in
-        if let list = list {
-            return list.map { $0.toJSON() }
-        }
-        return nil
-    })
-    switch rhs.1.mappingType {
-    case .fromJSON:
-        list <- (rhs.1, transform)
-    case .toJSON:
-        list <- (rhs.1, transform)
     }
 }

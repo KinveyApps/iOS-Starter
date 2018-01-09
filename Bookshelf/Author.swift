@@ -12,8 +12,8 @@ import ObjectMapper
 
 class Author: Entity {
     
-    dynamic var firstName: String?
-    dynamic var lastName: String?
+    @objc dynamic var firstName: String?
+    @objc dynamic var lastName: String?
     let books = LinkingObjects(fromType: Book.self, property: "authors")
     
     override class func collectionName() -> String {
