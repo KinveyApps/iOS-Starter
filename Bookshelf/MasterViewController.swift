@@ -143,16 +143,16 @@ class MasterViewController: UITableViewController, UISearchBarDelegate {
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let book = books[(indexPath as NSIndexPath).row]
+            let book = books[indexPath.row]
             do {
                 SVProgressHUD.show()
                 try store.remove(book, options: nil) {
                     SVProgressHUD.dismiss()
                     switch $0 {
                     case .success(let count):
-                        if count > 0, let bookIdToBeRemoved = self.books[indexPath.row].entityId {
+                        if count > 0, let bookIdToBeRemoved = book.entityId {
                             self.books = AnyRandomAccessCollection(self.books.lazy.filter({ (book) -> Bool in
-                                return book.entityId == bookIdToBeRemoved
+                                return book.entityId != bookIdToBeRemoved
                             }))
                             tableView.deleteRows(at: [indexPath], with: .fade)
                         }

@@ -88,11 +88,12 @@ class DetailViewController: UIViewController {
             book.authors.append(objectsIn: authorsTVC.authors)
             SVProgressHUD.show()
             
-            store.save(book) { (book, error) -> Void in
+            store.save(book, options: nil) {
                 SVProgressHUD.dismiss()
-                if let _ = book {
+                switch $0 {
+                case .success:
                     self.performSegue(withIdentifier: identifier, sender: sender)
-                } else {
+                case .failure:
                     let alert = UIAlertController(title: "Error", message: "Operation not completed", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
@@ -110,9 +111,12 @@ class DetailViewController: UIViewController {
                 SVProgressHUD.dismiss()
 
                 //user cancelled, reload book from the cache to disacard any local changes
-                store.find(bookId) { (cachedBook, error) -> Void in
-                    if let _ = cachedBook {
+                store.find(bookId, options: nil) {
+                    switch $0 {
+                    case .success(let cachedBook):
                         self.book = cachedBook
+                    case .failure:
+                        break
                     }
                 }
             }

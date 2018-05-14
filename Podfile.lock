@@ -1,6 +1,6 @@
 PODS:
-  - KeychainAccess (3.1.0)
-  - Kinvey (3.11.0):
+  - KeychainAccess (3.1.1)
+  - Kinvey (3.14.0):
     - KeychainAccess (~> 3.0)
     - ObjectMapper (~> 3.0)
     - PromiseKit (~> 4.0)
@@ -12,26 +12,26 @@ PODS:
     - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
   - ObjcExceptionBridging/ObjcExceptionBridging (1.0.1)
   - ObjectMapper (3.1.0)
-  - PromiseKit (4.5.1):
-    - PromiseKit/Foundation (= 4.5.1)
-    - PromiseKit/QuartzCore (= 4.5.1)
-    - PromiseKit/UIKit (= 4.5.1)
-  - PromiseKit/CorePromise (4.5.1)
-  - PromiseKit/Foundation (4.5.1):
+  - PromiseKit (4.5.2):
+    - PromiseKit/Foundation (= 4.5.2)
+    - PromiseKit/QuartzCore (= 4.5.2)
+    - PromiseKit/UIKit (= 4.5.2)
+  - PromiseKit/CorePromise (4.5.2)
+  - PromiseKit/Foundation (4.5.2):
     - PromiseKit/CorePromise
-  - PromiseKit/QuartzCore (4.5.1):
+  - PromiseKit/QuartzCore (4.5.2):
     - PromiseKit/CorePromise
-  - PromiseKit/UIKit (4.5.1):
+  - PromiseKit/UIKit (4.5.2):
     - PromiseKit/CorePromise
-  - PubNub (4.7.5):
-    - PubNub/Core (= 4.7.5)
-  - PubNub/Core (4.7.5)
-  - Realm (3.0.2):
-    - Realm/Headers (= 3.0.2)
-  - Realm/Headers (3.0.2)
-  - RealmSwift (3.0.2):
-    - Realm (= 3.0.2)
-  - SVProgressHUD (2.2.2)
+  - PubNub (4.7.8):
+    - PubNub/Core (= 4.7.8)
+  - PubNub/Core (4.7.8)
+  - Realm (3.5.0):
+    - Realm/Headers (= 3.5.0)
+  - Realm/Headers (3.5.0)
+  - RealmSwift (3.5.0):
+    - Realm (= 3.5.0)
+  - SVProgressHUD (2.2.5)
   - XCGLogger (6.0.2):
     - XCGLogger/Core (= 6.0.2)
   - XCGLogger/Core (6.0.2):
@@ -41,18 +41,31 @@ DEPENDENCIES:
   - Kinvey
   - SVProgressHUD
 
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - KeychainAccess
+    - Kinvey
+    - ObjcExceptionBridging
+    - ObjectMapper
+    - PromiseKit
+    - PubNub
+    - Realm
+    - RealmSwift
+    - SVProgressHUD
+    - XCGLogger
+
 SPEC CHECKSUMS:
-  KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
-  Kinvey: c0fe2cd105625c349aec1fe1bab67ceb10a0c1b0
+  KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
+  Kinvey: 91c3cde84349c0b7c73a2adf8aa7c59abcb69281
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
   ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
-  PromiseKit: 445dac9b2c3c3b4b31b5f842bc325700b848a8bd
-  PubNub: b4a22853f971e630a4ef828d8d2c5af63f208f6b
-  Realm: 6f23fd1f178a09342eac21bfa7c2bf4312a7a180
-  RealmSwift: 695393add1b8f9d5fa75dd16e6355cf3935f71e2
-  SVProgressHUD: 59b2d3dabacbd051576d21d32293ca7228dc18b0
+  PromiseKit: 743e497a5f505a470d3bbbf4ce0663c1268af0a4
+  PubNub: e483fedbcd68ed554dd48276d8bbe9d9e23199a4
+  Realm: 0378021c424e4e2bd6a0e63b27881e929d9b9ad1
+  RealmSwift: 3322562622fda2ad596985ead4d8d8be30cf838c
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   XCGLogger: c9601cae9a8912de34a58666ba931ed3d624dd31
 
 PODFILE CHECKSUM: af275924ac16f92352d3be9cc6717adda3e3000e
 
-COCOAPODS: 1.4.0.beta.2
+COCOAPODS: 1.5.0
