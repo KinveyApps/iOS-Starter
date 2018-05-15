@@ -9,4 +9,4 @@ before_install:
 - pod install
 - tree -L 1
 script:
-- xcodebuild test -workspace Bookshelf.xcworkspace -scheme Bookshelf -destination 'platform=iOS Simulator,name=iPhone X,OS=11.3'
+- xcodebuild test -workspace Bookshelf.xcworkspace -scheme Bookshelf -destination 'platform=iOS Simulator,name=iPhone X,OS=11.3' | xcpretty 
