@@ -1,7 +1,5 @@
 language: swift
 osx_image: xcode9.3
-xcode_workspace: Bookshelf.xcworkspace
-xcode_scheme: Bookshelf
 before_install:
 - brew update
 - brew install tree
@@ -10,3 +8,5 @@ before_install:
 - tree -L 1
 - pod install
 - tree -L 1
+script:
+- xcodebuild test -workspace Bookshelf.xcworkspace -scheme Bookshelf -destination 'platform=iOS Simulator,name=iPhone X,OS=11.3'
