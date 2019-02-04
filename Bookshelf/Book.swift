@@ -94,7 +94,7 @@ function onPostFetch(request, response, modules) {
 }
  
  */
-class Book: Entity {
+class Book: Entity, Codable {
     
     @objc dynamic var title: String?
     let authors = List<Author>()
@@ -104,15 +104,45 @@ class Book: Entity {
         return "Book"
     }
     
-    //Map properties in your backend collection to the members of this entity
-    override func propertyMapping(_ map: Map) {
-        
-        //This maps the "_id", "_kmd" and "_acl" properties
-        super.propertyMapping(map)
-        
-        //Each property in your entity should be mapped using the following scheme:
-        //<member variable> <- ("<backend property>", map["<backend property>"])
-        title <- ("title", map["title"])
-        authors <- ("authors", map["authors"])
+    enum CodingKeys: String, CodingKey {
+        case title
+        case authors
     }
+    
+    required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        title = try container.decodeIfPresent(String.self, forKey: .title)
+        if let authors = try container.decodeIfPresent(List<Author>.self, forKey: .authors) {
+            self.authors.removeAll()
+            self.authors.append(objectsIn: authors)
+        }
+    }
+    
+    override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(title, forKey: .title)
+        try container.encode(authors, forKey: .authors)
+    }
+    
+    @available(*, deprecated)
+    required init?(map: Map) {
+        super.init(map: map)
+    }
+    
+    required init() {
+        super.init()
+    }
+    
+    required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+    
+    required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
 }

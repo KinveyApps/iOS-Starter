@@ -40,7 +40,7 @@ class MasterViewController: UITableViewController, UISearchBarDelegate {
     
     lazy var store: DataStore<Book>! = {
         //Create a DataStore of type "Sync"
-        return DataStore<Book>.collection(.sync)
+        return try! DataStore<Book>.collection(.sync)
     }()
 
     override func viewDidLoad() {
@@ -141,7 +141,7 @@ class MasterViewController: UITableViewController, UISearchBarDelegate {
         return true
     }
 
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let book = books[indexPath.row]
             do {
@@ -202,8 +202,16 @@ class MasterViewController: UITableViewController, UISearchBarDelegate {
         SVProgressHUD.show()
         
         //Push all local changes to the backend
-        store.push { (count, error) -> Void in
+        store.push(options: nil) {
             SVProgressHUD.dismiss()
+            switch $0 {
+            case .success(let count):
+                print("\(count) items pushed")
+            case .failure(let errors):
+                for error in errors {
+                    SVProgressHUD.showError(withStatus: error.localizedDescription)
+                }
+            }
             self.reloadData()
         }
     }
@@ -212,7 +220,7 @@ class MasterViewController: UITableViewController, UISearchBarDelegate {
         SVProgressHUD.show()
         
         //Discard all local changes
-        store.purge { (count, error) -> Void in
+        store.purge { _ in
             SVProgressHUD.dismiss()
             self.reloadData()
         }

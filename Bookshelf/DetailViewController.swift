@@ -63,14 +63,8 @@ class DetailViewController: UIViewController {
         if let identifier = segue.identifier {
             switch identifier {
             case "authors":
-                authorsTVC = segue.destination as! AuthorsTableViewController
-                authorsTVC.authors = book.authors.map {
-                    let author = Author()
-                    author.entityId = $0.entityId
-                    author.firstName = $0.firstName
-                    author.lastName = $0.lastName
-                    return author
-                }
+                authorsTVC = segue.destination as? AuthorsTableViewController
+                authorsTVC.authors = book.authors.map { $0 }
             default:
                 break
             }

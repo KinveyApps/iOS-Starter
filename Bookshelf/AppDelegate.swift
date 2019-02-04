@@ -18,43 +18,65 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         return FileStore()
     }()
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         let splitViewController = self.window!.rootViewController as! UISplitViewController
         let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as! UINavigationController
         navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
         splitViewController.delegate = self
         
-        Kinvey.sharedClient.initialize(appKey: "<appkey>", appSecret: "<appsecret>") { user, error in
-            if let _ = user {
-                //do nothing
-            } else {
-                SVProgressHUD.show()
-                
-                User.exists(username: "test") { exists, error in
-                    if exists {
-                        User.login(username: "test", password: "test") { user, error in
-                            SVProgressHUD.dismiss()
-                            if let _ = user {
-                                //do nothing
-                            } else {
-                                //do something!
-                            }
-                        }
-                    } else {
-                        User.signup(username: "test", password: "test") { user, error in
-                            SVProgressHUD.dismiss()
-                            if let _ = user {
-                                //do nothing
-                            } else {
-                                //do something!
-                            }
-                        }
-                    }
+//        Kinvey.sharedClient.initialize(appKey: "<appkey>", appSecret: "<appsecret>") {
+        Kinvey.sharedClient.initialize(appKey: "kid_Bywwhf84E", appSecret: "11e877f930d54be19299e1f785e338c8") {
+            switch $0 {
+            case .success(let user):
+                if user == nil {
+                    self.userExists()
                 }
+            case .failure:
+                SVProgressHUD.show()
+                self.userExists()
             }
         }
         
         return true
+    }
+    
+    private func userExists() {
+        User.exists(username: "test", options: nil) {
+            switch $0 {
+            case .success(let exists):
+                if exists {
+                    self.userLogin()
+                } else {
+                    self.userSignup()
+                }
+            case .failure(let error):
+                SVProgressHUD.showError(withStatus: error.localizedDescription)
+            }
+        }
+    }
+    
+    private func userLogin() {
+        User.login(username: "test", password: "test") {
+            SVProgressHUD.dismiss()
+            switch $0 {
+            case .success(let user):
+                print(user)
+            case .failure(let error):
+                SVProgressHUD.showError(withStatus: error.localizedDescription)
+            }
+        }
+    }
+    
+    private func userSignup() {
+        User.signup(username: "test", password: "test", options: nil) {
+            SVProgressHUD.dismiss()
+            switch $0 {
+            case .success(let user):
+                print(user)
+            case .failure(let error):
+                SVProgressHUD.showError(withStatus: error.localizedDescription)
+            }
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
