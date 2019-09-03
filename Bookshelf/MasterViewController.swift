@@ -232,9 +232,9 @@ class MasterViewController: UITableViewController, UISearchBarDelegate {
         //Sync with the backend. 
         //This will push all local changes to the backend, then
         //pull changes from the backend to the app.
-        store.sync(options: nil) { (result: Result<(UInt, AnyRandomAccessCollection<Book>), [Swift.Error]>) in
+        store.sync(options: nil) {
             SVProgressHUD.dismiss()
-            switch result {
+            switch $0 {
             case .success(_, let books):
                 self.books = books
                 self.tableView.reloadData();

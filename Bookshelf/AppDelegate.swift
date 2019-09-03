@@ -24,8 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
         splitViewController.delegate = self
         
-//        Kinvey.sharedClient.initialize(appKey: "<appkey>", appSecret: "<appsecret>") {
-        Kinvey.sharedClient.initialize(appKey: "kid_Bywwhf84E", appSecret: "11e877f930d54be19299e1f785e338c8") {
+        Kinvey.sharedClient.initialize(appKey: "<appkey>", appSecret: "<appsecret>") {
             switch $0 {
             case .success(let user):
                 if user == nil {
